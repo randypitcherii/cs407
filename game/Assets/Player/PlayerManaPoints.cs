@@ -24,7 +24,7 @@ public class PlayerManaPoints
 
         //initialize the player's mana points
         this.currentManaPoints = MAX_MANA_POINTS;
-    }   //end of Start method
+    }   //end of PlayerManaPoints constructor
 
     /**
      * Returns the player's current mana points.
