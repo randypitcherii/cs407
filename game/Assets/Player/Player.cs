@@ -36,7 +36,7 @@ public class Player
         this.movement = obj.GetComponent<PlayerMovement>();
         this.hitPoints = new PlayerHitPoints();
         this.manaPoints = new PlayerManaPoints();
-    }   //end of Start method
+    }   //end of Player constructor
 
     /**
      * Returns a reference to the player's game object.
