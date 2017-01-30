@@ -2,101 +2,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    //constants
-    private const int MAX_HIT_POINTS = 100;     //the maximum number of hit points
-    private const int MAX_MANA_POINTS = 100;    //the maximum number of mana points
-
     //fields
-    private int currentHitPoints = 0;           //the current number of hit points
-    private int currentManaPoints = 0;          //the current number of mana points
+    private GameObject gameObj = null;          //the player's game object
+    private PlayerMovement movement = null;     //the player's movement controls
+    private PlayerHitPoints hitPoints = null;   //the player's hit points
+    private PlayerManaPoints manaPoints = null; //the player's mana points
 
     /**
-     * Initializes the player object.
+     * Initializes the player.
+     *
+     * @parama obj  The player's game object.
      */
-    public void Start()
+    public Player(GameObject obj)
     {
-        //check for valid maximum hit points
-        if (MAX_HIT_POINTS <= 0)    //the maximum hit points are invalid
+        //check if the game object is valid
+        if (obj == null)    //the game object is invalid
         {
-            Debug.LogError("MAX_HIT_POINTS=" + MAX_HIT_POINTS);
+            Debug.LogError("obj=null");
             return;
         }   //end if
 
-        //check for valid maximum mana points
-        if (MAX_MANA_POINTS <= 0)   //the maximum mana points are invalid
+        //check if the movement is valid
+        if (obj.GetComponent<PlayerMovement>() == null) //the movement is invalid
         {
-            Debug.LogError("MAX_MANA_POINTS=" + MAX_MANA_POINTS);
+            Debug.LogError("PlayerMovement=null");
             return;
         }   //end if
 
-        //initialize the player object
-        this.currentHitPoints = MAX_HIT_POINTS;
-        this.currentManaPoints = MAX_MANA_POINTS;
+        //initialize the player
+        this.gameObj = obj;
+        this.movement = obj.GetComponent<PlayerMovement>();
+        this.hitPoints = new PlayerHitPoints();
+        this.manaPoints = new PlayerManaPoints();
     }   //end of Start method
 
     /**
-     * Update is called once per frame
+     * Returns a reference to the player's game object.
+     *
+     * @return  Returns a reference to the player's game object.
      */
-    public void Update()
+    public GameObject getGameObject()
     {
-
-    }   //end of Update method
+        return this.gameObj;
+    }   //end of getGameObject method
 
     /**
-     * Returns the player's current hit points.
+     * Returns a reference to the player's movement controls.
      *
-     * @return  Returns the player's current hit points.
+     * @return  Returns a reference to the player's movement controls.
      */
-    public int getHitPoints()
+    public PlayerMovement getMovementObject()
     {
-        return this.currentHitPoints;
-    }   //end of getHitPoints method
+        return this.movement;
+    }   //end of getMovementObject method
 
     /**
-     * Sets the player's current hit points to the given new hit points.
+     * Returns a reference to the player's hit points.
      *
-     * @param newHitPoints  The new hit points.
+     * @return  Returns a reference to the player's hit ponts.
      */
-    public void setHitPoints(int newHitPoints)
+    public PlayerHitPoints getHitPointsObject()
     {
-        //check for valid new hit points
-        if (newHitPoints < 0 || newHitPoints > MAX_HIT_POINTS)  //the new hit points are invalid
-        {
-            Debug.LogError("newHitPoints=" + newHitPoints);
-            return;
-        }   //end if
-
-        //set hit points
-        this.currentHitPoints = newHitPoints;
-    }   //end of setHitPoints method
+        return this.hitPoints;
+    }   //end of getHitPointsObject method
 
     /**
-     * Returns the player's current mana points.
+     * Returns a reference to the player's mana points.
      *
-     * @return  Returns the player's current mana points.
+     * @return  Returns a reference to the player's mana ponts.
      */
-    public int getManaPoints()
+    public PlayerManaPoints getManaPointsObject()
     {
-        return this.currentManaPoints;
-    }   //end of getManaPoints method
-
-    /**
-     * Sets the player's current mana points to the given new mana points.
-     *
-     * @param newHitPoints  The new mana points.
-     */
-    public void setManaPoints(int newManaPoints)
-    {
-        //check for valid new mana points
-        if (newManaPoints < 0 || newManaPoints > MAX_MANA_POINTS)  //the new mana points are invalid
-        {
-            Debug.LogError("newManaPoints=" + newManaPoints);
-            return;
-        }   //end if
-
-        //set mana points
-        this.currentManaPoints = newManaPoints;
-    }   //end of setHitPoints method
+        return this.manaPoints;
+    }   //end of getManaPointsObject method
 }   //end of Player class

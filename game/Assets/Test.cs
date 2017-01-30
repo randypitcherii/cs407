@@ -7,20 +7,20 @@ public class Test : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("Circle").GetComponentInChildren<Player>();
+        player = new Player(GameObject.Find("Circle"));
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            player.setHitPoints(player.getHitPoints() + 10);
-            Debug.Log("HP=" + player.getHitPoints());
+            player.getHitPointsObject().setHitPoints(player.getHitPointsObject().getHitPoints() + 10);
+            Debug.Log("HP=" + player.getHitPointsObject().getHitPoints());
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            player.setHitPoints(player.getHitPoints() - 10);
-            Debug.Log("HP=" + player.getHitPoints());
+            player.getHitPointsObject().setHitPoints(player.getHitPointsObject().getHitPoints() - 10);
+            Debug.Log("HP=" + player.getHitPointsObject().getHitPoints());
         }
 	}
 }
