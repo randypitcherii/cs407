@@ -8,6 +8,8 @@ public class Test : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = new Player(GameObject.Find("Circle"));
+        Attack a = new AttackMelee(player);
+        a.use();
 	}
 	
 	// Update is called once per frame
