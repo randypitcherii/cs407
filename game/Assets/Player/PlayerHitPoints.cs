@@ -24,7 +24,7 @@ public class PlayerHitPoints
 
         //initialize the player's hit points
         this.currentHitPoints = MAX_HIT_POINTS;
-    }   //end of Start method
+    }   //end of PlayerHitPoints constructor
 
     /**
      * Returns the player's current hit points.

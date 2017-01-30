@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Use this interface to modularize Human and AI movement.
+ */
 public interface PlayerMovement
 {
-    //use this interface to keep the movement methods the same for Human and AI
 }   //end of PlayerMovement interface
