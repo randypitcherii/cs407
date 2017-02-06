@@ -44,13 +44,22 @@ public class PlayerHitPoints
     public void setHitPoints(int newHitPoints)
     {
         //check for valid new hit points
-        if (newHitPoints < 0 || newHitPoints > MAX_HIT_POINTS)  //the new hit points are invalid
         {
-            Debug.LogError("newHitPoints=" + newHitPoints);
-            return;
-        }   //end if
+            //set hit points to zero
+            this.currentHitPoints = 0;
 
-        //set hit points
-        this.currentHitPoints = newHitPoints;
+            //end the game
+            GameOver.endGame();
+        }
+        else if (newHitPoints > MAX_HIT_POINTS) //the new hit points are invalid
+        {
+            //set the hit points to the valid maximum
+            this.currentHitPoints = MAX_HIT_POINTS;
+        }
+        else    //the new hit points are valid
+        {
+            //set hit points
+            this.currentHitPoints = newHitPoints;
+        }   //end if
     }   //end of setHitPoints method
 }   //end of PlayerHitPoints class

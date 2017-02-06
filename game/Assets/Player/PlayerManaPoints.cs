@@ -44,13 +44,20 @@ public class PlayerManaPoints
     public void setManaPoints(int newManaPoints)
     {
         //check for valid new mana points
-        if (newManaPoints < 0 || newManaPoints > MAX_MANA_POINTS)  //the new mana points are invalid
+        if (newManaPoints < 0)  //the new mana points are invalid
         {
-            Debug.LogError("newManaPoints=" + newManaPoints);
-            return;
-        }   //end if
-
-        //set mana points
-        this.currentManaPoints = newManaPoints;
+            //set mana points to zero
+            this.currentManaPoints = 0;
+        }
+        else if (newManaPoints > MAX_MANA_POINTS)   //the new mana points are invalid
+        {
+            //set mana points to the valid maximum
+            this.currentManaPoints = MAX_MANA_POINTS;
+        }
+        else    //the new mana points are valid
+        {
+            //set mana points
+            this.currentManaPoints = newManaPoints;
+        }
     }   //end of setHitPoints method
 }   //end of PlayerManaPoints class
