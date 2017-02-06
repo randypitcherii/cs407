@@ -44,6 +44,7 @@ public class PlayerHitPoints
     public void setHitPoints(int newHitPoints)
     {
         //check for valid new hit points
+        if (newHitPoints <= 0)   //the new hit points are invalid
         {
             //set hit points to zero
             this.currentHitPoints = 0;
