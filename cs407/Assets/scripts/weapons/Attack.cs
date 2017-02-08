@@ -39,10 +39,9 @@ public abstract class Attack
     /**
      * Reduces the mana points of the player after using an attack.
      */
-    public void reduceManaPoints()
+    private void reduceManaPoints()
     {
         PlayerManaPoints manaPoints = this.player.getManaPointsObject();
         manaPoints.setManaPoints(manaPoints.getManaPoints() - this.manaCost);
-        Debug.Log(this.manaCost);
     }
 }   //end of Attack interface
