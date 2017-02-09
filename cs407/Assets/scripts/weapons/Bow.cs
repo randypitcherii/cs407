@@ -124,11 +124,11 @@ public class Bow : MonoBehaviour {
         {
             if (state == 1 || (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) && (anim.GetCurrentAnimatorStateInfo(0).IsName("bow_load") || anim.GetCurrentAnimatorStateInfo(0).IsName("bow_load2")))
             {
-                arrowRB.velocity = new Vector2((float)(arrowPullBackSpeed * Math.Cos(angle)), (float)(arrowPullBackSpeed * Math.Sin(angle)));
+                //arrowRB.velocity = new Vector2((float)(arrowPullBackSpeed * Math.Cos(angle)), (float)(arrowPullBackSpeed * Math.Sin(angle)));
             }
             else if ((anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) && (anim.GetCurrentAnimatorStateInfo(0).IsName("bow_load") || anim.GetCurrentAnimatorStateInfo(0).IsName("bow_load2")))
             {
-                arrowRB.velocity = new Vector2(0, 0);
+                //arrowRB.velocity = new Vector2(0, 0);
             }
         }
     }
