@@ -39,7 +39,7 @@ cs407/*.pidb
 cs407/*.booproj
 cs407/*.svd
 cs407/*.pdb
-
+cs407/*.vs
 
 # Unity3D generated meta files
 game/*.pidb.meta
