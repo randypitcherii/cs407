@@ -10,10 +10,22 @@ public class temp_player : MonoBehaviour, PlayerInterface
     private bool needFlip;
     public Rigidbody2D rb;
     private bool jumping;
-	// Use this for initialization
+    //set the direction of the projectile being shot
+    private int dirProjectile;
+    public bool setProjectile;
+    public GameObject projectile;
+    /*this gets around unity stupidy, it will be set to true 
+    when ever the fight animation is running and allow the value
+    resestCleared to true which will allow when setProj to true create one new Gameobject instead of thousands*/
+    public bool reset;
+    public bool resetCleared;
+    // Use this for initialization
 	public void Start () {
         isFlipped = false;
         anim = GetComponent<Animator>();
+        anim.SetInteger("Dir", 1);
+        resetCleared = false;
+        setProjectile = false;
     }
 
     public float getSpeed()
@@ -22,6 +34,34 @@ public class temp_player : MonoBehaviour, PlayerInterface
     }
     public void Update()
     {
+        if (reset)
+        {
+            resetCleared = true;
+        }
+        if (!reset && resetCleared)
+        {
+            resetCleared = false;
+            setProjectile = false;
+            GameObject created = (GameObject) Instantiate(projectile, transform);
+            //created.SetActive(true);
+            //created.transform.SetParent(transform,true);
+            //point projectile left
+            if (dirProjectile == 2)
+            {
+                //This line makes no sense to me, why do I have to add parent postion when it should already know them
+                created.transform.position = new Vector2((float)-4.405+transform.position.x, (float)-.31+transform.position.y);
+                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(-10,0);
+
+            }
+            //point projectile right
+            else
+            {
+                created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
+                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(10, 0);
+            }
+        }
     }
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -48,11 +88,13 @@ public class temp_player : MonoBehaviour, PlayerInterface
         {
             transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
             anim.SetInteger("State", 2);
+            anim.SetInteger("Dir", 2);
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(speed * Time.deltaTime, 0, 0);
             anim.SetInteger("State", 1);
+            anim.SetInteger("Dir", 1);
         }
         else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
@@ -76,6 +118,11 @@ public class temp_player : MonoBehaviour, PlayerInterface
             {
                 anim.SetInteger("State", 0);
             }
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            dirProjectile = anim.GetInteger("Dir");
+            anim.SetInteger("State",6);
         }
     }
 }
