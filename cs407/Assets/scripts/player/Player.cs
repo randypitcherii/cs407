@@ -39,7 +39,7 @@ public class Player : MonoBehaviour, PlayerInterface
         this.hitPoints = new PlayerHitPoints();
         this.manaPoints = new PlayerManaPoints();
         addAttacks();
-        this.speed = 0;
+        this.speed = 0; //TODO:  Find the actual value
     }   //end of Player constructor
 
     /**
