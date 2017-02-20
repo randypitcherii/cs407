@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class temp_player : MonoBehaviour, PlayerInterface
 {
+    public Canvas healthPoints;
     public float speed;
 	// Use this for initialization
 	public void Start () {
-		
-	}
+        healthPoints = GameObject.FindObjectOfType<Canvas>();
+        healthPoints.enabled = true;
+    }
 
     public float getSpeed()
     {
