@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class temp_player : MonoBehaviour, PlayerInterface
 {
-<<<<<<< HEAD
     private bool isFlipped;
     public float speed;
     private Animator anim;
