@@ -5,7 +5,7 @@ game/Build/
 game/Builds/
 game/Assets/AssetStoreTools*
 
-cs407/Library/
+/cs407/Library/
 cs407/Temp/
 cs407/Obj/
 cs407/Build/
@@ -39,7 +39,7 @@ cs407/*.pidb
 cs407/*.booproj
 cs407/*.svd
 cs407/*.pdb
-
+cs407/*.vs
 
 # Unity3D generated meta files
 game/*.pidb.meta
@@ -57,3 +57,4 @@ game/*.unitypackage
 
 cs407/*.apk
 cs407/*.unitypackage
+*.meta

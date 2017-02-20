@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player
+public class Player : MonoBehaviour, PlayerInterface
 {
     //fields
     private GameObject gameObj = null;                  //the player's game object
@@ -10,6 +10,7 @@ public class Player
     private PlayerHitPoints hitPoints = null;           //the player's hit points
     private PlayerManaPoints manaPoints = null;         //the player's mana points
     private List<Attack> attacks = new List<Attack>();  //the player's attacks
+    private float speed;                                //the player's speed
 
     /**
      * Initializes the player.
@@ -38,6 +39,7 @@ public class Player
         this.hitPoints = new PlayerHitPoints();
         this.manaPoints = new PlayerManaPoints();
         addAttacks();
+        this.speed = 0; //TODO:  Find the actual value
     }   //end of Player constructor
 
     /**
@@ -113,4 +115,36 @@ public class Player
         //the attack was not found
         Debug.LogError("Invalid type");
     }   //end of attack method
+
+    /**
+     * Runs once at start.
+     */
+    public void Start()
+    {
+
+    }   //end of Start method
+
+    /**
+     * Runs once per frame.  Physics should NOT be ran here.
+     */
+    public void Update()
+    {
+
+    }   //end of Update method
+
+    /**
+     * Runs once per frame.  Physics should be ran here.
+     */
+    public void LateUpdate()
+    {
+
+    }   //end of LateUpdate method
+
+    /**
+     * Returns the current speed of the player.
+     */
+    public float getSpeed()
+    {
+        return this.speed;
+    }   //end of getSpeed method
 }   //end of Player class
