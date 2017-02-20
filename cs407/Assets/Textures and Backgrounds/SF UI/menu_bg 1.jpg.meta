@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: 19c113b79d62c6c4489b6e2d58d117e3
+timeCreated: 1487029229
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: menu_bg 1_0
+    21300002: menu_bg 1_1
+    21300004: menu_bg 1_2
+    21300006: menu_bg 1_3
+    21300008: menu_bg 1_4
+    21300010: menu_bg 1_5
+    21300012: menu_bg 1_6
+    21300014: menu_bg 1_7
+    21300016: menu_bg 1_8
+    21300018: menu_bg 1_9
+    21300020: menu_bg 1_10
+    21300022: menu_bg 1_11
+    21300024: menu_bg 1_12
+    21300026: menu_bg 1_13
+    21300028: menu_bg 1_14
+    21300030: menu_bg 1_15
+    21300032: menu_bg 1_16
+    21300034: menu_bg 1_17
+    21300036: menu_bg 1_18
+    21300038: menu_bg 1_19
+    21300040: menu_bg 1_20
+    21300042: menu_bg 1_21
+    21300044: menu_bg 1_22
+    21300046: menu_bg 1_23
+    21300048: menu_bg 1_24
+    21300050: menu_bg 1_25
+    21300052: menu_bg 1_26
+    21300054: menu_bg 1_27
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: menu_bg 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 481
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

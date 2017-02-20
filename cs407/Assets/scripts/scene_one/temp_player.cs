@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class temp_player : MonoBehaviour, PlayerInterface
 {
+<<<<<<< HEAD
     private bool isFlipped;
     public float speed;
     private Animator anim;
@@ -26,6 +28,14 @@ public class temp_player : MonoBehaviour, PlayerInterface
         anim.SetInteger("Dir", 1);
         resetCleared = false;
         setProjectile = false;
+=======
+    public Canvas healthPoints;
+    public float speed;
+	// Use this for initialization
+	public void Start () {
+        healthPoints = GameObject.FindObjectOfType<Canvas>();
+        healthPoints.enabled = true;
+>>>>>>> origin/master
     }
 
     public float getSpeed()

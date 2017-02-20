@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: be4db811d8d594f4688cd65d4bb44a37
 timeCreated: 1487219897
 licenseType: Free
@@ -13,6 +14,13 @@ TextureImporter:
     21300012: mainCharacter_rangedAttack_left_6
     21300014: mainCharacter_rangedAttack_left_7
     21300016: mainCharacter_rangedAttack_left_8
+=======
+guid: 6e284942712f83244b7efee02cc23138
+timeCreated: 1487539612
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -43,7 +51,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -67,6 +79,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
@@ -195,6 +208,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
     outline: []
   spritePackingTag: 
   userData: 
