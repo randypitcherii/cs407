@@ -21,6 +21,7 @@ public class temp_player : MonoBehaviour, PlayerInterface
     resestCleared to true which will allow when setProj to true create one new Gameobject instead of thousands*/
     public bool reset;
     public bool resetCleared;
+    public Canvas healthPoints;
     // Use this for initialization
 	public void Start () {
         isFlipped = false;
@@ -28,14 +29,8 @@ public class temp_player : MonoBehaviour, PlayerInterface
         anim.SetInteger("Dir", 1);
         resetCleared = false;
         setProjectile = false;
-=======
-    public Canvas healthPoints;
-    public float speed;
-	// Use this for initialization
-	public void Start () {
-        healthPoints = GameObject.FindObjectOfType<Canvas>();
-        healthPoints.enabled = true;
->>>>>>> origin/master
+	healthPoints = GameObject.FindObjectOfType<Canvas>();
+	healthPoints.enabled = true;
     }
 
     public float getSpeed()
