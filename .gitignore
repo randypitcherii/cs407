@@ -57,3 +57,4 @@ game/*.unitypackage
 
 cs407/*.apk
 cs407/*.unitypackage
+*.meta
