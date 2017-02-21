@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerHitPoints
+public class PlayerHitPoints : MonoBehaviour
 {
+    public GameObject temp_player;
     //constants
     private const int MAX_HIT_POINTS = 100;     //the maximum number of hit points
-
+    public Slider healthSlider;
     //fields
     private int currentHitPoints = 0;           //the current number of hit points
 
@@ -15,6 +17,7 @@ public class PlayerHitPoints
      */
     public PlayerHitPoints()
     {
+        temp_player.SetActive(true);
         //check for valid maximum hit points
         if (MAX_HIT_POINTS <= 0)    //the maximum hit points are invalid
         {
@@ -61,6 +64,7 @@ public class PlayerHitPoints
         {
             //set hit points
             this.currentHitPoints = newHitPoints;
+            healthSlider.value = this.currentHitPoints;
         }   //end if
     }   //end of setHitPoints method
 }   //end of PlayerHitPoints class

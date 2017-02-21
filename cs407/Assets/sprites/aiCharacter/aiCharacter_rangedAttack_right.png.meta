@@ -1,9 +1,15 @@
 fileFormatVersion: 2
-guid: c6e6585a087d8504db9ffe2f3cd13135
-timeCreated: 1487539614
+guid: e59a2e9da7a4f514ebe4af2ffffe6a4a
+timeCreated: 1487541338
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: aiCharacter_rangedAttack_right_0
+    21300002: aiCharacter_rangedAttack_right_1
+    21300004: aiCharacter_rangedAttack_right_2
+    21300006: aiCharacter_rangedAttack_right_3
+    21300008: aiCharacter_rangedAttack_right_4
+    21300010: aiCharacter_rangedAttack_right_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -58,9 +64,95 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_0
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1000
+        width: 136
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_1
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1000
+        width: 193
+        height: 500
+      alignment: 9
+      pivot: {x: 0.352, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 500
+        width: 245
+        height: 500
+      alignment: 9
+      pivot: {x: 0.278, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_3
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 500
+        width: 250
+        height: 500
+      alignment: 9
+      pivot: {x: 0.272, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 0
+        width: 320
+        height: 500
+      alignment: 9
+      pivot: {x: 0.213, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: aiCharacter_rangedAttack_right_5
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 0
+        width: 143
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

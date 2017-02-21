@@ -1,9 +1,87 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 26e7f1b7bc71d184fa05c10761705eca
+timeCreated: 1487196304
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: mainCharacter_rangedAttack_right_0
+    21300002: mainCharacter_rangedAttack_right_1
+    21300004: mainCharacter_rangedAttack_right_2
+    21300006: mainCharacter_rangedAttack_right_3
+    21300008: mainCharacter_rangedAttack_right_4
+    21300010: mainCharacter_rangedAttack_right_5
+    21300012: mainCharacter_rangedAttack_right_6
+    21300014: mainCharacter_rangedAttack_right_7
+    21300016: mainCharacter_rangedAttack_right_8
+    21300018: mainCharacter_rangedAttack_right_9
+    21300020: mainCharacter_rangedAttack_right_10
+    21300022: mainCharacter_rangedAttack_right_11
+    21300024: mainCharacter_rangedAttack_right_12
+    21300026: mainCharacter_rangedAttack_right_13
+    21300028: mainCharacter_rangedAttack_right_14
+    21300030: mainCharacter_rangedAttack_right_15
+    21300032: mainCharacter_rangedAttack_right_16
+    21300034: mainCharacter_rangedAttack_right_17
+    21300036: mainCharacter_rangedAttack_right_18
+    21300038: mainCharacter_rangedAttack_right_19
+    21300040: mainCharacter_rangedAttack_right_20
+    21300042: mainCharacter_rangedAttack_right_21
+    21300044: mainCharacter_rangedAttack_right_22
+    21300046: mainCharacter_rangedAttack_right_23
+    21300048: mainCharacter_rangedAttack_right_24
+    21300050: mainCharacter_rangedAttack_right_25
+    21300052: mainCharacter_rangedAttack_right_26
+    21300054: mainCharacter_rangedAttack_right_27
+    21300056: mainCharacter_rangedAttack_right_28
+    21300058: mainCharacter_rangedAttack_right_29
+    21300060: mainCharacter_rangedAttack_right_30
+    21300062: mainCharacter_rangedAttack_right_31
+    21300064: mainCharacter_rangedAttack_right_32
+    21300066: mainCharacter_rangedAttack_right_33
+    21300068: mainCharacter_rangedAttack_right_34
+    21300070: mainCharacter_rangedAttack_right_35
+    21300072: mainCharacter_rangedAttack_right_36
+    21300074: mainCharacter_rangedAttack_right_37
+    21300076: mainCharacter_rangedAttack_right_38
+    21300078: mainCharacter_rangedAttack_right_39
+    21300080: mainCharacter_rangedAttack_right_40
+    21300082: mainCharacter_rangedAttack_right_41
+    21300084: mainCharacter_rangedAttack_right_42
+    21300086: mainCharacter_rangedAttack_right_43
+    21300088: mainCharacter_rangedAttack_right_44
+    21300090: mainCharacter_rangedAttack_right_45
+    21300092: mainCharacter_rangedAttack_right_46
+    21300094: mainCharacter_rangedAttack_right_47
+    21300096: mainCharacter_rangedAttack_right_48
+    21300098: mainCharacter_rangedAttack_right_49
+    21300100: mainCharacter_rangedAttack_right_50
+    21300102: mainCharacter_rangedAttack_right_51
+    21300104: mainCharacter_rangedAttack_right_52
+    21300106: mainCharacter_rangedAttack_right_53
+    21300108: mainCharacter_rangedAttack_right_54
+    21300110: mainCharacter_rangedAttack_right_55
+    21300112: mainCharacter_rangedAttack_right_56
+    21300114: mainCharacter_rangedAttack_right_57
+    21300116: mainCharacter_rangedAttack_right_58
+    21300118: mainCharacter_rangedAttack_right_59
+    21300120: mainCharacter_rangedAttack_right_60
+    21300122: mainCharacter_rangedAttack_right_61
+    21300124: mainCharacter_rangedAttack_right_62
+    21300126: mainCharacter_rangedAttack_right_63
+    21300128: mainCharacter_rangedAttack_right_64
+    21300130: mainCharacter_rangedAttack_right_65
+    21300132: mainCharacter_rangedAttack_right_67
+    21300134: mainCharacter_rangedAttack_right_69
+    21300136: mainCharacter_rangedAttack_right_71
+    21300138: mainCharacter_rangedAttack_right_72
+=======
 guid: 50586f0a62939854b8b78c97ab58ffcf
 timeCreated: 1487539611
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +112,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 2
+=======
   spriteMode: 1
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -58,9 +140,920 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_0
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 1010
+        width: 90
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_1
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1010
+        width: 173
+        height: 490
+      alignment: 9
+      pivot: {x: 0.26, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_2
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1265
+        width: 5
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_3
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 1010
+        width: 170
+        height: 490
+      alignment: 9
+      pivot: {x: 0.265, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_4
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1265
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_5
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 1255
+        width: 10
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_6
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1245
+        width: 15
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_7
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1245
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_8
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 1245
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_9
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 1245
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_10
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1245
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_11
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 1235
+        width: 15
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_12
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1240
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_13
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1235
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_14
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 1235
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_15
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 1235
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_16
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1230
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_17
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1230
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_18
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1230
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_19
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1225
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_20
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 1225
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_21
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 1210
+        width: 20
+        height: 20
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_22
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 1220
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_23
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1220
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_24
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1210
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_25
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1210
+        width: 5
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_26
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 1205
+        width: 10
+        height: 15
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_27
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 1205
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_28
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1205
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_29
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1200
+        width: 10
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_30
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1200
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_31
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1195
+        width: 5
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_32
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1190
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_33
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1190
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_34
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 1190
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_35
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 1190
+        width: 15
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_36
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1185
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_37
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 1180
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_38
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1180
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_39
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 1180
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_40
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 1180
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_41
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1180
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_42
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1170
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_43
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1170
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_44
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 1160
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_45
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 1160
+        width: 5
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_46
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 1160
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_47
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 1160
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_48
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1150
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_49
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 1150
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_50
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1145
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_51
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1145
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_52
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 1140
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_53
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1135
+        width: 10
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_54
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1130
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_55
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1125
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_57
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 1105
+        width: 10
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_58
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 1095
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_59
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1085
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_60
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1070
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_61
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1070
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_62
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1055
+        width: 5
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_63
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 1045
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_64
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1035
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_65
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 505
+        width: 147
+        height: 490
+      alignment: 9
+      pivot: {x: 0.306, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_67
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 505
+        width: 220
+        height: 490
+      alignment: 9
+      pivot: {x: 0.205, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_69
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 505
+        width: 290
+        height: 490
+      alignment: 9
+      pivot: {x: 0.155, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_71
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 5
+        width: 90
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_right_72
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 5
+        width: 90
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+=======
   spriteSheet:
     serializedVersion: 2
     sprites: []
+>>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
     outline: []
   spritePackingTag: 
   userData: 
