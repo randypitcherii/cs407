@@ -2,130 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, PlayerInterface
+/**
+ * Use this abstract to modularize human and AI players.
+ */
+public abstract class Player : MonoBehaviour
 {
-    //fields
-    private GameObject gameObj = null;                  //the player's game object
-    private PlayerMovement movement = null;             //the player's movement controls
-    private PlayerHitPoints hitPoints = null;           //the player's hit points
-    private PlayerManaPoints manaPoints = null;         //the player's mana points
-    private List<Attack> attacks = new List<Attack>();  //the player's attacks
-    private float speed;                                //the player's speed
+    //constants
+    private const int MAX_HIT_POINTS = 100;     //the maximum amount of hit points
+    private const int MAX_MANA_POINTS = 100;    //the maximum amount of mana points
+
+    //private fields
+    private Animator anim;      //handles the animations
+    private bool jumping;       //whether or not the player is jumping
+    private int dirProjectile;  //direction of the projectile
+
+    //protected fields
+    protected int hitPoints;  //the player's current hit points
+    protected int manaPoints; //the player's current mana points
+
+    //public fields
+    public float speed;     //the player's current speed
+    public Rigidbody2D rb;  //TODO:  ADD COMMENT
+
+    //abstract methods
+    public abstract void LateUpdate();
 
     /**
      * Initializes the player.
-     *
-     * @parama obj  The player's game object.
-     */
-    public Player(GameObject obj)
-    {
-        //check if the game object is valid
-        if (obj == null)    //the game object is invalid
-        {
-            Debug.LogError("obj=null");
-            return;
-        }   //end if
-
-        //check if the movement is valid
-        if (obj.GetComponent<PlayerMovement>() == null) //the movement is invalid
-        {
-            Debug.LogError("PlayerMovement=null");
-            return;
-        }   //end if
-
-        //initialize the player
-        this.gameObj = obj;
-        this.movement = obj.GetComponent<PlayerMovement>();
-        this.hitPoints = new PlayerHitPoints();
-        this.manaPoints = new PlayerManaPoints();
-        addAttacks();
-        this.speed = 0; //TODO:  Find the actual value
-    }   //end of Player constructor
-
-    /**
-     * Returns a reference to the player's game object.
-     *
-     * @return  Returns a reference to the player's game object.
-     */
-    public GameObject getGameObject()
-    {
-        return this.gameObj;
-    }   //end of getGameObject method
-
-    /**
-     * Returns a reference to the player's movement controls.
-     *
-     * @return  Returns a reference to the player's movement controls.
-     */
-    public PlayerMovement getMovementObject()
-    {
-        return this.movement;
-    }   //end of getMovementObject method
-
-    /**
-     * Returns a reference to the player's hit points.
-     *
-     * @return  Returns a reference to the player's hit ponts.
-     */
-    public PlayerHitPoints getHitPointsObject()
-    {
-        return this.hitPoints;
-    }   //end of getHitPointsObject method
-
-    /**
-     * Returns a reference to the player's mana points.
-     *
-     * @return  Returns a reference to the player's mana ponts.
-     */
-    public PlayerManaPoints getManaPointsObject()
-    {
-        return this.manaPoints;
-    }   //end of getManaPointsObject method
-
-    /**
-     * Adds attacks to the player.
-     */
-    private void addAttacks()
-    {
-        attacks.Add(new AttackMelee(this));
-        attacks.Add(new AttackRanged(this));
-        attacks.Add(new AttackBlock(this));
-    }   //end of addAttacks method
-
-    /**
-     * Performs the given attack.
-     *
-     * @generic type    The attack type.
-     */
-    public void attack<type>()
-    {
-        //loop through all of the attacks to find the correct attack
-        foreach (var attack in this.attacks)
-        {
-            //check if the attack was found
-            if (typeof(type) == attack.GetType())   //the attack was found
-            {
-                //perform the attack
-                attack.use();
-
-                return;
-            }   //end if
-        }   //end for
-
-        //the attack was not found
-        Debug.LogError("Invalid type");
-    }   //end of attack method
-
-    /**
-     * Runs once at start.
      */
     public void Start()
     {
+        //initialize hit points
+        this.hitPoints = MAX_HIT_POINTS;
 
+        //initialize mana points
+        this.manaPoints = MAX_MANA_POINTS;
+
+        //initialize jumping flag
+        this.jumping = false;
     }   //end of Start method
 
     /**
-     * Runs once per frame.  Physics should NOT be ran here.
+     * TODO:  ADD COMMENT
      */
     public void Update()
     {
@@ -133,18 +51,152 @@ public class Player : MonoBehaviour, PlayerInterface
     }   //end of Update method
 
     /**
-     * Runs once per frame.  Physics should be ran here.
+     * TODO:  ADD COMMENT
      */
-    public void LateUpdate()
+    public void OnTriggerEnter2D(Collider2D col)
     {
 
-    }   //end of LateUpdate method
+    }   //end of OnTriggerEnter2D method
 
     /**
-     * Returns the current speed of the player.
+     * Returns the player's current hit points.
+     *
+     * @return  Returns the player's current hit points.
+     */
+    public int getHitPoints()
+    {
+        return this.hitPoints;
+    }   //end of getHitPoints method
+
+    /**
+     * Sets the player's current hit points to the given new hit points.
+     *
+     * @param newHitPoints  The new hit points.
+     */
+    public void setHitPoints(int newHitPoints)
+    {
+        //check for valid new hit points
+        if (newHitPoints <= 0)   //the new hit points are invalid
+        {
+            //set hit points to zero
+            this.hitPoints = 0;
+
+            //end the game
+            GameOver.endGame();
+        }
+        else if (newHitPoints > MAX_HIT_POINTS) //the new hit points are invalid
+        {
+            //set the hit points to the valid maximum
+            this.hitPoints = MAX_HIT_POINTS;
+        }
+        else    //the new hit points are valid
+        {
+            //set hit points
+            this.hitPoints = newHitPoints;
+        }   //end if
+    }   //end of setHitPoints method
+
+    /**
+     * Returns the player's current mana points.
+     *
+     * @return  Returns the player's current mana points.
+     */
+    public int getManaPoints()
+    {
+        return this.hitPoints;
+    }   //end of getManaPoints method
+
+    /**
+     * Sets the player's current mana points to the given new mana points.
+     *
+     * @param newHitPoints  The new mana points.
+     */
+    public void setManaPoints(int newManaPoints)
+    {
+        //check for valid new mana points
+        if (newManaPoints < 0)  //the new mana points are invalid
+        {
+            //set mana points to zero
+            this.manaPoints = 0;
+        }
+        else if (newManaPoints > MAX_MANA_POINTS)   //the new mana points are invalid
+        {
+            //set mana points to the valid maximum
+            this.manaPoints = MAX_MANA_POINTS;
+        }
+        else    //the new mana points are valid
+        {
+            //set mana points
+            this.manaPoints = newManaPoints;
+        }   //end if
+    }   //end of setHitPoints method
+
+    /**
+     * Makes the player move to the left.
+     */
+    protected void moveLeft()
+    {
+        transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+        anim.SetInteger("State", 2);
+        anim.SetInteger("Dir", 2);
+    }   //end of moveLeft method
+
+    /**
+     * Makes the player move to the right.
+     */
+    protected void moveRight()
+    {
+        transform.Translate(speed * Time.deltaTime, 0, 0);
+        anim.SetInteger("State", 1);
+        anim.SetInteger("Dir", 1);
+    }   //end of moveRight method
+
+    /**
+     * Makes the player jump.
+     */
+    protected void jump()
+    {
+        //TODO have it exit state when hits ground
+        if (!jumping)
+        {
+            jumping = true;
+            anim.SetInteger("State", 3);
+            rb.velocity = new Vector2(0, 5);
+        }
+    }   //end of jump method
+
+    /**
+     * Makes the player perform a melee attack.
+     */
+    protected void useMeleeAttack()
+    {
+
+    }   //end of useMeleeAttack method
+
+    /**
+     * Makes the player perform a ranged attack.
+     */
+    protected void useRangedAttack()
+    {
+        dirProjectile = anim.GetInteger("Dir");
+        anim.SetInteger("State", 6);
+    }   //end of useRangedAttack method
+
+    /**
+     * Makes the player perform a block attack.
+     */
+    protected void useBlockAttack()
+    {
+
+    }   //end of useBlockAttack method
+
+    /**
+     * Returns the player's current speed.
+     *
+     * @returns Returns the player's current speed.
      */
     public float getSpeed()
     {
         return this.speed;
     }   //end of getSpeed method
-}   //end of Player class
+}   //end of Player abstract

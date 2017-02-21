@@ -17,7 +17,7 @@ public class PlayerHitPoints : MonoBehaviour
      */
     public PlayerHitPoints()
     {
-        temp_player.SetActive(true);
+        //temp_player.SetActive(true);
         //check for valid maximum hit points
         if (MAX_HIT_POINTS <= 0)    //the maximum hit points are invalid
         {
