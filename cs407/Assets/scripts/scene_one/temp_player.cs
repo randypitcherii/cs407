@@ -15,12 +15,12 @@ public class temp_player : MonoBehaviour, PlayerInterface
     private int dirProjectile;
     public bool setProjectile;
     public GameObject projectile;
+    public Canvas healthPoints;
     /*this gets around unity stupidy, it will be set to true 
     when ever the fight animation is running and allow the value
     resestCleared to true which will allow when setProj to true create one new Gameobject instead of thousands*/
     public bool reset;
     public bool resetCleared;
-    public Canvas healthPoints;
     // Use this for initialization
 	public void Start () {
         isFlipped = false;
@@ -28,8 +28,6 @@ public class temp_player : MonoBehaviour, PlayerInterface
         anim.SetInteger("Dir", 1);
         resetCleared = false;
         setProjectile = false;
-	healthPoints = GameObject.FindObjectOfType<Canvas>();
-	healthPoints.enabled = true;
     }
 
     public float getSpeed()
