@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: 8ca0b4ff17a0e9346a86a13412bb48fd
-timeCreated: 1487614448
+guid: 6eb005bd7dc27fb48978776298e578cf
+timeCreated: 1487608487
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainCharacter_rangedAttack_right_0
-    21300002: mainCharacter_rangedAttack_right_1
-    21300004: mainCharacter_rangedAttack_right_2
-    21300006: mainCharacter_rangedAttack_right_3
-    21300008: mainCharacter_rangedAttack_right_4
-    21300010: mainCharacter_rangedAttack_right_5
-    21300012: mainCharacter_rangedAttack_right_6
+    21300000: mainCharacter_rangedAttack_left 1_0
+    21300002: mainCharacter_rangedAttack_left 1_1
+    21300004: mainCharacter_rangedAttack_left 1_2
+    21300006: mainCharacter_rangedAttack_left 1_3
+    21300008: mainCharacter_rangedAttack_left 1_4
+    21300010: mainCharacter_rangedAttack_left 1_5
+    21300012: mainCharacter_rangedAttack_left 1_6
+    21300014: mainCharacter_rangedAttack_left 1_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -77,88 +78,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_0
+      name: mainCharacter_rangedAttack_left 1_0
       rect:
         serializedVersion: 2
-        x: 210
+        x: 200
         y: 1000
         width: 90
-        height: 500
+        height: 490
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_1
+      name: mainCharacter_rangedAttack_left 1_1
       rect:
         serializedVersion: 2
-        x: 710
+        x: 623
         y: 1000
-        width: 160
+        width: 168
         height: 500
       alignment: 9
-      pivot: {x: 0.281, y: 0.5}
+      pivot: {x: 0.732, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_2
+      name: mainCharacter_rangedAttack_left 1_2
       rect:
         serializedVersion: 2
-        x: 1210
+        x: 1123
         y: 1000
-        width: 160
+        width: 170
         height: 500
       alignment: 9
-      pivot: {x: 0.281, y: 0.5}
+      pivot: {x: 0.735, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_3
+      name: mainCharacter_rangedAttack_left 1_3
       rect:
         serializedVersion: 2
-        x: 210
+        x: 137
         y: 500
-        width: 160
+        width: 150
         height: 500
       alignment: 9
-      pivot: {x: 0.281, y: 0.5}
+      pivot: {x: 0.7, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_4
+      name: mainCharacter_rangedAttack_left 1_4
       rect:
         serializedVersion: 2
-        x: 710
+        x: 633
         y: 500
-        width: 215
+        width: 154
         height: 500
       alignment: 9
-      pivot: {x: 0.209, y: 0.5}
+      pivot: {x: 0.708, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_5
+      name: mainCharacter_rangedAttack_left 1_5
       rect:
         serializedVersion: 2
-        x: 1210
+        x: 1073
         y: 500
+        width: 220
+        height: 500
+      alignment: 9
+      pivot: {x: 0.795, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_rangedAttack_left 1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
         width: 290
         height: 500
       alignment: 9
-      pivot: {x: 0.115, y: 0.5}
+      pivot: {x: 0.845, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mainCharacter_rangedAttack_right_6
+      name: mainCharacter_rangedAttack_left 1_7
       rect:
         serializedVersion: 2
-        x: 213
+        x: 700
         y: 0
         width: 90
         height: 500
