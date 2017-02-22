@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
-        PlayerInterface script = player.GetComponent<PlayerInterface>();
+        Player script = player.GetComponent<Player>();
         speedCamera = (float)(script.getSpeed()*1.0);
 
     }
