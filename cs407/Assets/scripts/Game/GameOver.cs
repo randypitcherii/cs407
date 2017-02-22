@@ -9,6 +9,6 @@ public class GameOver
      */
     public static void endGame()
     {
-        
+        Application.Quit();
     }   //end of endGame method
 }   //end of GameOver class

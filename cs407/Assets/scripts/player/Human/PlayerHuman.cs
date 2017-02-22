@@ -45,7 +45,7 @@ public class PlayerHuman : Player
         }
         else    //no key was pressed
         {
-
+            standStill();
         }   //end if
     }   //end of LateUpdate method
 

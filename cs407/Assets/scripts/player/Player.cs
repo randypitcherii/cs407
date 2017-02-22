@@ -15,14 +15,20 @@ public abstract class Player : MonoBehaviour
     private Animator anim;      //handles the animations
     private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
+    private bool isFlipped;     //whether or not the player is flipped
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
     protected int manaPoints; //the player's current mana points
 
     //public fields
-    public float speed;     //the player's current speed
-    public Rigidbody2D rb;  //TODO:  ADD COMMENT
+    public float speed;             //the player's current speed
+    public Rigidbody2D rb;          //TODO:  ADD COMMENT
+    public bool reset;              //TODO:  ADD COMMENT
+    public bool resetCleared;       //TODO:  ADD COMMENT
+    public bool setProjectile;      //TODO:  ADD COMMENT
+    public Canvas healthPoints;     //TODO:  ADD COMMENT
+    public GameObject projectile;   //TODO:  ADD COMMENT
 
     //abstract methods
     public abstract void LateUpdate();
@@ -40,6 +46,23 @@ public abstract class Player : MonoBehaviour
 
         //initialize jumping flag
         this.jumping = false;
+
+        //initialize reset cleared flag
+        this.resetCleared = false;
+
+        //initialize set projectile flag
+        this.setProjectile = false;
+
+        //initialize flipped flag
+        this.isFlipped = false;
+
+        //initialize the animator
+        anim = GetComponent<Animator>();
+        anim.SetInteger("Dir", 1);
+
+        //initialize the health points
+        healthPoints = GameObject.FindObjectOfType<Canvas>();
+        healthPoints.enabled = true;
     }   //end of Start method
 
     /**
@@ -47,7 +70,34 @@ public abstract class Player : MonoBehaviour
      */
     public void Update()
     {
+        if (reset)
+        {
+            resetCleared = true;
+        }
+        if (!reset && resetCleared)
+        {
+            resetCleared = false;
+            setProjectile = false;
+            GameObject created = (GameObject)Instantiate(projectile, transform);
+            //created.SetActive(true);
+            //created.transform.SetParent(transform,true);
+            //point projectile left
+            if (dirProjectile == 2)
+            {
+                //This line makes no sense to me, why do I have to add parent postion when it should already know them
+                created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
+                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(-10, 0);
 
+            }
+            //point projectile right
+            else
+            {
+                created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
+                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(10, 0);
+            }
+        }
     }   //end of Update method
 
     /**
@@ -55,7 +105,23 @@ public abstract class Player : MonoBehaviour
      */
     public void OnTriggerEnter2D(Collider2D col)
     {
-
+        if (col.gameObject.name == "floor")
+        {
+            Debug.Log("Hit floor");
+            if (jumping)
+            {
+                int state = anim.GetInteger("State");
+                if (state == 5)
+                {
+                    anim.SetInteger("State", 0);
+                }
+                else
+                {
+                    anim.SetInteger("State", 4);
+                }
+                jumping = false;
+            }
+        }
     }   //end of OnTriggerEnter2D method
 
     /**
@@ -189,6 +255,21 @@ public abstract class Player : MonoBehaviour
     {
 
     }   //end of useBlockAttack method
+
+    /**
+     * Makes the player stand still.
+     */
+    protected void standStill()
+    {
+        if (jumping)
+        {
+            anim.SetInteger("State", 5);
+        }
+        else
+        {
+            anim.SetInteger("State", 0);
+        }
+    }   //end of standStill method
 
     /**
      * Returns the player's current speed.
