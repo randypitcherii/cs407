@@ -15,9 +15,11 @@ public abstract class Player : MonoBehaviour
     private Animator anim;      //handles the animations
     private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
-    private bool isFlipped;     //whether or not the player is flipped
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
+    private int manaRange;      //the mana cost for doing different actions
+    private int manaBlock;      //the mana cost for doing different action
+    private int manaMelee;      //the mana cost for doing different action
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -31,7 +33,12 @@ public abstract class Player : MonoBehaviour
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
     public GameObject projectile;   //TODO:  ADD COMMENT
-
+    private bool canMove;            //can the user move right now or not
+    public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
+    public bool isFiring;          //this stops the proj from firing in a reverse direction
+    public bool isBlocking;         //when true can not hurt player, decided by animation
+    public int setRangedAttack;      //set Ranged attack to hurt this much health value
+    public int setMeleeAttack;      //set Melee attack to this value
     //abstract methods
     public abstract void LateUpdate();
 
@@ -55,9 +62,6 @@ public abstract class Player : MonoBehaviour
         //initialize set projectile flag
         this.setProjectile = false;
 
-        //initialize flipped flag
-        this.isFlipped = false;
-
         //initialize the animator
         anim = GetComponent<Animator>();
         anim.SetInteger("Dir", 1);
@@ -67,8 +71,20 @@ public abstract class Player : MonoBehaviour
         healthPoints.enabled = true;
 
         //initialize the color
-        this.hitColor = Color.red;
+        this.hitColor = Color.blue;
         this.normalColor = GetComponent<SpriteRenderer>().color;
+
+        //allow the player to move
+        canMove = true;
+        setCanMove = false;
+        isBlocking = false;
+        //set mana cost for certain moves
+        manaMelee = 5;
+        manaBlock = 5;
+        manaRange = 5;
+        //set up health cost
+        setMeleeAttack = 5;
+        setRangedAttack = 5;
     }   //end of Start method
 
     /**
@@ -76,56 +92,80 @@ public abstract class Player : MonoBehaviour
      */
     public void Update()
     {
-        if (reset)
+        if (isFiring)
         {
-            resetCleared = true;
+            anim.SetBool("Range", false);
         }
-        if (!reset && resetCleared)
+        //anim.SetBool("Range", false);
+        //if they are not allowed to move do not allow them
+        if (setCanMove == false)
         {
-            resetCleared = false;
-            setProjectile = false;
-            GameObject created = (GameObject)Instantiate(projectile, transform);
-            //created.SetActive(true);
-            //created.transform.SetParent(transform,true);
-            //point projectile left
-            if (dirProjectile == 2)
-            {
-                //This line makes no sense to me, why do I have to add parent postion when it should already know them
-                created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
-                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(-10, 0);
-
-            }
-            //point projectile right
-            else
-            {
-                created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
-                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(10, 0);
-            }
+            canMove = true;
+        }
+        else
+        {
+            canMove = false;
         }
     }   //end of Update method
 
+    //method is called when ever a projectile is fired from user
+    public void fireProjectile()
+    {
+        GameObject created = (GameObject)Instantiate(projectile, transform);
+        //set created attack
+        created.GetComponent<Ranged>().setAttackStrenght(setRangedAttack);
+        //point projectile left
+        if (dirProjectile == 2)
+        {
+            //This line makes no sense to me, why do I have to add parent postion when it should already know them
+            created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
+            Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(-10, 0);
+
+        }
+        //point projectile right
+        else
+        {
+            created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
+            Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(10, 0);
+        }
+    }
+    //allows other object getting hit to get attack
+    public int getMeleeAttack()
+    {
+        return setMeleeAttack;
+    }
     /**
-     * TODO:  ADD COMMENT
+     * TODO:  If the player enters a trigger see what caused it and what the correct response is.
      */
     public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "floor")
         {
-            Debug.Log("Hit floor");
-            if (jumping)
+            anim.SetBool("Jump", false);
+            jumping = false;
+        }
+        else if (col.gameObject.tag == "Proj")
+        {
+            //TODO how to hurt health and add flash
+            if (!isBlocking)
             {
-                int state = anim.GetInteger("State");
-                if (state == 5)
-                {
-                    anim.SetInteger("State", 0);
-                }
-                else
-                {
-                    anim.SetInteger("State", 4);
-                }
-                jumping = false;
+                changeToHitColor();
+                setHitPoints(getHitPoints() - col.GetComponent<Ranged>().getAttackStrenght());
+                Debug.Log(getHitPoints());
+            }
+            Destroy(col.gameObject);
+
+        }
+        else if (col.gameObject.tag == "hitBox")
+        {
+            //TODO how to hurt health and add flash
+            if (!isBlocking)
+            {
+               setHitPoints(getHitPoints() - col.transform.parent.GetComponent<Player>().getMeleeAttack());
+               changeToHitColor();
+               Debug.Log(getHitPoints());
             }
         }
     }   //end of OnTriggerEnter2D method
@@ -175,7 +215,7 @@ public abstract class Player : MonoBehaviour
      */
     public int getManaPoints()
     {
-        return this.hitPoints;
+        return this.manaPoints;
     }   //end of getManaPoints method
 
     /**
@@ -208,9 +248,12 @@ public abstract class Player : MonoBehaviour
      */
     protected void moveLeft()
     {
-        transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+        if (canMove)
+        {
+            transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+            anim.SetInteger("Dir", 2);
+        }
         anim.SetInteger("State", 2);
-        anim.SetInteger("Dir", 2);
     }   //end of moveLeft method
 
     /**
@@ -218,9 +261,12 @@ public abstract class Player : MonoBehaviour
      */
     protected void moveRight()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        if (canMove)
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0);
+            anim.SetInteger("Dir", 1);
+        }
         anim.SetInteger("State", 1);
-        anim.SetInteger("Dir", 1);
     }   //end of moveRight method
 
     /**
@@ -228,11 +274,10 @@ public abstract class Player : MonoBehaviour
      */
     protected void jump()
     {
-        //TODO have it exit state when hits ground
-        if (!jumping)
+        if (!jumping && canMove)
         {
             jumping = true;
-            anim.SetInteger("State", 3);
+            anim.SetBool("Jump", true);
             rb.velocity = new Vector2(0, 5);
         }
     }   //end of jump method
@@ -242,16 +287,35 @@ public abstract class Player : MonoBehaviour
      */
     protected void useMeleeAttack()
     {
-
+        if (canMove)
+        {
+            if ((getManaPoints() - manaMelee) > 0) {
+                setManaPoints((getManaPoints() - manaMelee));
+                anim.SetBool("Meele", true);
+                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaMelee));
+            }
+            
+        }
     }   //end of useMeleeAttack method
-
+    protected void endMeleeAttack()
+    {
+        anim.SetBool("Meele", false);
+    }
     /**
      * Makes the player perform a ranged attack.
      */
     protected void useRangedAttack()
     {
-        dirProjectile = anim.GetInteger("Dir");
-        anim.SetInteger("State", 6);
+        //change to make it stay in one direction and can not change
+        if (canMove && !isFiring)
+        {
+            if (getManaPoints() - manaRange > 0)
+            {
+                setManaPoints(getManaPoints() - manaRange);
+                dirProjectile = anim.GetInteger("Dir");
+                anim.SetBool("Range", true);
+            }
+        }
     }   //end of useRangedAttack method
 
     /**
@@ -259,22 +323,27 @@ public abstract class Player : MonoBehaviour
      */
     protected void useBlockAttack()
     {
-
+        if (canMove)
+        {
+            if (getManaPoints() - manaBlock > 0)
+            {
+                setManaPoints(getManaPoints() - manaBlock);
+                anim.SetBool("Block", true);
+                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaBlock));
+            }
+        }
     }   //end of useBlockAttack method
 
+    protected void endBlockAttack()
+    {
+        anim.SetBool("Block", false);
+    }   //end of endBlockAttack method
     /**
      * Makes the player stand still.
      */
     protected void standStill()
     {
-        if (jumping)
-        {
-            anim.SetInteger("State", 5);
-        }
-        else
-        {
-            anim.SetInteger("State", 0);
-        }
+        anim.SetInteger("State", 0);
     }   //end of standStill method
 
     /**
@@ -293,6 +362,7 @@ public abstract class Player : MonoBehaviour
     protected void changeToHitColor()
     {
         GetComponent<SpriteRenderer>().color = this.hitColor;
+        Invoke("changeToNormalColor", .5f);
     }   //end of changeToHitColor method
 
     /**

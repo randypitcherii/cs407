@@ -24,14 +24,32 @@ public class Timer : MonoBehaviour {
     public float leftCameraBond;
     //how far right the camera can go
     public float rightCameraBond;
-	// Use this for initialization
-	void Start () {
+    //script of player to allow us to get certain fetarues
+    private Player script;
+    //old Time to allow us to know when x seconds has passed to help fill mana
+    private float oldTime;
+    //after how many seconds add more mana to the player
+    public float secAddMana;
+    //how much mana to refil by
+    public int addMana;
+    // Use this for initialization
+    void Start () {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
-        Player script = player.GetComponent<Player>();
+        script = player.GetComponent<Player>();
+        if(script == null)
+        {
+            Debug.Log("Script is null");
+        }
+        else
+        {
+            speedCamera = (float)(script.getSpeed() * 1.0);
+        }
         speedCamera = (float)(script.getSpeed()*1.0);
-
+        secAddMana = 1.0f;
+        addMana = 2;
+        oldTime = time;
     }
 	
 	// Update is called once per frame
@@ -57,7 +75,11 @@ public class Timer : MonoBehaviour {
             {
                 timer.text = minsLeft + ":" + String.Format("{0:0.00}", time % 60);
             }
-            
+        }
+        if (time-oldTime < -1*secAddMana)
+        {
+            oldTime = time;
+            script.setManaPoints(script.getManaPoints() + addMana);
         }
 	}
     void LateUpdate()
