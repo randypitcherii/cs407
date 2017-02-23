@@ -21,6 +21,7 @@ public class temp_player : MonoBehaviour, PlayerInterface
     resestCleared to true which will allow when setProj to true create one new Gameobject instead of thousands*/
     public bool reset;
     public bool resetCleared;
+    private bool canMove; //new
     // Use this for initialization
 	public void Start () {
         isFlipped = false;
@@ -69,23 +70,25 @@ public class temp_player : MonoBehaviour, PlayerInterface
     {
         if (col.gameObject.name == "floor")
         {
-            Debug.Log("Hit floor");
-            if (jumping) {
-                int state = anim.GetInteger("State");
-                if (state == 5)
-                {
-                    anim.SetInteger("State", 0);
-                }
-                else
-                {
-                    anim.SetInteger("State",4);
-                }
-                jumping = false;
-            }
+            anim.SetBool("Jump", false);
+            jumping = false;
+        }
+        else if (col.gameObject.tag == "Proj")
+        {
+            //TODO how to hurt health and add flash
+            Destroy(col.gameObject);
+
+        }
+        else if (col.gameObject.tag == "hitBox")
+        {
+            //TODO how to hurt health and add flash
+            Debug.Log("Get hit");
         }
     }
     // Update is called once per frame
     public void LateUpdate () {
+        anim.SetBool("Meele", false);
+        anim.SetBool("Block", false);
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
@@ -98,33 +101,34 @@ public class temp_player : MonoBehaviour, PlayerInterface
             anim.SetInteger("State", 1);
             anim.SetInteger("Dir", 1);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            //TODO have it exit state when hits ground
-            if (!jumping) {
-                jumping = true;
-                anim.SetInteger("State", 3);
-                rb.velocity = new Vector2(0, 5);
-            }
-
-        }
         //They are standing still
         else
         {
-            
-            if (jumping)
+            anim.SetInteger("State", 0);
+        }
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        {
+            //TODO have it exit state when hits ground
+            if (!jumping)
             {
-                    anim.SetInteger("State", 5);
+                jumping = true;
+                anim.SetBool("Jump",true);
+                rb.velocity = new Vector2(0, 5);
             }
-            else
-            {
-                anim.SetInteger("State", 0);
-            }
+
         }
         if (Input.GetKey(KeyCode.Space))
         {
             dirProjectile = anim.GetInteger("Dir");
             anim.SetInteger("State",6);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            anim.SetBool("Meele", true);
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            anim.SetBool("Block", true);
         }
     }
 }
