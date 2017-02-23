@@ -34,6 +34,10 @@ public class Timer : MonoBehaviour {
         {
             Debug.Log("Script is null");
         }
+        else
+        {
+            speedCamera = (float)(script.getSpeed() * 1.0);
+        }
         speedCamera = (float)(script.getSpeed()*1.0);
 
     }

@@ -31,7 +31,8 @@ public abstract class Player : MonoBehaviour
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
     public GameObject projectile;   //TODO:  ADD COMMENT
-    public bool canMove;            //can the user move right now or not
+    private bool canMove;            //can the user move right now or not
+    public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
     //abstract methods
     public abstract void LateUpdate();
 
@@ -72,6 +73,7 @@ public abstract class Player : MonoBehaviour
 
         //allow the player to move
         canMove = true;
+        setCanMove = false;
     }   //end of Start method
 
     /**
@@ -79,6 +81,15 @@ public abstract class Player : MonoBehaviour
      */
     public void Update()
     {
+        //if they are not allowed to move do not allow them
+        if (setCanMove == false)
+        {
+            canMove = true;
+        }
+        else
+        {
+            canMove = false;
+        }
         if (reset)
         {
             resetCleared = true;
