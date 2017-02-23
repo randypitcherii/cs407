@@ -87,8 +87,6 @@ public class temp_player : MonoBehaviour, PlayerInterface
     }
     // Update is called once per frame
     public void LateUpdate () {
-        anim.SetBool("Meele", false);
-        anim.SetBool("Block", false);
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
@@ -126,9 +124,17 @@ public class temp_player : MonoBehaviour, PlayerInterface
         {
             anim.SetBool("Meele", true);
         }
+        else if (Input.GetKeyUp(KeyCode.Q))
+        {
+            anim.SetBool("Meele", false);
+        }
         if (Input.GetKey(KeyCode.LeftShift))
         {
             anim.SetBool("Block", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            anim.SetBool("Block", false);
         }
     }
 }

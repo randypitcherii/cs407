@@ -30,6 +30,10 @@ public class Timer : MonoBehaviour {
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         Player script = player.GetComponent<Player>();
+        if(script == null)
+        {
+            Debug.Log("Script is null");
+        }
         speedCamera = (float)(script.getSpeed()*1.0);
 
     }

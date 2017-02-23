@@ -31,7 +31,7 @@ public abstract class Player : MonoBehaviour
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
     public GameObject projectile;   //TODO:  ADD COMMENT
-
+    public bool canMove;            //can the user move right now or not
     //abstract methods
     public abstract void LateUpdate();
 
@@ -69,6 +69,9 @@ public abstract class Player : MonoBehaviour
         //initialize the color
         this.hitColor = Color.red;
         this.normalColor = GetComponent<SpriteRenderer>().color;
+
+        //allow the player to move
+        canMove = true;
     }   //end of Start method
 
     /**
@@ -113,20 +116,19 @@ public abstract class Player : MonoBehaviour
     {
         if (col.gameObject.name == "floor")
         {
-            Debug.Log("Hit floor");
-            if (jumping)
-            {
-                int state = anim.GetInteger("State");
-                if (state == 5)
-                {
-                    anim.SetInteger("State", 0);
-                }
-                else
-                {
-                    anim.SetInteger("State", 4);
-                }
-                jumping = false;
-            }
+            anim.SetBool("Jump", false);
+            jumping = false;
+        }
+        else if (col.gameObject.tag == "Proj")
+        {
+            //TODO how to hurt health and add flash
+            Destroy(col.gameObject);
+
+        }
+        else if (col.gameObject.tag == "hitBox")
+        {
+            //TODO how to hurt health and add flash
+            Debug.Log("Get hit");
         }
     }   //end of OnTriggerEnter2D method
 
@@ -208,9 +210,12 @@ public abstract class Player : MonoBehaviour
      */
     protected void moveLeft()
     {
-        transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+        if (canMove)
+        {
+            transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+            anim.SetInteger("Dir", 2);
+        }
         anim.SetInteger("State", 2);
-        anim.SetInteger("Dir", 2);
     }   //end of moveLeft method
 
     /**
@@ -218,9 +223,12 @@ public abstract class Player : MonoBehaviour
      */
     protected void moveRight()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        if (canMove)
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0);
+            anim.SetInteger("Dir", 1);
+        }
         anim.SetInteger("State", 1);
-        anim.SetInteger("Dir", 1);
     }   //end of moveRight method
 
     /**
@@ -228,11 +236,10 @@ public abstract class Player : MonoBehaviour
      */
     protected void jump()
     {
-        //TODO have it exit state when hits ground
-        if (!jumping)
+        if (!jumping && canMove)
         {
             jumping = true;
-            anim.SetInteger("State", 3);
+            anim.SetBool("Jump", true);
             rb.velocity = new Vector2(0, 5);
         }
     }   //end of jump method
@@ -242,16 +249,26 @@ public abstract class Player : MonoBehaviour
      */
     protected void useMeleeAttack()
     {
-
+        if (canMove)
+        {
+            anim.SetBool("Meele", true);
+        }
     }   //end of useMeleeAttack method
-
+    protected void endMeleeAttack()
+    {
+        anim.SetBool("Meele", false);
+    }
     /**
      * Makes the player perform a ranged attack.
      */
     protected void useRangedAttack()
     {
-        dirProjectile = anim.GetInteger("Dir");
-        anim.SetInteger("State", 6);
+        //change to make it stay in one direction and can not change
+        if (canMove)
+        {
+            dirProjectile = anim.GetInteger("Dir");
+            anim.SetInteger("State", 6);
+        }
     }   //end of useRangedAttack method
 
     /**
@@ -259,22 +276,22 @@ public abstract class Player : MonoBehaviour
      */
     protected void useBlockAttack()
     {
-
+        if (canMove)
+        {
+            anim.SetBool("Block", true);
+        }
     }   //end of useBlockAttack method
 
+    protected void endBlockAttack()
+    {
+        anim.SetBool("Block", false);
+    }   //end of endBlockAttack method
     /**
      * Makes the player stand still.
      */
     protected void standStill()
     {
-        if (jumping)
-        {
-            anim.SetInteger("State", 5);
-        }
-        else
-        {
-            anim.SetInteger("State", 0);
-        }
+        anim.SetInteger("State", 0);
     }   //end of standStill method
 
     /**
