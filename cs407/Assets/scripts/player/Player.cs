@@ -16,6 +16,8 @@ public abstract class Player : MonoBehaviour
     private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
     private bool isFlipped;     //whether or not the player is flipped
+    private Color hitColor;     //the color to change to when hit
+    private Color normalColor;  //the normal color of the player
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -63,6 +65,10 @@ public abstract class Player : MonoBehaviour
         //initialize the health points
         healthPoints = GameObject.FindObjectOfType<Canvas>();
         healthPoints.enabled = true;
+
+        //initialize the color
+        this.hitColor = Color.red;
+        this.normalColor = GetComponent<SpriteRenderer>().color;
     }   //end of Start method
 
     /**
@@ -280,4 +286,20 @@ public abstract class Player : MonoBehaviour
     {
         return this.speed;
     }   //end of getSpeed method
+
+    /**
+     * Changes the color of the sprite when hit.
+     */
+    protected void changeToHitColor()
+    {
+        GetComponent<SpriteRenderer>().color = this.hitColor;
+    }   //end of changeToHitColor method
+
+    /**
+     * Changes the color of the sprite back to normal.
+     */
+    protected void changeToNormalColor()
+    {
+        GetComponent<SpriteRenderer>().color = this.normalColor;
+    }   //end of changedToNormalColor method
 }   //end of Player abstract
