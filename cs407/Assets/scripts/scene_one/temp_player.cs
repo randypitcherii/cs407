@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class temp_player : MonoBehaviour, PlayerInterface
 {
+	
     private bool isFlipped;
     public float speed;
     private Animator anim;
@@ -15,11 +16,17 @@ public class temp_player : MonoBehaviour, PlayerInterface
     private int dirProjectile;
     public bool setProjectile;
     public GameObject projectile;
-    public Canvas healthPoints;
+    private Canvas healthPoints;
     /*this gets around unity stupidy, it will be set to true 
     when ever the fight animation is running and allow the value
     resestCleared to true which will allow when setProj to true create one new Gameobject instead of thousands*/
-    public bool reset;
+	public int totalHealth = 100;
+	public int currentHealth;
+	//public GameObject player;
+	//public GameObject ai;
+	public GameObject pauseMenu;
+	public Slider healthSlider;
+	public bool reset;
     public bool resetCleared;
     private bool canMove; //new
     // Use this for initialization
@@ -27,6 +34,7 @@ public class temp_player : MonoBehaviour, PlayerInterface
         isFlipped = false;
         anim = GetComponent<Animator>();
         anim.SetInteger("Dir", 1);
+		InvokeRepeating ("HealthDecrease", 1, 1);
         resetCleared = false;
         setProjectile = false;
     }
@@ -85,6 +93,16 @@ public class temp_player : MonoBehaviour, PlayerInterface
             Debug.Log("Get hit");
         }
     }
+	void HealthDecrease(){
+		currentHealth -= 5;
+		transform.localScale = new Vector3 ((currentHealth / totalHealth), 1, 1);
+		healthSlider.value = health;
+		if (health <= 0) {
+			//gameOver.SetActive(true);
+			//temp_player.GetComponent<Animator>().SetTrigger("isDead");
+			pauseMenu.SetActive (true);
+		}
+	}
     // Update is called once per frame
     public void LateUpdate () {
         anim.SetBool("Meele", false);
