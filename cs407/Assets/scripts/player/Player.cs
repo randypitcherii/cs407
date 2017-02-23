@@ -33,6 +33,7 @@ public abstract class Player : MonoBehaviour
     public GameObject projectile;   //TODO:  ADD COMMENT
     private bool canMove;            //can the user move right now or not
     public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
+    public bool isFiring;          //this stops the proj from firing in a reverse direction
     //abstract methods
     public abstract void LateUpdate();
 
@@ -68,7 +69,7 @@ public abstract class Player : MonoBehaviour
         healthPoints.enabled = true;
 
         //initialize the color
-        this.hitColor = Color.red;
+        this.hitColor = Color.blue;
         this.normalColor = GetComponent<SpriteRenderer>().color;
 
         //allow the player to move
@@ -81,6 +82,11 @@ public abstract class Player : MonoBehaviour
      */
     public void Update()
     {
+        if (isFiring)
+        {
+            anim.SetBool("Range", false);
+        }
+        //anim.SetBool("Range", false);
         //if they are not allowed to move do not allow them
         if (setCanMove == false)
         {
@@ -90,38 +96,31 @@ public abstract class Player : MonoBehaviour
         {
             canMove = false;
         }
-        if (reset)
-        {
-            resetCleared = true;
-        }
-        if (!reset && resetCleared)
-        {
-            resetCleared = false;
-            setProjectile = false;
-            GameObject created = (GameObject)Instantiate(projectile, transform);
-            //created.SetActive(true);
-            //created.transform.SetParent(transform,true);
-            //point projectile left
-            if (dirProjectile == 2)
-            {
-                //This line makes no sense to me, why do I have to add parent postion when it should already know them
-                created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
-                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(-10, 0);
-
-            }
-            //point projectile right
-            else
-            {
-                created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
-                Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(10, 0);
-            }
-        }
     }   //end of Update method
 
+    //method is called when ever a projectile is fired from user
+    public void fireProjectile()
+    {
+        GameObject created = (GameObject)Instantiate(projectile, transform);
+        //point projectile left
+        if (dirProjectile == 2)
+        {
+            //This line makes no sense to me, why do I have to add parent postion when it should already know them
+            created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
+            Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(-10, 0);
+
+        }
+        //point projectile right
+        else
+        {
+            created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
+            Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(10, 0);
+        }
+    }
     /**
-     * TODO:  ADD COMMENT
+     * TODO:  If the player enters a trigger see what caused it and what the correct response is.
      */
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -133,12 +132,15 @@ public abstract class Player : MonoBehaviour
         else if (col.gameObject.tag == "Proj")
         {
             //TODO how to hurt health and add flash
+            changeToHitColor();
             Destroy(col.gameObject);
+            Debug.Log("Get hit");
 
         }
         else if (col.gameObject.tag == "hitBox")
         {
             //TODO how to hurt health and add flash
+            changeToHitColor();
             Debug.Log("Get hit");
         }
     }   //end of OnTriggerEnter2D method
@@ -275,10 +277,10 @@ public abstract class Player : MonoBehaviour
     protected void useRangedAttack()
     {
         //change to make it stay in one direction and can not change
-        if (canMove)
+        if (canMove && !isFiring)
         {
             dirProjectile = anim.GetInteger("Dir");
-            anim.SetInteger("State", 6);
+            anim.SetBool("Range", true);
         }
     }   //end of useRangedAttack method
 
@@ -321,6 +323,7 @@ public abstract class Player : MonoBehaviour
     protected void changeToHitColor()
     {
         GetComponent<SpriteRenderer>().color = this.hitColor;
+        Invoke("changeToNormalColor", .5f);
     }   //end of changeToHitColor method
 
     /**

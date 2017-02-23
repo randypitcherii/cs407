@@ -58,11 +58,6 @@ public class PlayerHuman : Player
         
     }   //end of LateUpdate method
     
-    //Calls to Parent Class update
-    public void Update()
-    {
-        base.Update();
-    }
     /**
      * Returns whether or not a key from the list came up.
      *
