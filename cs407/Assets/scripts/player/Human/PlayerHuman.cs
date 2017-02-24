@@ -35,13 +35,9 @@ public class PlayerHuman : Player
         {
             jump();
         }
-        if (meleeKeyPressed()) //a melee attack key was pressed
+        else if (meleeKeyPressed()) //a melee attack key was pressed
         {
             useMeleeAttack();
-        }
-        else if (meleeKeyUp())
-        {
-            endMeleeAttack();
         }
         else if (rangedKeyPressed())    //a ranged attack key was pressed
         {
@@ -51,7 +47,11 @@ public class PlayerHuman : Player
         {
             useBlockAttack();
         }
-        else if (blockedKeyUp())
+        if (meleeKeyUp())
+        {
+            endMeleeAttack();
+        }
+        if (blockedKeyUp())
         {
             endBlockAttack();
         }

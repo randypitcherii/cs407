@@ -34,6 +34,7 @@ public abstract class Player : MonoBehaviour
     private bool canMove;            //can the user move right now or not
     public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
     public bool isFiring;          //this stops the proj from firing in a reverse direction
+    public bool isBlocking;         //when true can not hurt player, decided by animation to flip
     //abstract methods
     public abstract void LateUpdate();
 
@@ -75,6 +76,7 @@ public abstract class Player : MonoBehaviour
         //allow the player to move
         canMove = true;
         setCanMove = false;
+        isBlocking = true;
     }   //end of Start method
 
     /**
@@ -132,16 +134,20 @@ public abstract class Player : MonoBehaviour
         else if (col.gameObject.tag == "Proj")
         {
             //TODO how to hurt health and add flash
-            changeToHitColor();
+            if (!isBlocking)
+            {
+                changeToHitColor();
+            }
             Destroy(col.gameObject);
-            Debug.Log("Get hit");
 
         }
         else if (col.gameObject.tag == "hitBox")
         {
             //TODO how to hurt health and add flash
-            changeToHitColor();
-            Debug.Log("Get hit");
+            if (!isBlocking)
+            {
+                changeToHitColor();
+            }
         }
     }   //end of OnTriggerEnter2D method
 
