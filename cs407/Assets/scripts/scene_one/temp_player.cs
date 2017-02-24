@@ -93,7 +93,7 @@ public class temp_player : MonoBehaviour, PlayerInterface
             Debug.Log("Get hit");
         }
     }
-	void HealthDecrease(){
+	/*void HealthDecrease(){
 		currentHealth -= 5;
 		transform.localScale = new Vector3 ((currentHealth / totalHealth), 1, 1);
 		healthSlider.value = health;
@@ -102,7 +102,7 @@ public class temp_player : MonoBehaviour, PlayerInterface
 			//temp_player.GetComponent<Animator>().SetTrigger("isDead");
 			pauseMenu.SetActive (true);
 		}
-	}
+	}*/
     // Update is called once per frame
     public void LateUpdate () {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
