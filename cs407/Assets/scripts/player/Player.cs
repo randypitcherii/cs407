@@ -287,12 +287,12 @@ public abstract class Player : MonoBehaviour
      */
     protected void useMeleeAttack()
     {
-        if (canMove)
+        if (canMove && !anim.GetBool("Meele"))
         {
             if ((getManaPoints() - manaMelee) > 0) {
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);
-                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaMelee));
+                Debug.Log(getManaPoints());
             }
             
         }
@@ -307,29 +307,30 @@ public abstract class Player : MonoBehaviour
     protected void useRangedAttack()
     {
         //change to make it stay in one direction and can not change
-        if (canMove && !isFiring)
+        if (canMove && !isFiring && !anim.GetBool("Range"))
         {
             if (getManaPoints() - manaRange > 0)
             {
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
+                Debug.Log(getManaPoints());
             }
         }
     }   //end of useRangedAttack method
 
     /**
-     * Makes the player perform a block attack.
+     * Makes the player perform a()block attack.
      */
     protected void useBlockAttack()
     {
-        if (canMove)
+        if (canMove && !anim.GetBool("Block"))
         {
             if (getManaPoints() - manaBlock > 0)
             {
                 setManaPoints(getManaPoints() - manaBlock);
                 anim.SetBool("Block", true);
-                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaBlock));
+                Debug.Log(getManaPoints());
             }
         }
     }   //end of useBlockAttack method

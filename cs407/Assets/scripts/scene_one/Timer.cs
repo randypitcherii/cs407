@@ -48,7 +48,7 @@ public class Timer : MonoBehaviour {
         }
         speedCamera = (float)(script.getSpeed()*1.0);
         secAddMana = 1.0f;
-        addMana = 2;
+        addMana = 1;
         oldTime = time;
     }
 	
