@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * Use this abstract to modularize human and AI players.
@@ -32,7 +33,9 @@ public abstract class Player : MonoBehaviour
     public bool resetCleared;       //TODO:  ADD COMMENT
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
-    public GameObject projectile;   //TODO:  ADD COMMENT
+	public Slider healthSlider;
+	public Slider mana_points;
+	public GameObject projectile;   //TODO:  ADD COMMENT
     private bool canMove;            //can the user move right now or not
     public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
     public bool isFiring;          //this stops the proj from firing in a reverse direction
@@ -192,7 +195,6 @@ public abstract class Player : MonoBehaviour
         {
             //set hit points to zero
             this.hitPoints = 0;
-
             //end the game
             GameOver.endGame();
         }
@@ -206,6 +208,7 @@ public abstract class Player : MonoBehaviour
             //set hit points
             this.hitPoints = newHitPoints;
         }   //end if
+		healthSlider.value = newHitPoints;
     }   //end of setHitPoints method
 
     /**
@@ -241,6 +244,7 @@ public abstract class Player : MonoBehaviour
             //set mana points
             this.manaPoints = newManaPoints;
         }   //end if
+		mana_points.value = newManaPoints;
     }   //end of setHitPoints method
 
     /**
