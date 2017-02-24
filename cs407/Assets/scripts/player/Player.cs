@@ -137,6 +137,8 @@ public abstract class Player : MonoBehaviour
             if (!isBlocking)
             {
                 changeToHitColor();
+                setHitPoints(getHitPoints() / 2);
+                Debug.Log(getHitPoints());
             }
             Destroy(col.gameObject);
 
@@ -146,7 +148,9 @@ public abstract class Player : MonoBehaviour
             //TODO how to hurt health and add flash
             if (!isBlocking)
             {
-                changeToHitColor();
+               setHitPoints(getHitPoints()/2);
+               changeToHitColor();
+               Debug.Log(getHitPoints());
             }
         }
     }   //end of OnTriggerEnter2D method
@@ -270,6 +274,7 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
+            setManaPoints(getManaPoints() / 2);
             anim.SetBool("Meele", true);
         }
     }   //end of useMeleeAttack method
@@ -285,6 +290,7 @@ public abstract class Player : MonoBehaviour
         //change to make it stay in one direction and can not change
         if (canMove && !isFiring)
         {
+            setManaPoints(getManaPoints() / 2);
             dirProjectile = anim.GetInteger("Dir");
             anim.SetBool("Range", true);
         }
@@ -297,6 +303,7 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
+            setManaPoints(getManaPoints() / 2);
             anim.SetBool("Block", true);
         }
     }   //end of useBlockAttack method
