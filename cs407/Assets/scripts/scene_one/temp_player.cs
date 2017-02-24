@@ -96,12 +96,12 @@ public class temp_player : MonoBehaviour, PlayerInterface
 	void HealthDecrease(){
 		currentHealth -= 5;
 		transform.localScale = new Vector3 ((currentHealth / totalHealth), 1, 1);
-		healthSlider.value = health;
-		if (health <= 0) {
+		//healthSlider.value = health;
+		//if (health <= 0) {
 			//gameOver.SetActive(true);
 			//temp_player.GetComponent<Animator>().SetTrigger("isDead");
-			pauseMenu.SetActive (true);
-		}
+	//		pauseMenu.SetActive (true);
+	//	}
 	}
     // Update is called once per frame
     public void LateUpdate () {
