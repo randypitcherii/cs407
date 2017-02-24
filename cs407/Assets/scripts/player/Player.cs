@@ -15,9 +15,11 @@ public abstract class Player : MonoBehaviour
     private Animator anim;      //handles the animations
     private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
-    private bool isFlipped;     //whether or not the player is flipped
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
+    private int manaRange;      //the mana cost for doing different actions
+    private int manaBlock;      //the mana cost for doing different action
+    private int manaMelee;      //the mana cost for doing different action
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -34,7 +36,9 @@ public abstract class Player : MonoBehaviour
     private bool canMove;            //can the user move right now or not
     public bool setCanMove;         //this will be a public method that when changed can set this to true which will turn on cannot move;
     public bool isFiring;          //this stops the proj from firing in a reverse direction
-    public bool isBlocking;         //when true can not hurt player, decided by animation to flip
+    public bool isBlocking;         //when true can not hurt player, decided by animation
+    public int setRangedAttack;      //set Ranged attack to hurt this much health value
+    public int setMeleeAttack;      //set Melee attack to this value
     //abstract methods
     public abstract void LateUpdate();
 
@@ -58,9 +62,6 @@ public abstract class Player : MonoBehaviour
         //initialize set projectile flag
         this.setProjectile = false;
 
-        //initialize flipped flag
-        this.isFlipped = false;
-
         //initialize the animator
         anim = GetComponent<Animator>();
         anim.SetInteger("Dir", 1);
@@ -76,7 +77,14 @@ public abstract class Player : MonoBehaviour
         //allow the player to move
         canMove = true;
         setCanMove = false;
-        isBlocking = true;
+        isBlocking = false;
+        //set mana cost for certain moves
+        manaMelee = 5;
+        manaBlock = 5;
+        manaRange = 5;
+        //set up health cost
+        setMeleeAttack = 5;
+        setRangedAttack = 5;
     }   //end of Start method
 
     /**
@@ -104,6 +112,8 @@ public abstract class Player : MonoBehaviour
     public void fireProjectile()
     {
         GameObject created = (GameObject)Instantiate(projectile, transform);
+        //set created attack
+        created.GetComponent<Ranged>().setAttackStrenght(setRangedAttack);
         //point projectile left
         if (dirProjectile == 2)
         {
@@ -121,6 +131,11 @@ public abstract class Player : MonoBehaviour
             rb.velocity = new Vector2(10, 0);
         }
     }
+    //allows other object getting hit to get attack
+    public int getMeleeAttack()
+    {
+        return setMeleeAttack;
+    }
     /**
      * TODO:  If the player enters a trigger see what caused it and what the correct response is.
      */
@@ -137,7 +152,7 @@ public abstract class Player : MonoBehaviour
             if (!isBlocking)
             {
                 changeToHitColor();
-                setHitPoints(getHitPoints() / 2);
+                setHitPoints(getHitPoints() - col.GetComponent<Ranged>().getAttackStrenght());
                 Debug.Log(getHitPoints());
             }
             Destroy(col.gameObject);
@@ -148,7 +163,7 @@ public abstract class Player : MonoBehaviour
             //TODO how to hurt health and add flash
             if (!isBlocking)
             {
-               setHitPoints(getHitPoints()/2);
+               setHitPoints(getHitPoints() - col.transform.parent.GetComponent<Player>().getMeleeAttack());
                changeToHitColor();
                Debug.Log(getHitPoints());
             }
@@ -200,7 +215,7 @@ public abstract class Player : MonoBehaviour
      */
     public int getManaPoints()
     {
-        return this.hitPoints;
+        return this.manaPoints;
     }   //end of getManaPoints method
 
     /**
@@ -274,8 +289,12 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
-            setManaPoints(getManaPoints() / 2);
-            anim.SetBool("Meele", true);
+            if ((getManaPoints() - manaMelee) > 0) {
+                setManaPoints((getManaPoints() - manaMelee));
+                anim.SetBool("Meele", true);
+                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaMelee));
+            }
+            
         }
     }   //end of useMeleeAttack method
     protected void endMeleeAttack()
@@ -290,9 +309,12 @@ public abstract class Player : MonoBehaviour
         //change to make it stay in one direction and can not change
         if (canMove && !isFiring)
         {
-            setManaPoints(getManaPoints() / 2);
-            dirProjectile = anim.GetInteger("Dir");
-            anim.SetBool("Range", true);
+            if (getManaPoints() - manaRange > 0)
+            {
+                setManaPoints(getManaPoints() - manaRange);
+                dirProjectile = anim.GetInteger("Dir");
+                anim.SetBool("Range", true);
+            }
         }
     }   //end of useRangedAttack method
 
@@ -303,8 +325,12 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
-            setManaPoints(getManaPoints() / 2);
-            anim.SetBool("Block", true);
+            if (getManaPoints() - manaBlock > 0)
+            {
+                setManaPoints(getManaPoints() - manaBlock);
+                anim.SetBool("Block", true);
+                Debug.Log(getManaPoints() + "," + (getManaPoints() - manaBlock));
+            }
         }
     }   //end of useBlockAttack method
 

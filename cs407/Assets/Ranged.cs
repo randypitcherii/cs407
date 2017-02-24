@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ranged : MonoBehaviour {
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    public int attackStrength = 0;
+    //allows the attack Streght to be set on fire
+    public void setAttackStrenght(int x)
+    {
+        this.attackStrength = x;
+    }
+    public int getAttackStrenght()
+    {
+        return attackStrength;
+    }
+    void Start () {
 	}
     public void OnTriggerEnter2D(Collider2D col)
     {
