@@ -377,4 +377,18 @@ public abstract class Player : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = this.normalColor;
     }   //end of changedToNormalColor method
+
+    public void changeBlockMana()
+    {
+        if (getManaPoints() - manaBlock > 0)
+        {
+            setManaPoints(getManaPoints() - manaBlock);
+            anim.SetBool("Block", true);
+            Debug.Log(getManaPoints());
+        }
+        else
+        {
+            anim.SetBool("Block", false);
+        }
+    }
 }   //end of Player abstract
