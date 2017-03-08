@@ -29,3 +29,6 @@ cs407/sysinfo.txt
 # Builds
 cs407/*.apk
 cs407/*.unitypackage
+
+# AI Logs
+cs407/Logs/
