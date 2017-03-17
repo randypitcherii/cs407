@@ -12,3 +12,17 @@ c:\documents and settings\wesley\my documents\visual studio 2010\Projects\NeatTi
 c:\documents and settings\wesley\my documents\visual studio 2010\Projects\NeatTicTacToe\TicTacToeEvolution\bin\Debug\tictactoe.config.xml
 c:\documents and settings\wesley\my documents\visual studio 2010\Projects\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeLib.dll
 c:\documents and settings\wesley\my documents\visual studio 2010\Projects\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\tictactoe.config.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeEvolution.exe.config
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeEvolution.exe
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeEvolution.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\log4net.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\SharpNeatDomains.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\SharpNeatLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\log4net.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\bin\Debug\SharpNeatLib.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\obj\x86\Debug\TicTacToeEvolution.csprojResolveAssemblyReference.cache
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\obj\x86\Debug\TicTacToeEvolution.exe
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\NeatTicTacToe\TicTacToeEvolution\obj\x86\Debug\TicTacToeEvolution.pdb
