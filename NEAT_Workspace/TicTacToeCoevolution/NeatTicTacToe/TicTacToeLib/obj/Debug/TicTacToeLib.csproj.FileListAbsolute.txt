@@ -8,3 +8,8 @@ C:\temp\coevolution\NeatTicTacToe\TicTacToeLib\bin\Debug\TicTacToeLib.pdb
 C:\temp\coevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\ResolveAssemblyReference.cache
 C:\temp\coevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\TicTacToeLib.dll
 C:\temp\coevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TicTacToeLib\bin\Debug\TicTacToeLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TicTacToeLib\bin\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\TicTacToeLib.csprojResolveAssemblyReference.cache
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\TicTacToeLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TicTacToeLib\obj\Debug\TicTacToeLib.pdb

@@ -12,3 +12,11 @@ C:\temp\coevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\TicTacToeLib.pdb
 C:\temp\coevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\ResolveAssemblyReference.cache
 C:\temp\coevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\TestTicTacToe.dll
 C:\temp\coevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\TestTicTacToe.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\TestTicTacToe.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\TestTicTacToe.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\TicTacToeLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\bin\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\TestTicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\TestTicTacToe.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\TestTicTacToe\obj\Debug\TestTicTacToe.pdb

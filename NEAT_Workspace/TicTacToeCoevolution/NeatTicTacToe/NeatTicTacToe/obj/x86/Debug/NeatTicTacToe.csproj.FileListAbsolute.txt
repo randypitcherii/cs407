@@ -40,3 +40,24 @@ C:\temp\coevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\GenerateResource.w
 C:\temp\coevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.exe
 C:\temp\coevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.pdb
 C:\Documents and Settings\Wesley\My Documents\Visual Studio 2010\Projects\NeatTicTacToe\NeatTicTacToe\bin\Debug\SharpNeatLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\tictactoe.config.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\NeatTicTacToe.exe.config
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\NeatTicTacToe.exe
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\NeatTicTacToe.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\SharpNeatDomains.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\SharpNeatLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\TicTacToeEvolution.exe
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\TicTacToeLib.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\log4net.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\TicTacToeEvolution.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\TicTacToeEvolution.exe.config
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\TicTacToeLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\SharpNeatLib.pdb
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\SharpNeatLib.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\bin\Debug\log4net.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.GameForm.resources
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.Properties.Resources.resources
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.csproj.GenerateResource.Cache
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.exe
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\TicTacToeCoevolution\NeatTicTacToe\NeatTicTacToe\obj\x86\Debug\NeatTicTacToe.pdb
