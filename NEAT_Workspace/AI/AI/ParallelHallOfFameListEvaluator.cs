@@ -1,35 +1,13 @@
-﻿/* ***************************************************************************
- * This file is part of the NashCoding tutorial on SharpNEAT 2.
- * 
- * Copyright 2010, Wesley Tansey (wes@nashcoding.com)
- * 
- * Some code in this file may have been copied directly from SharpNEAT,
- * for learning purposes only. Any code copied from SharpNEAT 2 is 
- * copyright of Colin Green (sharpneat@gmail.com).
- *
- * Both SharpNEAT and this tutorial are free software: you can redistribute
- * it and/or modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- *
- * SharpNEAT is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with SharpNEAT.  If not, see <http://www.gnu.org/licenses/>.
- */
+﻿using SharpNeat.Core;
+using SharpNeat.EvolutionAlgorithms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SharpNeat.Core;
-using SharpNeat.EvolutionAlgorithms;
-using System.Diagnostics;
 
-namespace TicTacToeCoevolution
+namespace AI
 {
     /// <summary>
     /// Represents a Hall of Fame evaluator.
@@ -64,10 +42,10 @@ namespace TicTacToeCoevolution
                                            double hallOfFameWeight,
                                            AbstractGenerationalAlgorithm<TGenome> ea,
                                            IGenomeListEvaluator<TGenome> innerEvaluator,
-                                           IGenomeDecoder<TGenome,TPhenome> genomeDecoder,
+                                           IGenomeDecoder<TGenome, TPhenome> genomeDecoder,
                                            ICoevolutionPhenomeEvaluator<TPhenome> phenomeEvaluator)
             : this(generationsPerChampion, hallOfFameWeight, ea, innerEvaluator, genomeDecoder, phenomeEvaluator, new ParallelOptions())
-        { 
+        {
         }
 
         /// <summary>
@@ -126,7 +104,7 @@ namespace TicTacToeCoevolution
             _lastUpdate = 0;
             _phenomeEvaluator.Reset();
         }
-        
+
         /// <summary>
         /// Main genome evaluation loop with no phenome caching (decode on each evaluation).
         /// Individuals are competed pairwise against every champion in the hall of fame.
@@ -147,7 +125,7 @@ namespace TicTacToeCoevolution
             double championGameWeight = _hallOfFameWeight / (double)_hallOfFame.Count;
 
             // Exhaustively compete individuals against each other.
-            Parallel.For(0, genomeList.Count, delegate(int i)
+            Parallel.For(0, genomeList.Count, delegate (int i)
             {
                 // Decode the first genome.
                 TPhenome phenome1 = _genomeDecoder.Decode(genomeList[i]);
