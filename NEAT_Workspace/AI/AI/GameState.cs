@@ -8,6 +8,8 @@ namespace AI
 {
     class GameState
     {
+        public static int aiInputMatrixSize = 100;//change this later
+        public static int aiOutputMatrixSize = 100;//change this later too
         //get game state matrix
         public int[] GetCurrentState()
         {

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using SharpNeat.Domains;
 using SharpNeat.EvolutionAlgorithms;
 using SharpNeat.Genomes.Neat;
 using SharpNeat.Decoders;
@@ -10,11 +14,10 @@ using SharpNeat.Decoders.Neat;
 using SharpNeat.DistanceMetrics;
 using SharpNeat.SpeciationStrategies;
 using System.Xml;
-using SharpNeat.Domains;
 
 namespace AI
 {
-    class CoevolutionExperiment : INeatExperiment
+    class AIExperiment: INeatExperiment
     {
         NeatEvolutionAlgorithmParameters _eaParams;
         NeatGenomeParameters _neatGenomeParams;
@@ -28,14 +31,14 @@ namespace AI
         ParallelOptions _parallelOptions;
 
         #region INeatExperiment Members
-        public int InputCount { get { return 9; } }
-        public int OutputCount { get { return 9; } }
+        public int InputCount { get { return GameState.aiInputMatrixSize; } }
+        public int OutputCount { get { return GameState.aiOutputMatrixSize; } }
 
         public ICoevolutionPhenomeEvaluator<IBlackBox> PhenomeEvaluator
         {
             get
             {
-                return new TicTacToeCoevolutionEvaluator();
+                return new AIEvaluator();
             }
         }
 
@@ -157,7 +160,7 @@ namespace AI
         /// </summary>
         public NeatEvolutionAlgorithm<NeatGenome> CreateEvolutionAlgorithm(IGenomeFactory<NeatGenome> genomeFactory, List<NeatGenome> genomeList)
         {
-            // Create distance metric. Mismatched genes have a fixed distance of 10; for matched genes the distance is their weigth difference.
+            // Create distance metric. Mismatched genes have a fixed distance of 10; for matched genes the distance is their weight difference.
             IDistanceMetric distanceMetric = new ManhattanDistanceMetric(1.0, 0.0, 10.0);
             ISpeciationStrategy<NeatGenome> speciationStrategy = new ParallelKMeansClusteringStrategy<NeatGenome>(distanceMetric, _parallelOptions);
 
