@@ -14,24 +14,24 @@ public class Location_Script : MonoBehaviour {
     private float width;              //will tell how wide the course is
     private PlayerInfo[] pi;           //Information of all the #
     private int numberPlayers;   //gets count from number of player game objects given
-        /*this what we will build all the input into, each box will be the .25 space of the game course. 
-            The bottom row will always be ground and will not change, as the row will always be the player stats
-            Each row will be 4 * width of the area  determined by start of it
-            use the formula j+(i*width*4) to find each row where. 
-            Also the bottom of the array is located at -.25 so that way the top of the floor is at 0
-            the center of x is at 4 width /2 = width*2
-        */
-    private int[] arena;        
+                                 /*this what we will build all the input into, each box will be the .25 space of the game course. 
+                                     The bottom row will always be ground and will not change, as the row will always be the player stats
+                                     Each row will be 4 * width of the area  determined by start of it
+                                     use the formula j+(i*width*4) to find each row where. 
+                                     Also the bottom of the array is located at -.25 so that way the top of the floor is at 0
+                                     the center of x is at 4 width /2 = width*2
+                                 */
+    private int[] arena;
     //classes use to store basic info edit to make more sense
     public void printArena()
     {
-        for (int i =0; i < (arena.Length/(4* (int)width));i++)
+        for (int i = (arena.Length / (4 * (int)width))-1; i >=0 ; i--)
         {
             StringBuilder sb = new StringBuilder();
             //this will go through each row in the arena
             for (int j = 0; j < 4 * width; j++)
             {
-                sb.Append(arena[j+(i*((int)width)*4)]);
+                sb.Append(arena[j + (i * ((int)width) * 4)]);
             }
             Debug.Log(sb.ToString());
         }
@@ -48,44 +48,74 @@ public class Location_Script : MonoBehaviour {
         public bool Blocking;      //is Player Blocking right now
         public bool Jumping;       //is player1 Jumping
         public MeeleDetails md;       //details about meele attack
+        public Meele meele;             //if not null will contain information about meele attack
         public ProjectileDetails pd;  //details about projectile attack
         public float playerWidth;         //the width of the collider of the item
+        private GameObject right1;      //right box to attack with
+        private GameObject left1;       //left box to attack with
+        public bool isAttacking()
+        {
+            return right1.activeSelf || left1.activeSelf;
+        }
         public PlayerInfo(GameObject player)
         {
+            meele = null;
             this.player = player;
             this.playerWidth = player.GetComponent<BoxCollider2D>().size.y;
             this.pScript = player.GetComponent<Player>();
             pd = new ProjectileDetails(pScript.projSpeed, pScript.setRangedAttack, pScript.setMeleeAttack);
             costManaBlock = pScript.manaBlock;
-            GameObject right1 = player.transform.FindChild("RightHitBox").gameObject;
+            right1 = player.transform.FindChild("RightHitBox").gameObject;
             BoxCollider2D bcRight1 = right1.GetComponent<BoxCollider2D>();
-            GameObject left1 = player.transform.FindChild("LeftHitBox").gameObject;
+            left1 = player.transform.FindChild("LeftHitBox").gameObject;
             BoxCollider2D bcLeft1 = left1.GetComponent<BoxCollider2D>();
             md = new MeeleDetails(pScript.manaMelee, pScript.setMeleeAttack, bcLeft1.offset.x, bcLeft1.size.x, bcRight1.offset.x, bcRight1.size.x, bcLeft1.offset.y, bcLeft1.size.y, bcRight1.offset.y, bcRight1.size.y);
             Update();
         }
         public void Update()
         {
+
             Health = pScript.getHitPoints();
             Mana = pScript.getManaPoints();
             x = player.transform.position.x;
             y = player.transform.position.y;
             Blocking = pScript.isBlocking;
             Jumping = pScript.jumping;
+            if (meele != null)
+            {
+                if (!isAttacking())
+                {
+                    meele = null;
+                }
+            }
+            else
+            {
+                if (isAttacking())
+                {
+                    if (right1.activeSelf)
+                    {
+                        meele = new Meele(md, 0, this);
+                    }
+                    else
+                    {
+                        meele = new Meele(md, 1, this);
+                    }
+                }
+            }
         }
-     }
+    }
     public class ProjectileDetails
     {
         private int speed;              //right now only in the x direction
         private int manaCost;           //cost of firing a mana 
         private int healthCost;         //cost to other players health
-        public ProjectileDetails(int speed,int healthCost,int manaCost)
+        public ProjectileDetails(int speed, int healthCost, int manaCost)
         {
             this.speed = speed;
             this.healthCost = healthCost;
             this.manaCost = manaCost;
         }
-        
+
         //gets speed proj goes at
         public int getSpeed()
         {
@@ -111,7 +141,7 @@ public class Location_Script : MonoBehaviour {
         private GameObject projectile;  //the projectile itself
         private ProjectileDetails pd;   //stores the Projectile details in this form.
 
-        public Projectile(int direction,GameObject projectile,ProjectileDetails pd)
+        public Projectile(int direction, GameObject projectile, ProjectileDetails pd)
         {
             this.direction = direction;
             this.projectile = projectile;
@@ -170,7 +200,7 @@ public class Location_Script : MonoBehaviour {
         public float sizeYLeft;         //size of box in the Y plane
         public float offsetYRight;      //offset of the box comapared to the center of the Players Location
         public float sizeYRight;        //size of box in the Y plane
-        public MeeleDetails(int manaCost,int healthCost, float offsetXLeft, float sizeXLeft, float offsetXRight, float sizeXRight,float offsetYLeft,float sizeYLeft, float offsetYRight,float sizeYRight)
+        public MeeleDetails(int manaCost, int healthCost, float offsetXLeft, float sizeXLeft, float offsetXRight, float sizeXRight, float offsetYLeft, float sizeYLeft, float offsetYRight, float sizeYRight)
         {
             this.manaCost = manaCost;
             this.healthCost = healthCost;
@@ -195,7 +225,7 @@ public class Location_Script : MonoBehaviour {
         //int side attacked from 0 for right, 1 for left
         //int player 1 for player 1 2 for player 2
         //TODO have not tested this method
-        public Meele(MeeleDetails mD, int side, int player, PlayerInfo pi)
+        public Meele(MeeleDetails mD, int side, PlayerInfo pi)
         {
             this.mD = mD;
             if (side == 0)
@@ -251,7 +281,7 @@ public class Location_Script : MonoBehaviour {
     public int getpXHeath(int x)
     {
         //check to make sure x is valid
-        if (x < 0 || x >  numberPlayers)
+        if (x < 0 || x > numberPlayers)
         {
             return -1;
         }
@@ -319,8 +349,7 @@ public class Location_Script : MonoBehaviour {
     }
     //TODO set up way to call update and call other things for each one
     // Use this for initialization
-    void Start () {
-        int[] myIntArray = Enumerable.Repeat(0, 20).ToArray();
+    void Start() {
         numberPlayers = playersGameObjects.Length;
         pi = new PlayerInfo[numberPlayers];
         int i = 0;
@@ -333,9 +362,9 @@ public class Location_Script : MonoBehaviour {
         EdgeCollider2D c2 = edgeColider.GetComponents<EdgeCollider2D>()[1];
         width = System.Math.Abs(c1.bounds.center.x - c2.bounds.center.x);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         foreach (PlayerInfo p in pi)
         {
             p.Update();
@@ -350,54 +379,57 @@ public class Location_Script : MonoBehaviour {
     {
 
         arena = new int[(int)(4 * width * 10 * 4)];
-        for (int i = 0; i < arena.Length / 4; i++)
+        //this will go through the base row
+        for (int j = 0; j < 4 * width; j++)
         {
-            //this will go through each row in the arena
-            for (int j = 0; j < 4 * width; j++)
-            {
-                //put in array the ground
-                if (i == 0)
-                {
-                    arena[j + (i * ((int)width) * 4)] = 1;
-                }
-                //else init to 0 so it can be changed latter as needed
-                else
-                {
-                    if (j + (i * ((int)width) * 4) >= arena.Length)
-                    {
-                        break;
-                    }
-                    arena[j + (i * ((int)width) * 4)] = 0;
-                }
-            }
+            //put in array the ground
+            arena[j] = 1;
         }
         //int to allow me to know which player we are on for storing its info in the top of the array
-        int a = 0;
+        //int a = 0;
         foreach (PlayerInfo p in pi)
         {
             // x and y are centers
-            float normalizeX = p.x*4 + width * 2;     //the normalation of the x to use in arena corninates
-            int x = (int)normalizeX/1;
+            float normalizeX = p.x * 4 + width * 2;     //the normalation of the x to use in arena corninates
+            int x = (int)normalizeX / 1;
             float normalizeY = (p.y * 4);         //normalation of the y add 1 to it because 0 is the ground
             int y = (int)normalizeY;
             //TODO maybe convert this to deal with variables and not hardcoded units
             //since it is 2 wide and 5 high we can hardcode it add these
             //deals with adding all the width to the user goes from one to the left to one to the right 
-            for (int k = -1*4; k < 1*4; k++)
+            for (int k = -1 * 4; k < 1 * 4; k++)
             {
                 //to go from bottom of the user to top
-                for (int l = -10;l < 10;l++)
+                for (int l = -10; l < 10; l++)
                 {
-                    if ((k + x) + ((int)(l + y-1) * ((int)width) * 4) >= arena.Length)
+                    if ((k + x) + ((int)(l + y - 1) * ((int)width) * 4) >= arena.Length)
                     {
                         continue;
                     }
                     //come up with a way to tell what player this is, player playing or not
-                    arena[(k+x) + ((l+y+2) * ((int)width) * 4)] = 5;
+                    arena[(k + x) + ((l + y + 2) * ((int)width) * 4)] = 5;
                 }
-            } 
+            }
+            if (p.isAttacking())
+            {
+                Debug.Log("Attacked");
+                // converted min and max squares to mark as attacked
+                int minX = (int) (p.meele.getMinX()*4 + width * 2);
+                int maxX = (int) ((p.meele.getMaxX()*4) + width *2);
+                int minY = (int)(p.meele.getMinY()*4) +1;
+                int maxY = (int)(p.meele.getMaxY()*4)+1;
+                
+                for (int i = minX; i < maxX; i++)
+                {
+                    for (int j = minY+1;j < maxY; j++)
+                    {
+                        arena[i + (j * ((int)width) * 4)] = 6;
+                    }
+                }
+            }
             /*//a times 4 is becuase we have 4 items putting in front of it
-            int start =  (arena.Length % (int)(width*4)) + a*4;
+            //this should be finding the last row
+            int start =  (arena.Length - (int)(width*4)-1) + a*4;
             arena[start] = p.Blocking ? 1 : 0;
             arena[start + 1] = p.Jumping ? 1 : 0;
             arena[start + 2] = p.Health;
