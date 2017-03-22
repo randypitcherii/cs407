@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-//TODO still need to set everything 
 public class Location_Script : MonoBehaviour {
     //public objects
     public GameObject edgeColider;  //the edge of unity
@@ -11,7 +10,7 @@ public class Location_Script : MonoBehaviour {
     //private Object
     private PlayerInfo player1;        //Player Information of Player1
     private PlayerInfo player2;        //Player Information of Player2
-    private float width;              //will tell how wide the course is
+    public float width;              //will tell how wide the course is
     private PlayerInfo[] pi;           //Information of all the #
     private int numberPlayers;   //gets count from number of player game objects given
     private int[] arena;         /*this what we will build all the input into, each box will be the .25 space of the game course. 
@@ -35,12 +34,6 @@ public class Location_Script : MonoBehaviour {
             }
             Debug.Log(sb.ToString());
         }
-    }
-    //calls this method everytime a new Ranged object is called
-    public void addRanged(GameObject fired)
-    {
-        Debug.Log("Parent");
-        //TODO add this to the correct parent and draw this to the background
     }
     public class PlayerInfo
     {
@@ -115,14 +108,6 @@ public class Location_Script : MonoBehaviour {
                     }
                 }
             }
-            int i = 0;
-            foreach (Projectile p in fired) {
-                if (p.Equals(null))
-                {
-                    fired.RemoveAt(i);
-                }
-                i++;
-            }
         }
     }
     public class ProjectileDetails
@@ -192,7 +177,7 @@ public class Location_Script : MonoBehaviour {
         }
         public float getLocationX()
         {
-            return locationX;
+            return projectile.transform.position.x;
         }
         public void setLocationX(float locationX)
         {
@@ -200,7 +185,7 @@ public class Location_Script : MonoBehaviour {
         }
         public float getLocationY()
         {
-            return locationY;
+            return projectile.transform.position.y;
         }
         public int getDirection()
         {
@@ -377,7 +362,10 @@ public class Location_Script : MonoBehaviour {
         int i = 0;
         foreach (GameObject p in playersGameObjects)
         {
+            
             pi[i++] = new PlayerInfo(p);
+            Debug.Log("Add new player at " + pi[0].x);
+
         }
         //sets up to find width of course assuming it has a boundry
         EdgeCollider2D c1 = edgeColider.GetComponents<EdgeCollider2D>()[0];
@@ -396,6 +384,12 @@ public class Location_Script : MonoBehaviour {
             buildArray();
             printArena();
         }
+    }
+    //calls this method everytime a new Ranged object is called
+    public void addRanged(GameObject p,int dir)
+    {
+        //TODO add this to the correct parent and draw this to the background
+        pi[0].fired.Add(new Projectile(dir, p, pi[0].pd));
     }
     //method builds an array and returns to the caller that includes all the given information on the playing field at the time of calling it.
     public int[] buildArray()
@@ -448,6 +442,32 @@ public class Location_Script : MonoBehaviour {
                         arena[i + (j * ((int)width) * 4)] = 6;
                     }
                 }
+            }
+            for (int z = 0; z < p.fired.Count;z++)
+            {
+                Projectile proj =(Projectile) p.fired[z];
+                if (proj.getProjectile().Equals(null))
+                {
+                    p.fired.RemoveAt(z);
+                    Debug.Log("remove");
+                    continue;
+                }
+                z++;
+                //assuming a size of 1.5
+                int startX = (int) (proj.getLocationX()*4+width*2 - 3);
+                int endX = (int)(proj.getLocationX() * 4 + width * 2 + 3);
+                //assuming a size of .5 plus add 1 due to height
+                int startY = (int)(proj.getLocationY() * 4);
+                int endY = (int)(proj.getLocationY() * 4 + 2);
+                for (int i = startX; i <endX;i++)
+                {
+                    for (int j = startY; j < endY; j++)
+                    {
+                        Debug.Log("Location"+i+","+ j);
+                        arena[i + (j * ((int)width) * 4)] = 7;
+                    }
+                }
+                
             }
             /*//a times 4 is becuase we have 4 items putting in front of it
             //this should be finding the last row

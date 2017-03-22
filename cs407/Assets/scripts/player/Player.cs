@@ -44,6 +44,8 @@ public abstract class Player : MonoBehaviour
     public int manaBlock;      //the mana cost for doing different action
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
+    public GameObject c;            //camera object used to get correct script
+    private Location_Script ls;     //script to inform everytime something is fired
     //abstract methods
     public abstract void LateUpdate();
 
@@ -52,6 +54,8 @@ public abstract class Player : MonoBehaviour
      */
     public void Start()
     {
+        //initialize location script
+        ls = c.GetComponent<Location_Script>();
         //initialize hit points
         this.hitPoints = MAX_HIT_POINTS;
 
@@ -90,7 +94,7 @@ public abstract class Player : MonoBehaviour
         //set up health cost
         setMeleeAttack = 5;
         setRangedAttack = 5;
-        projSpeed = -10;
+        projSpeed = 10;
     }   //end of Start method
 
     /**
@@ -123,10 +127,13 @@ public abstract class Player : MonoBehaviour
         //point projectile left
         if (dirProjectile == 2)
         {
+            
             //This line makes no sense to me, why do I have to add parent postion when it should already know them
             created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(projSpeed*-1, 0);
+            ls.addRanged(created,-1);
+
 
         }
         //point projectile right
@@ -135,6 +142,7 @@ public abstract class Player : MonoBehaviour
             created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(projSpeed, 0);
+            ls.addRanged(created, -1);
         }
     }
     //allows other object getting hit to get attack
@@ -247,7 +255,10 @@ public abstract class Player : MonoBehaviour
             //set mana points
             this.manaPoints = newManaPoints;
         }   //end if
-		mana_points.value = newManaPoints;
+        //TODO question them
+        if (mana_points != null) {
+            mana_points.value = newManaPoints;
+        }
     }   //end of setHitPoints method
 
     /**
