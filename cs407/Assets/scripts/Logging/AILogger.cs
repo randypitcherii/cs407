@@ -40,7 +40,7 @@ public class AILogger
      *
      * @param line  An action.
      */
-    public void write(char action)
+    public void write(int action)
     {
         //check if the log has been closed
         if (this.closed)    //the log has been closed
@@ -52,7 +52,7 @@ public class AILogger
         byte[] bytes = {System.Convert.ToByte(action)}; //a byte array representation of the action
 
         //write to the log
-        this.file.Write(bytes, 0, 1);
+        this.file.Write(bytes, 0, sizeof(int));
     }   //end of write method
 
     /**
