@@ -32,12 +32,16 @@ public class Timer : MonoBehaviour {
     public float secAddMana;
     //how much mana to refil by
     public int addMana;
+    //set the timescale for the game 
+    public int timeScale;
     // Use this for initialization
     void Start () {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         script = player.GetComponent<Player>();
+
+        Time.timeScale = timeScale;
         if(script == null)
         {
             Debug.Log("Script is null");
@@ -69,7 +73,7 @@ public class Timer : MonoBehaviour {
 
             if (time > 30)
             {
-                timer.text = minsLeft + ":" + secLeft;
+                timer.text = minsLeft + ":" + String.Format("{0:00}", secLeft);
             }
             else
             {

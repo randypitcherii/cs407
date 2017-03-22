@@ -14,13 +14,10 @@ public abstract class Player : MonoBehaviour
 
     //private fields
     private Animator anim;      //handles the animations
-    private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
-    private int manaRange;      //the mana cost for doing different actions
-    private int manaBlock;      //the mana cost for doing different action
-    private int manaMelee;      //the mana cost for doing different action
+    
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -33,7 +30,8 @@ public abstract class Player : MonoBehaviour
     public bool resetCleared;       //TODO:  ADD COMMENT
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
-	public Slider healthSlider;
+    public bool jumping;       //whether or not the player is jumping
+    public Slider healthSlider;
 	public Slider mana_points;
 	public GameObject projectile;   //TODO:  ADD COMMENT
     private bool canMove;            //can the user move right now or not
@@ -42,6 +40,10 @@ public abstract class Player : MonoBehaviour
     public bool isBlocking;         //when true can not hurt player, decided by animation
     public int setRangedAttack;      //set Ranged attack to hurt this much health value
     public int setMeleeAttack;      //set Melee attack to this value
+    public int manaRange;      //the mana cost for doing different actions
+    public int manaBlock;      //the mana cost for doing different action
+    public int manaMelee;      //the mana cost for doing different action
+    public int projSpeed;       //the speed of the projectile fired
     //abstract methods
     public abstract void LateUpdate();
 
@@ -88,6 +90,7 @@ public abstract class Player : MonoBehaviour
         //set up health cost
         setMeleeAttack = 5;
         setRangedAttack = 5;
+        projSpeed = -10;
     }   //end of Start method
 
     /**
@@ -123,7 +126,7 @@ public abstract class Player : MonoBehaviour
             //This line makes no sense to me, why do I have to add parent postion when it should already know them
             created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(-10, 0);
+            rb.velocity = new Vector2(projSpeed*-1, 0);
 
         }
         //point projectile right
@@ -131,7 +134,7 @@ public abstract class Player : MonoBehaviour
         {
             created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(10, 0);
+            rb.velocity = new Vector2(projSpeed, 0);
         }
     }
     //allows other object getting hit to get attack
@@ -282,7 +285,7 @@ public abstract class Player : MonoBehaviour
         {
             jumping = true;
             anim.SetBool("Jump", true);
-            rb.velocity = new Vector2(0, 5);
+            rb.velocity = new Vector2(0, 50);
         }
     }   //end of jump method
 
@@ -291,7 +294,7 @@ public abstract class Player : MonoBehaviour
      */
     protected void useMeleeAttack()
     {
-        if (canMove && !anim.GetBool("Meele"))
+        if (!anim.GetBool("Meele"))
         {
             if ((getManaPoints() - manaMelee) > 0) {
                 setManaPoints((getManaPoints() - manaMelee));
