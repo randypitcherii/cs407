@@ -159,7 +159,7 @@ public abstract class Player : MonoBehaviour
             {
                 changeToHitColor();
                 setHitPoints(getHitPoints() - col.GetComponent<Ranged>().getAttackStrenght());
-                Debug.Log(getHitPoints());
+                //Debug.Log(getHitPoints());
             }
             Destroy(col.gameObject);
 
@@ -321,7 +321,7 @@ public abstract class Player : MonoBehaviour
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
-                Debug.Log(getManaPoints());
+                //Debug.Log(getManaPoints());
             }
         }
     }   //end of useRangedAttack method

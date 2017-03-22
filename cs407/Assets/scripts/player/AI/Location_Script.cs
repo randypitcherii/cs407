@@ -14,14 +14,14 @@ public class Location_Script : MonoBehaviour {
     private float width;              //will tell how wide the course is
     private PlayerInfo[] pi;           //Information of all the #
     private int numberPlayers;   //gets count from number of player game objects given
-                                 /*this what we will build all the input into, each box will be the .25 space of the game course. 
+    private int[] arena;         /*this what we will build all the input into, each box will be the .25 space of the game course. 
                                      The bottom row will always be ground and will not change, as the row will always be the player stats
                                      Each row will be 4 * width of the area  determined by start of it
                                      use the formula j+(i*width*4) to find each row where. 
                                      Also the bottom of the array is located at -.25 so that way the top of the floor is at 0
                                      the center of x is at 4 width /2 = width*2
                                  */
-    private int[] arena;
+
     //classes use to store basic info edit to make more sense
     public void printArena()
     {
@@ -35,6 +35,12 @@ public class Location_Script : MonoBehaviour {
             }
             Debug.Log(sb.ToString());
         }
+    }
+    //calls this method everytime a new Ranged object is called
+    public void addRanged(GameObject fired)
+    {
+        Debug.Log("Parent");
+        //TODO add this to the correct parent and draw this to the background
     }
     public class PlayerInfo
     {
@@ -53,23 +59,29 @@ public class Location_Script : MonoBehaviour {
         public float playerWidth;         //the width of the collider of the item
         private GameObject right1;      //right box to attack with
         private GameObject left1;       //left box to attack with
+        public ArrayList fired; //The Projectiles that have been fired
         public bool isAttacking()
         {
             return right1.activeSelf || left1.activeSelf;
         }
         public PlayerInfo(GameObject player)
         {
+            //set first melee to null to allow system to know it is not being used
             meele = null;
             this.player = player;
+            //get playerWidth and script
             this.playerWidth = player.GetComponent<BoxCollider2D>().size.y;
             this.pScript = player.GetComponent<Player>();
+            //get the details of firing a projectile as well as the cost of blocking
             pd = new ProjectileDetails(pScript.projSpeed, pScript.setRangedAttack, pScript.setMeleeAttack);
             costManaBlock = pScript.manaBlock;
+            //create the hit box of hitting enemy
             right1 = player.transform.FindChild("RightHitBox").gameObject;
             BoxCollider2D bcRight1 = right1.GetComponent<BoxCollider2D>();
             left1 = player.transform.FindChild("LeftHitBox").gameObject;
             BoxCollider2D bcLeft1 = left1.GetComponent<BoxCollider2D>();
             md = new MeeleDetails(pScript.manaMelee, pScript.setMeleeAttack, bcLeft1.offset.x, bcLeft1.size.x, bcRight1.offset.x, bcRight1.size.x, bcLeft1.offset.y, bcLeft1.size.y, bcRight1.offset.y, bcRight1.size.y);
+            fired = new ArrayList();
             Update();
         }
         public void Update()
@@ -81,6 +93,7 @@ public class Location_Script : MonoBehaviour {
             y = player.transform.position.y;
             Blocking = pScript.isBlocking;
             Jumping = pScript.jumping;
+            //sees if needed to update meele or if it is now null
             if (meele != null)
             {
                 if (!isAttacking())
@@ -101,6 +114,14 @@ public class Location_Script : MonoBehaviour {
                         meele = new Meele(md, 1, this);
                     }
                 }
+            }
+            int i = 0;
+            foreach (Projectile p in fired) {
+                if (p.Equals(null))
+                {
+                    fired.RemoveAt(i);
+                }
+                i++;
             }
         }
     }
@@ -185,6 +206,7 @@ public class Location_Script : MonoBehaviour {
         {
             return direction;
         }
+        
     }
     //Stores the basic info of a Meele for each player
     //TODO something to redo boxes like maybe find width effected
@@ -375,6 +397,7 @@ public class Location_Script : MonoBehaviour {
             printArena();
         }
     }
+    //method builds an array and returns to the caller that includes all the given information on the playing field at the time of calling it.
     public int[] buildArray()
     {
 
@@ -402,7 +425,7 @@ public class Location_Script : MonoBehaviour {
                 //to go from bottom of the user to top
                 for (int l = -10; l < 10; l++)
                 {
-                    if ((k + x) + ((int)(l + y - 1) * ((int)width) * 4) >= arena.Length)
+                    if ((k + x) + ((l + y + 2) * ((int)width) * 4) >= arena.Length)
                     {
                         continue;
                     }
@@ -412,7 +435,6 @@ public class Location_Script : MonoBehaviour {
             }
             if (p.isAttacking())
             {
-                Debug.Log("Attacked");
                 // converted min and max squares to mark as attacked
                 int minX = (int) (p.meele.getMinX()*4 + width * 2);
                 int maxX = (int) ((p.meele.getMaxX()*4) + width *2);
