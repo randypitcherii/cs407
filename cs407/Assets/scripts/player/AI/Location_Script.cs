@@ -452,7 +452,6 @@ public class Location_Script : MonoBehaviour {
                     Debug.Log("remove");
                     continue;
                 }
-                z++;
                 //assuming a size of 1.5
                 int startX = (int) (proj.getLocationX()*4+width*2 - 3);
                 int endX = (int)(proj.getLocationX() * 4 + width * 2 + 3);
@@ -467,7 +466,6 @@ public class Location_Script : MonoBehaviour {
                         arena[i + (j * ((int)width) * 4)] = 7;
                     }
                 }
-                
             }
             /*//a times 4 is becuase we have 4 items putting in front of it
             //this should be finding the last row
