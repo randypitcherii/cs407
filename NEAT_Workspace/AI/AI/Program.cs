@@ -20,6 +20,7 @@ namespace AI
 
         static void Main(string[] args)
         {
+            /*
             // Initialise log4net (log to console).
             XmlConfigurator.Configure(new FileInfo("log4net.properties"));
 
@@ -38,6 +39,7 @@ namespace AI
             // Start algorithm (it will run on a background thread).
             _ea.StartContinue();
 
+            */
             // Hit return to quit.
             Console.ReadLine();
         }

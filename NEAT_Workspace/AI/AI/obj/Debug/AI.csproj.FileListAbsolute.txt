@@ -5,14 +5,12 @@ c:\users\randy\documents\visual studio 2017\Projects\AI\AI\obj\Debug\AI.csprojRe
 c:\users\randy\documents\visual studio 2017\Projects\AI\AI\obj\Debug\AI.exe
 c:\users\randy\documents\visual studio 2017\Projects\AI\AI\obj\Debug\AI.pdb
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\obj\Debug\AI.csprojResolveAssemblyReference.cache
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\obj\Debug\AI.exe
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\obj\Debug\AI.pdb
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\AI.exe.config
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\AI.exe
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\AI.pdb
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\SharpNeatLib.dll
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\Redzen.dll
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\log4net.dll
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\SharpNeatLib.pdb
-C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\SharpNeatLib.xml
 C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\log4net.xml
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\AI.dll.config
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\AI.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\bin\Debug\SharpNeatDomains.dll
+C:\Users\randy\Documents\GitHub\cs407\NEAT_Workspace\AI\AI\obj\Debug\AI.dll

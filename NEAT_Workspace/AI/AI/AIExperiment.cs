@@ -29,6 +29,12 @@ namespace AI
         int? _complexityThreshold;
         string _description;
         ParallelOptions _parallelOptions;
+        IEvaluatorFactory aiEvaluatorFactory;
+
+        public AIExperiment(IEvaluatorFactory evaluatorFactory)
+        {
+            this.aiEvaluatorFactory = evaluatorFactory;
+        }
 
         #region INeatExperiment Members
         public int InputCount { get { return GameState.aiInputMatrixSize; } }
@@ -38,7 +44,7 @@ namespace AI
         {
             get
             {
-                return new AIEvaluator();
+                return aiEvaluatorFactory.getNewEvaluator();
             }
         }
 
