@@ -23,12 +23,14 @@ namespace AI
         public const int opponent_state = 10;
 
         //missile positions
-        public const int selfRangedAttack_state = 0;
+        public const int selfRangedAttack_state = 20;
         public const int opponentRangedAttack_state = 20;
 
         //non-positional game state
         public const int isBlocking_state = 1;
         public const int isFiring_state = 1;
+        public const int nullBlocking_state = 0;
+        public const int nullFiring_state = 0;
         //=====================================================================
     }
 }
