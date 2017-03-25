@@ -46,9 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIEvaluator.cs" />
+    <Compile Include="AIExperiment.cs" />
     <Compile Include="AIFighter.cs" />
-    <Compile Include="AIvAITrainer.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="ICoevolutionPhenomeEvaluator.cs" />
+    <Compile Include="ParallelCoevolutionListEvaluator.cs" />
+    <Compile Include="ParallelHallOfFameListEvaluator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
