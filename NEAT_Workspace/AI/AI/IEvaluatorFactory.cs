@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AI
 {
-    interface IEvaluatorFactory
+    public interface IEvaluatorFactory
     {
         ICoevolutionPhenomeEvaluator<IBlackBox> getNewEvaluator();
     }

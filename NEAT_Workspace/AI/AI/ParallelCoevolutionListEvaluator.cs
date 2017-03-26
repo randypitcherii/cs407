@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AI
 {
-    class ParallelCoevolutionListEvaluator<TGenome, TPhenome> : IGenomeListEvaluator<TGenome>
+    public class ParallelCoevolutionListEvaluator<TGenome, TPhenome> : IGenomeListEvaluator<TGenome>
         where TGenome : class, global::SharpNeat.Core.IGenome<TGenome>
         where TPhenome : class
     {

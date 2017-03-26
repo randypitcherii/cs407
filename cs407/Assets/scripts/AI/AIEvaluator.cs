@@ -1,10 +1,5 @@
 ﻿using SharpNeat.Core;
 using SharpNeat.Phenomes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AI
 {
@@ -47,14 +42,14 @@ namespace AI
             //TODO: Need to build a score based on the results of a game
 
             // Play the two boxes against each other.
-            var matchResults = TicTacToeGame.PlayGameToEnd(player1, player2);
+            //var matchResults = TicTacToeGame.PlayGameToEnd(player1, player2);
 
             // Score player 1
-            double score1 = getScore(winner, SquareTypes.X);
+            double score1 = 2.0f;//getScore(winner, SquareTypes.X);
             fitness1 = new FitnessInfo(score1, score1);
 
             // Score player 2
-            double score2 = getScore(winner, SquareTypes.O);
+            double score2 = 2.0f;// getScore(winner, SquareTypes.O);
             fitness2 = new FitnessInfo(score2, score2);
 
             // Update the evaluation counter.

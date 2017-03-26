@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AI
 {
-    class AIFighter
+    public class AIFighter
     {
         /// <summary>
         /// The neural network that this player uses to make its decision.

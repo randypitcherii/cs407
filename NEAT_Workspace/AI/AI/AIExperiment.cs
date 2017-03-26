@@ -17,7 +17,7 @@ using System.Xml;
 
 namespace AI
 {
-    class AIExperiment: INeatExperiment
+    public class AIExperiment: INeatExperiment
     {
         NeatEvolutionAlgorithmParameters _eaParams;
         NeatGenomeParameters _neatGenomeParams;

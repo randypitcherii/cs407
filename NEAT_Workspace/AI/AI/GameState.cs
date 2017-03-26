@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI
 {
-    class GameState
+    public class GameState
     {
         public const int aiInputMatrixSize = 100;//change this later
         public const int aiOutputMatrixSize = 100;//change this later too
@@ -29,8 +29,8 @@ namespace AI
         //non-positional game state
         public const int isBlocking_state = 1;
         public const int isFiring_state = 1;
-        public const int nullBlocking_state = 0;
-        public const int nullFiring_state = 0;
+        public const int notBlocking_state = 0;
+        public const int notFiring_state = 0;
         //=====================================================================
     }
 }
