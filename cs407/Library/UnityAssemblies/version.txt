@@ -1,10 +1,12 @@
-5.5.0f3:2.2.0.0
+5.5.0xMono-Runtime-Upgrade-b9:3.0.0.1
 StandaloneWindows
-C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
-C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll
-C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll
+D:/Downloads/WindowsEditor/Data/Managed/UnityEngine.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll
+D:/Downloads/WindowsEditor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll
+D:/Downloads/WindowsEditor/Data/Managed/UnityEditor.dll
