@@ -17,13 +17,16 @@ public class PlayerAI : Player
 
         //create random actions
         int[] actions = {
-            r.Next(0,1), //left key pressed             0
-            r.Next(0,1), //right key pressed            1
-            r.Next(0,1), //jump key pressed             2
-            r.Next(0,1), //melee attack key pressed     3
-            r.Next(0,1), //ranged attack key pressed    4
-            r.Next(0,1)  //block key pressed            5
+            r.Next(0,2), //left key pressed             0
+            r.Next(0,2), //right key pressed            1
+            r.Next(0,2), //jump key pressed             2
+            r.Next(0,2), //melee attack key pressed     3
+            r.Next(0,2), //ranged attack key pressed    4
+            r.Next(0,2)  //block key pressed            5
         };
+
+        Debug.Log("\n\n");
+        Debug.Log(actions[0]);
 
         //check if a key was pressed
         if (actions[0] == 1)   //a left key was pressed

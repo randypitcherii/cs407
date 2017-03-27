@@ -24,7 +24,7 @@ public abstract class Player : MonoBehaviour
     protected int manaPoints; //the player's current mana points
 
     //public fields
-    public float speed = 15;             //the player's current speed
+    public float speed;             //the player's current speed
     public Rigidbody2D rb;          //TODO:  ADD COMMENT
     public bool reset;              //TODO:  ADD COMMENT
     public bool resetCleared;       //TODO:  ADD COMMENT
@@ -85,10 +85,11 @@ public abstract class Player : MonoBehaviour
 
         //allow the player to move
         canMove = true;
+        speed = 15;
         setCanMove = false;
         isBlocking = false;
         //set mana cost for certain moves
-        manaMelee = 5;
+        manaMelee = 0;
         manaBlock = 5;
         manaRange = 5;
         //set up health cost
