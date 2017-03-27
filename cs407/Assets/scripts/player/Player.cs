@@ -24,7 +24,7 @@ public abstract class Player : MonoBehaviour
     protected int manaPoints; //the player's current mana points
 
     //public fields
-    public float speed;             //the player's current speed
+    public float speed = 15;             //the player's current speed
     public Rigidbody2D rb;          //TODO:  ADD COMMENT
     public bool reset;              //TODO:  ADD COMMENT
     public bool resetCleared;       //TODO:  ADD COMMENT

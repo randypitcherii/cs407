@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,45 +12,59 @@ public class PlayerAI : Player
      */
     public override void LateUpdate()
     {
-        /*
-        DATA_TYPE action = ML_FUNC(DATA_ARRAY); //the action the AI should perform
 
-        //check what the AI should do
-        switch (action)
+        System.Random r = new System.Random();
+
+        //create random actions
+        int[] actions = {
+            r.Next(0,1), //left key pressed             0
+            r.Next(0,1), //right key pressed            1
+            r.Next(0,1), //jump key pressed             2
+            r.Next(0,1), //melee attack key pressed     3
+            r.Next(0,1), //ranged attack key pressed    4
+            r.Next(0,1)  //block key pressed            5
+        };
+
+        //check if a key was pressed
+        if (actions[0] == 1)   //a left key was pressed
         {
-        case DO_NOTHING:    //the AI should do nothing
-            break;
-        case MOVE_LEFT: //the AI should move left
             moveLeft();
-            break;
-        case MOVE_RIGHT:    //the AI should move right
-            moveRight();
-            break;
-        case JUMP:  //the AI should jump
-            jump();
-            break;
-        case MELEE_ATTACK:  //the AI should perform a melee attack
-            useMeleeAttack();
-            break;
-        case RANGED_ATTACK: //the AI should perform a ranged attack
-            useRangedAttack();
-            break;
-        case BLOCK_ATTACK:  //the AI should perform a block attack
-            useBlockAttack();
-            break;
-        default:    //error
-            Debug.LogError("action=" + action);
-        }   //end switch
-
-        //check if a log was created
-        if (this.log == null)   //a log was not created
+        }
+        else if (actions[1] == 1) //a right key was pressed
         {
-            this.log = new AILogger();
+            moveRight();
+        }
+        else    //no key was pressed
+        {
+            standStill();
         }   //end if
 
-        //write the action to the log
-        this.log.write(action);
-        */
+
+        if (actions[2] == 1) //a jump key was pressed
+        {
+            jump();
+        }
+        else if (actions[3] == 1) //a melee attack key was pressed
+        {
+            useMeleeAttack();
+        }
+        else if (actions[4] == 1)    //a ranged attack key was pressed
+        {
+            useRangedAttack();
+        }
+        else if (actions[5] == 1) //a block attack key was pressed
+        {
+            useBlockAttack();
+        }
+
+        if (actions[3] == 0)
+        {
+            endMeleeAttack();
+        }
+        if (actions[5] == 0)
+        {
+            endBlockAttack();
+        }
     }   //end of LateUpdate method
 
     /**

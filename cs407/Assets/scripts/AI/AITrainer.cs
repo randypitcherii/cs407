@@ -14,6 +14,7 @@ public class AITrainer : MonoBehaviour {
 
     static NeatEvolutionAlgorithm<NeatGenome> _ea;
     const string CHAMPION_FILE = @".\coevolution_champion.xml";
+    public GameObject[] playersGameObjects;
 
     // Use this for initialization
     void Start () {
