@@ -17,7 +17,7 @@ public abstract class Player : MonoBehaviour
     private int dirProjectile;  //direction of the projectile
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
-    
+    private Location_Script ls;     //script to inform everytime something is fired
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -45,8 +45,8 @@ public abstract class Player : MonoBehaviour
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
     public GameObject c;            //camera object used to get correct script
-    public Location_Script ls;     //script to inform everytime something is fired
-
+    
+    public int playerNumber;
     //abstract methods
     public abstract void LateUpdate();
 
@@ -134,9 +134,7 @@ public abstract class Player : MonoBehaviour
             created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(projSpeed*-1, 0);
-            ls.addRanged(created,-1);
-
-
+            ls.addRanged(playerNumber,created,-1);
         }
         //point projectile right
         else
@@ -144,7 +142,7 @@ public abstract class Player : MonoBehaviour
             created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(projSpeed, 0);
-            ls.addRanged(created, -1);
+            ls.addRanged(playerNumber,created, 1);
         }
     }
     //allows other object getting hit to get attack
@@ -334,6 +332,14 @@ public abstract class Player : MonoBehaviour
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
+                if (dirProjectile == 2)
+                {
+                    ls.startPrepFiring(playerNumber, -1);
+                }
+                else
+                {
+
+                }
                 //Debug.Log(getManaPoints());
             }
         }

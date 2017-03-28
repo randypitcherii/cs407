@@ -368,10 +368,11 @@ public class Location_Script : MonoBehaviour {
         int i = 0;
         foreach (GameObject p in playersGameObjects)
         {
-            
-            pi[i++] = new PlayerInfo(p);
-            Debug.Log("Add new player at " + pi[0].x);
 
+            
+            pi[i] = new PlayerInfo(p);
+            pi[i].pScript.playerNumber = i;
+            i++;
         }
         //sets up to find width of course assuming it has a boundry
         EdgeCollider2D c1 = edgeColider.GetComponents<EdgeCollider2D>()[0];
@@ -433,7 +434,12 @@ public class Location_Script : MonoBehaviour {
 
             if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
+                Debug.Log("Adding Players at "+x+","+y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
+            }
+            else
+            {
+                Debug.Log("Not adding Players");
             }
 
             //deals with melee attack do not need for atleast right now
@@ -474,7 +480,7 @@ public class Location_Script : MonoBehaviour {
             }
             //a times 4 is becuase we have 4 items putting in front of it
             //this should be finding the last row
-            int start =  (arena.Length - (int)(width*4)-1) + a*6;
+            int start =  (arena.Length - (int)(width*4)) + a*6;
             arena[start] = p.Blocking ? GameState.isBlocking_state : GameState.nothing_state;
             arena[start + 1] = p.Jumping ? 1 : GameState.nothing_state;
             arena[start + 2] = p.Health;
