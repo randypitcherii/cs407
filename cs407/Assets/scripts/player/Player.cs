@@ -45,7 +45,8 @@ public abstract class Player : MonoBehaviour
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
     public GameObject c;            //camera object used to get correct script
-    private Location_Script ls;     //script to inform everytime something is fired
+    public Location_Script ls;     //script to inform everytime something is fired
+
     //abstract methods
     public abstract void LateUpdate();
 

@@ -34,3 +34,5 @@ cs407/Logs/
 
 # AI Logs
 cs407/Library/
+*.txt
+cs407/ProjectSettings/ProjectVersion.txt
