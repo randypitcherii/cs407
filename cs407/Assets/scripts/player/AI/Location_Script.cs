@@ -414,27 +414,34 @@ public class Location_Script : MonoBehaviour {
             //TODO maybe convert this to deal with variables and not hardcoded units
             //since it is 2 wide and 5 high we can hardcode it add these
             //deals with adding all the width to the user goes from one to the left to one to the right 
-            for (int k = -1 * 4; k < 1 * 4; k++)
+            //for (int k = -1 * 4; k < 1 * 4; k++)
+            //{
+            //to go from bottom of the user to top
+            //for (int l = -10; l < 10; l++)
+            //{
+
+            if ((x) + ((y + 2) * ((int)width) * 4) >= arena.Length)
             {
-                //to go from bottom of the user to top
-                for (int l = -10; l < 10; l++)
-                {
-                    if ((k + x) + ((l + y + 2) * ((int)width) * 4) >= arena.Length)
-                    {
-                        continue;
-                    }
-                    //come up with a way to tell what player this is, player playing or not
-                    arena[(k + x) + ((l + y + 2) * ((int)width) * 4)] = 5;
-                }
+ 
             }
-            if (p.isAttacking())
+            else
+            {
+                arena[(x) + ((y + 2) * ((int)width) * 4)] = 5;
+            }
+
+            //come up with a way to tell what player this is, player playing or not
+
+            //}
+            //}
+            //deals with melee attack do not need for atleast right now
+            /*if (p.isAttacking())
             {
                 // converted min and max squares to mark as attacked
                 int minX = (int) (p.meele.getMinX()*4 + width * 2);
                 int maxX = (int) ((p.meele.getMaxX()*4) + width *2);
                 int minY = (int)(p.meele.getMinY()*4) +1;
                 int maxY = (int)(p.meele.getMaxY()*4)+1;
-                
+
                 for (int i = minX; i < maxX; i++)
                 {
                     for (int j = minY+1;j < maxY; j++)
@@ -442,10 +449,11 @@ public class Location_Script : MonoBehaviour {
                         arena[i + (j * ((int)width) * 4)] = 6;
                     }
                 }
-            }
-            for (int z = 0; z < p.fired.Count;z++)
+            }*/
+
+            for (int z = 0; z < p.fired.Count; z++)
             {
-                Projectile proj =(Projectile) p.fired[z];
+                Projectile proj = (Projectile)p.fired[z];
                 if (proj.getProjectile().Equals(null))
                 {
                     p.fired.RemoveAt(z);
@@ -453,19 +461,26 @@ public class Location_Script : MonoBehaviour {
                     continue;
                 }
                 //assuming a size of 1.5
-                int startX = (int) (proj.getLocationX()*4+width*2 - 3);
-                int endX = (int)(proj.getLocationX() * 4 + width * 2 + 3);
+                int centerX = (int)(proj.getLocationX() * 4 + width * 2);
+                //int endX = (int)(proj.getLocationX() * 4 + width * 2 + 3);
                 //assuming a size of .5 plus add 1 due to height
-                int startY = (int)(proj.getLocationY() * 4);
-                int endY = (int)(proj.getLocationY() * 4 + 2);
+                int centerY = (int)(proj.getLocationY() * 4 + 1);
+                /*int endY = (int)(proj.getLocationY() * 4 + 2);
                 for (int i = startX; i <endX;i++)
                 {
                     for (int j = startY; j < endY; j++)
-                    {
-                        Debug.Log("Location"+i+","+ j);
-                        arena[i + (j * ((int)width) * 4)] = 7;
-                    }
+                    {*/
+                if (centerX + (centerY * ((int)width) * 4) < arena.Length)
+                {
+
                 }
+                else
+                {
+                    arena[centerX + (centerY * ((int)width) * 4)] = 7;
+                }
+
+                //}
+                //}
             }
             /*//a times 4 is becuase we have 4 items putting in front of it
             //this should be finding the last row
