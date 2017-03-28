@@ -92,11 +92,11 @@ public abstract class Player : MonoBehaviour
         //set mana cost for certain moves
         manaMelee = 0;
         manaBlock = 5;
-        manaRange = 5;
+        manaRange = 10;
         //set up health cost
         setMeleeAttack = 5;
         setRangedAttack = 5;
-        projSpeed = 10;
+        projSpeed = 20;
     }   //end of Start method
 
     /**
