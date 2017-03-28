@@ -411,28 +411,13 @@ public class Location_Script : MonoBehaviour {
             int x = (int)normalizeX / 1;
             float normalizeY = (p.y * 4);         //normalation of the y add 1 to it because 0 is the ground
             int y = (int)normalizeY;
-            //TODO maybe convert this to deal with variables and not hardcoded units
-            //since it is 2 wide and 5 high we can hardcode it add these
-            //deals with adding all the width to the user goes from one to the left to one to the right 
-            //for (int k = -1 * 4; k < 1 * 4; k++)
-            //{
-            //to go from bottom of the user to top
-            //for (int l = -10; l < 10; l++)
-            //{
 
-            if ((x) + ((y + 2) * ((int)width) * 4) >= arena.Length)
+            if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
- 
-            }
-            else
-            {
+                Debug.Log(x + "," + y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = 5;
             }
 
-            //come up with a way to tell what player this is, player playing or not
-
-            //}
-            //}
             //deals with melee attack do not need for atleast right now
             /*if (p.isAttacking())
             {
@@ -457,24 +442,13 @@ public class Location_Script : MonoBehaviour {
                 if (proj.getProjectile().Equals(null))
                 {
                     p.fired.RemoveAt(z);
-                    Debug.Log("remove");
                     continue;
                 }
                 //assuming a size of 1.5
                 int centerX = (int)(proj.getLocationX() * 4 + width * 2);
-                //int endX = (int)(proj.getLocationX() * 4 + width * 2 + 3);
-                //assuming a size of .5 plus add 1 due to height
                 int centerY = (int)(proj.getLocationY() * 4 + 1);
-                /*int endY = (int)(proj.getLocationY() * 4 + 2);
-                for (int i = startX; i <endX;i++)
-                {
-                    for (int j = startY; j < endY; j++)
-                    {*/
+ 
                 if (centerX + (centerY * ((int)width) * 4) < arena.Length)
-                {
-
-                }
-                else
                 {
                     arena[centerX + (centerY * ((int)width) * 4)] = 7;
                 }
