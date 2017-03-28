@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour {
     public Text timer;
     //The main player that the camera is to watch
     public GameObject player;
+    //The AI player 
+    public GameObject player2;
     //offset is need to fix camera view
     private Vector3 offset;
     //change that the player has made while moving
@@ -26,6 +28,7 @@ public class Timer : MonoBehaviour {
     public float rightCameraBond;
     //script of player to allow us to get certain fetarues
     private Player script;
+    private Player script2;
     //old Time to allow us to know when x seconds has passed to help fill mana
     private float oldTime;
     //after how many seconds add more mana to the player
@@ -40,7 +43,7 @@ public class Timer : MonoBehaviour {
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         script = player.GetComponent<Player>();
-
+        script2 = player2.GetComponent<Player>();
         Time.timeScale = timeScale;
         if(script == null)
         {
@@ -84,6 +87,7 @@ public class Timer : MonoBehaviour {
         {
             oldTime = time;
             script.setManaPoints(script.getManaPoints() + addMana);
+            script2.setManaPoints(script2.getManaPoints()+addMana);
         }
 	}
     void LateUpdate()
