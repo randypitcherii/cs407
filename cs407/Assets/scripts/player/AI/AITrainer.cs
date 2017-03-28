@@ -43,7 +43,7 @@ public class AITrainer : MonoBehaviour
 
     static void ea_UpdateEvent(object sender, EventArgs e)
     {
-        Console.WriteLine(string.Format("gen={0:N0} bestFitness={1:N6}", _ea.CurrentGeneration, _ea.Statistics._maxFitness));
+        Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6}", _ea.CurrentGeneration, _ea.Statistics._maxFitness));
 
         // Save the best genome to file
         var doc = NeatGenomeXmlIO.SaveComplete(new List<NeatGenome>() { _ea.CurrentChampGenome }, false);

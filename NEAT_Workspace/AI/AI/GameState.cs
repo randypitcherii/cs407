@@ -9,7 +9,7 @@ namespace AI
     public class GameState
     {
         public const int aiInputMatrixSize = 100;//change this later
-        public const int aiOutputMatrixSize = 100;//change this later too
+        public const int aiOutputMatrixSize = 7;//change this later too
 
         //=====================================================================
         //states for AI input matrix
