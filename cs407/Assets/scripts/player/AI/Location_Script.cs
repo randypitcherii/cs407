@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using AI;
 public class Location_Script : MonoBehaviour {
     //public objects
     public GameObject edgeColider;  //the edge of unity
@@ -53,12 +54,14 @@ public class Location_Script : MonoBehaviour {
         private GameObject right1;      //right box to attack with
         private GameObject left1;       //left box to attack with
         public ArrayList fired; //The Projectiles that have been fired
+        public int isPrepFiring; //is the user preparing to fire and if so which direction negative or postive 1
         public bool isAttacking()
         {
             return right1.activeSelf || left1.activeSelf;
         }
         public PlayerInfo(GameObject player)
         {
+            isPrepFiring = 0;
             //set first melee to null to allow system to know it is not being used
             meele = null;
             this.player = player;
@@ -229,6 +232,7 @@ public class Location_Script : MonoBehaviour {
         private float maxX;           //maxX affeected by attack
         private float minY;           //minY affected by attack
         private float maxY;           //maxY affected by attack
+        public int direction;
         //int side attacked from 0 for right, 1 for left
         //int player 1 for player 1 2 for player 2
         //TODO have not tested this method
@@ -237,6 +241,7 @@ public class Location_Script : MonoBehaviour {
             this.mD = mD;
             if (side == 0)
             {
+                direction = -1;
                 minX = pi.x + mD.offsetXRight - (mD.sizeXRight / 2);
                 maxX = pi.x + mD.offsetXRight + (mD.sizeXRight / 2);
                 minY = pi.y + mD.offsetYRight - (mD.sizeYRight / 2);
@@ -244,6 +249,7 @@ public class Location_Script : MonoBehaviour {
             }
             else
             {
+                direction = 1;
                 minX = pi.x + mD.offsetXLeft - (mD.sizeXLeft / 2);
                 maxX = pi.x + mD.offsetXLeft + (mD.sizeXLeft / 2);
                 minY = pi.y + mD.offsetYLeft - (mD.sizeYLeft / 2);
@@ -385,11 +391,24 @@ public class Location_Script : MonoBehaviour {
             printArena();
         }
     }
+    
     //calls this method everytime a new Ranged object is called
-    public void addRanged(GameObject p,int dir)
+    public void addRanged(int playerid,GameObject p,int dir)
     {
-        //TODO add this to the correct parent and draw this to the background
-        pi[0].fired.Add(new Projectile(dir, p, pi[0].pd));
+        pi[playerid].isPrepFiring = 0;
+        pi[playerid].fired.Add(new Projectile(dir, p, pi[playerid].pd));
+    }
+    public void startPrepFiring(int pid,int dir )
+    {
+        if (dir < 0)
+        {
+            pi[pid].isPrepFiring = -1 * GameState.isFiring_state;
+        }
+        else
+        {
+            pi[pid].isPrepFiring = 1 * GameState.isFiring_state;
+        }
+        
     }
     //method builds an array and returns to the caller that includes all the given information on the playing field at the time of calling it.
     public int[] buildArray()
@@ -400,10 +419,10 @@ public class Location_Script : MonoBehaviour {
         for (int j = 0; j < 4 * width; j++)
         {
             //put in array the ground
-            arena[j] = 1;
+            arena[j] = AI.GameState.ground_state;
         }
         //int to allow me to know which player we are on for storing its info in the top of the array
-        //int a = 0;
+        int a = 0;
         foreach (PlayerInfo p in pi)
         {
             // x and y are centers
@@ -414,8 +433,7 @@ public class Location_Script : MonoBehaviour {
 
             if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
-                Debug.Log(x + "," + y);
-                arena[(x) + ((y + 2) * ((int)width) * 4)] = 5;
+                arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
             }
 
             //deals with melee attack do not need for atleast right now
@@ -450,19 +468,27 @@ public class Location_Script : MonoBehaviour {
  
                 if (centerX + (centerY * ((int)width) * 4) < arena.Length)
                 {
-                    arena[centerX + (centerY * ((int)width) * 4)] = 7;
+                    arena[centerX + (centerY * ((int)width) * 4)] = AI.GameState.opponentRangedAttack_state;
                 }
 
-                //}
-                //}
             }
-            /*//a times 4 is becuase we have 4 items putting in front of it
+            //a times 4 is becuase we have 4 items putting in front of it
             //this should be finding the last row
-            int start =  (arena.Length - (int)(width*4)-1) + a*4;
-            arena[start] = p.Blocking ? 1 : 0;
-            arena[start + 1] = p.Jumping ? 1 : 0;
+            int start =  (arena.Length - (int)(width*4)-1) + a*6;
+            arena[start] = p.Blocking ? GameState.isBlocking_state : GameState.nothing_state;
+            arena[start + 1] = p.Jumping ? 1 : GameState.nothing_state;
             arena[start + 2] = p.Health;
-            arena[start + 3] = p.Mana;*/
+            arena[start + 3] = p.Mana;
+            if (p.isAttacking())
+            {
+                arena[start + 4] = p.meele.direction; 
+            }
+            if (p.isPrepFiring != 0)
+            {
+                arena[start + 5] = p.isPrepFiring;
+            }
+            a++;
+            
         }
         return arena;
     } 
