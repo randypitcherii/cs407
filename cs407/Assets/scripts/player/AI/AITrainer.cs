@@ -15,7 +15,6 @@ public class AITrainer : MonoBehaviour
 
     static NeatEvolutionAlgorithm<NeatGenome> _ea;
     const string CHAMPION_FILE = @".\coevolution_champion.xml";
-    public GameObject[] playersGameObjects;
 
     // Use this for initialization
     void Start()
@@ -37,8 +36,6 @@ public class AITrainer : MonoBehaviour
 
         // Start algorithm (it will run on a background thread).
         _ea.StartContinue();
-        // Hit return to quit.
-        Console.ReadLine();
     }
 
     static void ea_UpdateEvent(object sender, EventArgs e)

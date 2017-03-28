@@ -51,7 +51,7 @@ public class PlayerHuman : Player
         {
             endMeleeAttack();
         }
-        if (blockedKeyUp())
+        if (!blockKeyPressed())
         {
             endBlockAttack();
         }
