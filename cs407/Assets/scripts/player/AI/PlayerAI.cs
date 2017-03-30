@@ -17,7 +17,7 @@ public class PlayerAI : Player
         //int [] actions = AIBrain.getMoves(ls.buildArray());
         int[] defaultInputs = { 1, 2, 3 };
         int [] actions = AIBrain.getMoves(defaultInputs);
-
+         
         //check if a key was pressed
         if (actions[0] != 0)   //a left key was pressed
         {

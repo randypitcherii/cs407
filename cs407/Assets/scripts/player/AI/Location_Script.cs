@@ -396,8 +396,10 @@ public class Location_Script : MonoBehaviour {
     //calls this method everytime a new Ranged object is called
     public void addRanged(int playerid,GameObject p,int dir)
     {
-        pi[playerid].isPrepFiring = 0;
-        pi[playerid].fired.Add(new Projectile(dir, p, pi[playerid].pd));
+        if (playerid >= 0 && playerid < pi.Length) {
+            pi[playerid].isPrepFiring = 0;
+            pi[playerid].fired.Add(new Projectile(dir, p, pi[playerid].pd));
+        }
     }
     public void startPrepFiring(int pid,int dir )
     {

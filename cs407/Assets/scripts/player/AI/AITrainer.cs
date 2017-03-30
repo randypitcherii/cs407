@@ -9,6 +9,7 @@ using log4net.Config;
 using System.IO;
 using Assets.scripts.AI;
 using System.Xml;
+using System.Threading;
 
 public class AITrainer : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class AITrainer : MonoBehaviour
 
     // Use this for initialization
     void Start()
+    {
+        Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
+        thread.Start();
+    }
+    static void WorkThreadFunction()
     {
         // Initialise log4net (log to console).
         XmlConfigurator.Configure(new FileInfo("log4net.properties"));
@@ -37,7 +43,6 @@ public class AITrainer : MonoBehaviour
         // Start algorithm (it will run on a background thread).
         _ea.StartContinue();
     }
-
     static void ea_UpdateEvent(object sender, EventArgs e)
     {
         Debug.Log(string.Format("gen={0:N0} bestFitness={1:N6}", _ea.CurrentGeneration, _ea.Statistics._maxFitness));
