@@ -17,7 +17,7 @@ public abstract class Player : MonoBehaviour
     private int dirProjectile;  //direction of the projectile
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
-    private Location_Script ls;     //script to inform everytime something is fired
+    public Location_Script ls;     //script to inform everytime something is fired
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
