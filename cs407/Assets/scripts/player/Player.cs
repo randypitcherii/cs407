@@ -184,8 +184,8 @@ public abstract class Player : MonoBehaviour
         }
     }   //end of OnTriggerEnter2D method
 
-    /**
-     * Returns the player's current hit points.
+    
+     /* Returns the player's current hit points.
      *
      * @return  Returns the player's current hit points.
      */

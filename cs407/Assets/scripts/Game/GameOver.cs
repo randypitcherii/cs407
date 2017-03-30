@@ -10,5 +10,6 @@ public class GameOver
     public static void endGame()
     {
         Application.Quit();
+        Time.timeScale = 0;
     }   //end of endGame method
 }   //end of GameOver class

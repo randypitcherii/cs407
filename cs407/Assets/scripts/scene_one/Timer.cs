@@ -62,7 +62,7 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time -= Time.deltaTime;
-        if(time < 0)
+        if (time < 0)
         {
             Debug.Log("time up");
             timer.text = "0.00";
@@ -71,7 +71,7 @@ public class Timer : MonoBehaviour {
         }
         else
         {
-            int minsLeft = ((int) time) / 60;
+            int minsLeft = ((int)time) / 60;
             int secLeft = ((int)time) % 60;
 
             if (time > 30)
@@ -92,7 +92,7 @@ public class Timer : MonoBehaviour {
 	}
     void LateUpdate()
     {
-        totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
+        /*totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
         if (moveCamDist < Math.Abs(totalPlayerChange))
         {
             transform.position = Vector3.MoveTowards(transform.position,new Vector3(player.transform.position.x + offset.x, transform.position.y, transform.position.z),speedCamera*Time.deltaTime);
@@ -105,6 +105,6 @@ public class Timer : MonoBehaviour {
         {
             transform.position = new Vector3(rightCameraBond, transform.position.y, transform.position.z);
         }
-        playerPrevLoc = player.transform.position;
+        playerPrevLoc = player.transform.position;*/
     }
 }
