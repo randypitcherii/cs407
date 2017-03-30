@@ -329,6 +329,7 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaRange > 0)
             {
+                Debug.Log("User Ranged attack");
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
