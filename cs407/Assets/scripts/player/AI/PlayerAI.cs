@@ -14,9 +14,7 @@ public class PlayerAI : Player
     public override void LateUpdate()
     {
 
-        //int [] actions = AIBrain.getMoves(ls.buildArray());
-        int[] defaultInputs = { 1, 2, 3 };
-        int [] actions = AIBrain.getMoves(defaultInputs);
+        int [] actions = AIBrain.getMoves(ls.buildArray());
          
         //check if a key was pressed
         if (actions[0] != 0)   //a left key was pressed
