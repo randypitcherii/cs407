@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LogAnalyzer
 {
+    //constants
+    private const int NUM_ACTIONS = 7;  //the number of actions that can be performed
+
     /**
      * Analyzes a log file.
      *
@@ -11,15 +14,13 @@ public class LogAnalyzer
      */
     public static void analyze(string fileName)
     {
-        char[] actions = {'l', 'r', 'j', 'm', 's', 'b', 'n'};   //a list of actions
-
         Debug.Log("START ANALYSIS OF " + fileName);
 
         //analyze the log for each action
-        foreach (char action in actions)
+        for (int actionIndex = 0; actionIndex < NUM_ACTIONS; actionIndex += 1)
         {
             //analyze the log for an action
-            LogAnalyzer.analyze(fileName, action);
+            LogAnalyzer.analyze(fileName, actionIndex);
         }   //end for
 
         Debug.Log("END ANALYSIS OF " + fileName);
@@ -31,11 +32,11 @@ public class LogAnalyzer
      * @param fileName  The name of a log file.
      * @param action    The action to check for.
      */
-    public static void analyze(string fileName, char action)
+    public static void analyze(string fileName, int action)
     {
         //read from the log file
         string text = AILogger.read(fileName);  //the contents of the log file
-        
+
         //check if the log contains the action
         if (text.Contains("" + action)) //the log contains the action
         {
