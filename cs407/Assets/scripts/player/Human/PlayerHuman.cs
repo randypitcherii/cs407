@@ -9,9 +9,9 @@ public class PlayerHuman : Player
     private List<KeyCode> leftKeys = new List<KeyCode>() {KeyCode.LeftArrow, KeyCode.A};    //the list of left keys
     private List<KeyCode> rightKeys = new List<KeyCode>() {KeyCode.RightArrow, KeyCode.D};  //the list of right keys
     private List<KeyCode> jumpKeys = new List<KeyCode>() {KeyCode.UpArrow, KeyCode.W};      //the list of jump keys
-    private List<KeyCode> meleeKeys = new List<KeyCode>() {};                               //the list of melee attack keys
-    private List<KeyCode> rangedKeys = new List<KeyCode>() {KeyCode.Space};                 //the list of ranged attack keys
-    private List<KeyCode> blockKeys = new List<KeyCode>() {};                               //the list of block attack keys
+    private List<KeyCode> meleeKeys = new List<KeyCode>() {KeyCode.Q};                               //the list of melee attack keys
+    private List<KeyCode> rangedKeys = new List<KeyCode>() {KeyCode.E};                 //the list of ranged attack keys
+    private List<KeyCode> blockKeys = new List<KeyCode>() {KeyCode.LeftShift,KeyCode.RightShift};                               //the list of block attack keys
 
     /**
      * Handles the player's movement.
@@ -27,7 +27,11 @@ public class PlayerHuman : Player
         {
             moveRight();
         }
-        else if (jumpKeyPressed())  //a jump key was pressed
+        else    //no key was pressed
+        {
+            standStill();
+        }   //end if
+        if (jumpKeyPressed())  //a jump key was pressed
         {
             jump();
         }
@@ -43,14 +47,60 @@ public class PlayerHuman : Player
         {
             useBlockAttack();
         }
-        else    //no key was pressed
+        if (meleeKeyUp())
         {
-            standStill();
-        }   //end if
+            endMeleeAttack();
+        }
+        if (!blockKeyPressed())
+        {
+            endBlockAttack();
+        }
+        
     }   //end of LateUpdate method
+    
+    /**
+     * Returns whether or not a key from the list came up.
+     *
+     * @param keys  A list of keys.
+     * @return      Returns whether or not a key from the list came up.
+     */
+    private bool keyUp(List<KeyCode> keys)
+    {
+        //loop through the list of keys to check if any came up
+        foreach (KeyCode key in keys)
+        {
+            //check if a key from the list was pressed
+            if (Input.GetKeyUp(key))  //a key from the list came up
+            {
+                //a key from the list came up
+                return true;
+            }   //end if
+        }   //end for
+        
+        //no keys from the list came up
+        return false;
+    }   //end of keyPressed method
 
     /**
-     * Returns whether or not a key from the list was pressed.
+     * Returns whether or not a blocked key was lifted.
+     *
+     * @return  Returns whether or not a blocked key was lifted.
+     */
+    private bool blockedKeyUp()
+    {
+        return keyUp(this.blockKeys);
+    }   //end of leftKeyPressed method
+    /**
+     * Returns whether or not a melee key was lifted.
+     *
+     * @return  Returns whether or not a melee key was lifted.
+     */
+    private bool meleeKeyUp()
+    {
+        return keyUp(this.meleeKeys);
+    }   //end of meleeKeyUp method
+    /**
+     * Returns whether or not a key from the list was .
      *
      * @param keys  A list of keys.
      * @return      Returns whether or not a key from the list was pressed.
@@ -67,11 +117,10 @@ public class PlayerHuman : Player
                 return true;
             }   //end if
         }   //end for
-        
+
         //no keys from the list were pressed
         return false;
     }   //end of keyPressed method
-
     /**
      * Returns whether or not a left key was pressed.
      *
