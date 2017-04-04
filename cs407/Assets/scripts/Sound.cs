@@ -30,4 +30,4 @@ public static class Sound
         //play the sound
         audio.Play();
     }   //end of playSound method
-}
+}   //end of Sound class
