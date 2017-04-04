@@ -41,7 +41,6 @@ public abstract class Attack
      */
     private void reduceManaPoints()
     {
-        PlayerManaPoints manaPoints = this.player.getManaPointsObject();
-        manaPoints.setManaPoints(manaPoints.getManaPoints() - this.manaCost);
+        this.player.setManaPoints(this.player.getManaPoints() - this.manaCost);
     }   //end of reduceManaPoints method
 }   //end of Attack interface

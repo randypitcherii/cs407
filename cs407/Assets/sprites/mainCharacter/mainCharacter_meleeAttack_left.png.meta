@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 8dbc9ecd17bc0354bbba7d441267cd85
-timeCreated: 1487105051
-=======
-guid: 80508d4ac9d3de943a5933ac0aa593f4
-timeCreated: 1487539613
->>>>>>> b86b8815228f95a7f4d5a76ea75b821a9de9e4ba
+guid: 5f73ebf6665be9642a86aad86f405940
+timeCreated: 1487833467
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: mainCharacter_meleeAttack_left_0
+    21300002: mainCharacter_meleeAttack_left_1
+    21300004: mainCharacter_meleeAttack_left_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +37,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,9 +61,56 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mainCharacter_meleeAttack_left_0
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 500
+        width: 90
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_meleeAttack_left_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 5
+        width: 90
+        height: 495
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainCharacter_meleeAttack_left_2
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 500
+        width: 220
+        height: 500
+      alignment: 9
+      pivot: {x: 0.795, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

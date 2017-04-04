@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour {
     public Text timer;
     //The main player that the camera is to watch
     public GameObject player;
+    //The AI player 
+    public GameObject player2;
     //offset is need to fix camera view
     private Vector3 offset;
     //change that the player has made while moving
@@ -24,20 +26,43 @@ public class Timer : MonoBehaviour {
     public float leftCameraBond;
     //how far right the camera can go
     public float rightCameraBond;
-	// Use this for initialization
-	void Start () {
+    //script of player to allow us to get certain fetarues
+    private Player script;
+    private Player script2;
+    //old Time to allow us to know when x seconds has passed to help fill mana
+    private float oldTime;
+    //after how many seconds add more mana to the player
+    public float secAddMana;
+    //how much mana to refil by
+    public int addMana;
+    //set the timescale for the game 
+    public int timeScale;
+    // Use this for initialization
+    void Start () {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
-        PlayerInterface script = player.GetComponent<PlayerInterface>();
+        script = player.GetComponent<Player>();
+        script2 = player2.GetComponent<Player>();
+        Time.timeScale = timeScale;
+        if(script == null)
+        {
+            Debug.Log("Script is null");
+        }
+        else
+        {
+            speedCamera = (float)(script.getSpeed() * 1.0);
+        }
         speedCamera = (float)(script.getSpeed()*1.0);
-
+        secAddMana = 1.0f;
+        addMana = 1;
+        oldTime = time;
     }
 	
 	// Update is called once per frame
 	void Update () {
         time -= Time.deltaTime;
-        if(time < 0)
+        if (time < 0)
         {
             Debug.Log("time up");
             timer.text = "0.00";
@@ -46,23 +71,28 @@ public class Timer : MonoBehaviour {
         }
         else
         {
-            int minsLeft = ((int) time) / 60;
+            int minsLeft = ((int)time) / 60;
             int secLeft = ((int)time) % 60;
 
             if (time > 30)
             {
-                timer.text = minsLeft + ":" + secLeft;
+                timer.text = minsLeft + ":" + String.Format("{0:00}", secLeft);
             }
             else
             {
                 timer.text = minsLeft + ":" + String.Format("{0:0.00}", time % 60);
             }
-            
+        }
+        if (time-oldTime < -1*secAddMana)
+        {
+            oldTime = time;
+            script.setManaPoints(script.getManaPoints() + addMana);
+            script2.setManaPoints(script2.getManaPoints()+addMana);
         }
 	}
     void LateUpdate()
     {
-        totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
+        /*totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
         if (moveCamDist < Math.Abs(totalPlayerChange))
         {
             transform.position = Vector3.MoveTowards(transform.position,new Vector3(player.transform.position.x + offset.x, transform.position.y, transform.position.z),speedCamera*Time.deltaTime);
@@ -75,6 +105,6 @@ public class Timer : MonoBehaviour {
         {
             transform.position = new Vector3(rightCameraBond, transform.position.y, transform.position.z);
         }
-        playerPrevLoc = player.transform.position;
+        playerPrevLoc = player.transform.position;*/
     }
 }
