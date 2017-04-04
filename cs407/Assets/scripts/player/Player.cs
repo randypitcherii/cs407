@@ -14,13 +14,10 @@ public abstract class Player : MonoBehaviour
 
     //private fields
     private Animator anim;      //handles the animations
-    private bool jumping;       //whether or not the player is jumping
     private int dirProjectile;  //direction of the projectile
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
-    private int manaRange;      //the mana cost for doing different actions
-    private int manaBlock;      //the mana cost for doing different action
-    private int manaMelee;      //the mana cost for doing different action
+    public Location_Script ls;     //script to inform everytime something is fired
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -33,7 +30,8 @@ public abstract class Player : MonoBehaviour
     public bool resetCleared;       //TODO:  ADD COMMENT
     public bool setProjectile;      //TODO:  ADD COMMENT
     public Canvas healthPoints;     //TODO:  ADD COMMENT
-	public Slider healthSlider;
+    public bool jumping;       //whether or not the player is jumping
+    public Slider healthSlider;
 	public Slider mana_points;
 	public GameObject projectile;   //TODO:  ADD COMMENT
     private bool canMove;            //can the user move right now or not
@@ -42,6 +40,13 @@ public abstract class Player : MonoBehaviour
     public bool isBlocking;         //when true can not hurt player, decided by animation
     public int setRangedAttack;      //set Ranged attack to hurt this much health value
     public int setMeleeAttack;      //set Melee attack to this value
+    public int manaRange;      //the mana cost for doing different actions
+    public int manaBlock;      //the mana cost for doing different action
+    public int manaMelee;      //the mana cost for doing different action
+    public int projSpeed;       //the speed of the projectile fired
+    public GameObject c;            //camera object used to get correct script
+    
+    public int playerNumber;
     //abstract methods
     public abstract void LateUpdate();
 
@@ -50,6 +55,8 @@ public abstract class Player : MonoBehaviour
      */
     public void Start()
     {
+        //initialize location script
+        ls = c.GetComponent<Location_Script>();
         //initialize hit points
         this.hitPoints = MAX_HIT_POINTS;
 
@@ -79,15 +86,17 @@ public abstract class Player : MonoBehaviour
 
         //allow the player to move
         canMove = true;
+        speed = 15;
         setCanMove = false;
         isBlocking = false;
         //set mana cost for certain moves
-        manaMelee = 5;
+        manaMelee = 0;
         manaBlock = 5;
-        manaRange = 5;
+        manaRange = 10;
         //set up health cost
         setMeleeAttack = 5;
         setRangedAttack = 5;
+        projSpeed = 20;
     }   //end of Start method
 
     /**
@@ -120,18 +129,20 @@ public abstract class Player : MonoBehaviour
         //point projectile left
         if (dirProjectile == 2)
         {
+            
             //This line makes no sense to me, why do I have to add parent postion when it should already know them
             created.transform.position = new Vector2((float)-4.405 + transform.position.x, (float)-.31 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(-10, 0);
-
+            rb.velocity = new Vector2(projSpeed*-1, 0);
+            ls.addRanged(playerNumber,created,-1);
         }
         //point projectile right
         else
         {
             created.transform.position = new Vector2((float)3.798 + transform.position.x, (float)-.308 + transform.position.y);
             Rigidbody2D rb = created.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(10, 0);
+            rb.velocity = new Vector2(projSpeed, 0);
+            ls.addRanged(playerNumber,created, 1);
         }
     }
     //allows other object getting hit to get attack
@@ -156,7 +167,7 @@ public abstract class Player : MonoBehaviour
             {
                 changeToHitColor();
                 setHitPoints(getHitPoints() - col.GetComponent<Ranged>().getAttackStrenght());
-                Debug.Log(getHitPoints());
+                //Debug.Log(getHitPoints());
             }
             Destroy(col.gameObject);
 
@@ -173,8 +184,8 @@ public abstract class Player : MonoBehaviour
         }
     }   //end of OnTriggerEnter2D method
 
-    /**
-     * Returns the player's current hit points.
+    
+     /* Returns the player's current hit points.
      *
      * @return  Returns the player's current hit points.
      */
@@ -244,7 +255,10 @@ public abstract class Player : MonoBehaviour
             //set mana points
             this.manaPoints = newManaPoints;
         }   //end if
-		mana_points.value = newManaPoints;
+        //TODO question them
+        if (mana_points != null) {
+            mana_points.value = newManaPoints;
+        }
     }   //end of setHitPoints method
 
     /**
@@ -282,7 +296,7 @@ public abstract class Player : MonoBehaviour
         {
             jumping = true;
             anim.SetBool("Jump", true);
-            rb.velocity = new Vector2(0, 5);
+            rb.velocity = new Vector2(0, 50);
         }
     }   //end of jump method
 
@@ -291,7 +305,7 @@ public abstract class Player : MonoBehaviour
      */
     protected void useMeleeAttack()
     {
-        if (canMove && !anim.GetBool("Meele"))
+        if (!anim.GetBool("Meele"))
         {
             if ((getManaPoints() - manaMelee) > 0) {
                 setManaPoints((getManaPoints() - manaMelee));
@@ -315,10 +329,19 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaRange > 0)
             {
+                Debug.Log("User Ranged attack");
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
-                Debug.Log(getManaPoints());
+                if (dirProjectile == 2)
+                {
+                    ls.startPrepFiring(playerNumber, -1);
+                }
+                else
+                {
+
+                }
+                //Debug.Log(getManaPoints());
             }
         }
     }   //end of useRangedAttack method

@@ -36,7 +36,7 @@ public class LogAnalyzer
     {
         //read from the log file
         string text = AILogger.read(fileName);  //the contents of the log file
-        
+
         //check if the log contains the action
         if (text.Contains("" + action)) //the log contains the action
         {

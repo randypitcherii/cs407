@@ -49,7 +49,7 @@ public class AILogger
         }   //end if
 
         //convert the action to a byte array
-        byte[] bytes = {System.Convert.ToByte(action)}; //a byte array representation of the action
+        byte[] bytes = { System.Convert.ToByte(action) }; //a byte array representation of the action
 
         //write to the log
         this.file.Write(bytes, 0, sizeof(int));
