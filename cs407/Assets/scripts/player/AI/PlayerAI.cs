@@ -17,6 +17,7 @@ public class PlayerAI : Player
     {
         /*
         ISignalArray actions = new AIFighter(BRAIN).GetMoves(Location_Script.buildArray()); //the actions the AI should perform
+
         //perfrom the actions that pass the specified threshold
         for (int actionIndex = 0; actionIndex < actions.Length; actionIndex += 1)
         {
