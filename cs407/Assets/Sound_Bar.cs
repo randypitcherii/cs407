@@ -21,6 +21,9 @@ public class Sound_Bar : MonoBehaviour {
         Debug.Log(soundLevel);
         //TODO save value were ever
     }
+    /// <summary>
+    //These should do nothing
+    /// </summary>
     // Use this for initialization
 	void Start () {
 
