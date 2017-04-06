@@ -5,14 +5,6 @@ using UnityEngine;
 
 public class PlayerHuman : Player
 {
-    //fields
-    private List<KeyCode> leftKeys = new List<KeyCode>() {KeyCode.LeftArrow, KeyCode.A};    //the list of left keys
-    private List<KeyCode> rightKeys = new List<KeyCode>() {KeyCode.RightArrow, KeyCode.D};  //the list of right keys
-    private List<KeyCode> jumpKeys = new List<KeyCode>() {KeyCode.UpArrow, KeyCode.W};      //the list of jump keys
-    private List<KeyCode> meleeKeys = new List<KeyCode>() {KeyCode.Q};                               //the list of melee attack keys
-    private List<KeyCode> rangedKeys = new List<KeyCode>() {KeyCode.E};                 //the list of ranged attack keys
-    private List<KeyCode> blockKeys = new List<KeyCode>() {KeyCode.LeftShift,KeyCode.RightShift};                               //the list of block attack keys
-
     /**
      * Handles the player's movement.
      */
@@ -57,29 +49,6 @@ public class PlayerHuman : Player
         }
         
     }   //end of LateUpdate method
-    
-    /**
-     * Returns whether or not a key from the list came up.
-     *
-     * @param keys  A list of keys.
-     * @return      Returns whether or not a key from the list came up.
-     */
-    private bool keyUp(List<KeyCode> keys)
-    {
-        //loop through the list of keys to check if any came up
-        foreach (KeyCode key in keys)
-        {
-            //check if a key from the list was pressed
-            if (Input.GetKeyUp(key))  //a key from the list came up
-            {
-                //a key from the list came up
-                return true;
-            }   //end if
-        }   //end for
-        
-        //no keys from the list came up
-        return false;
-    }   //end of keyPressed method
 
     /**
      * Returns whether or not a blocked key was lifted.
@@ -88,7 +57,7 @@ public class PlayerHuman : Player
      */
     private bool blockedKeyUp()
     {
-        return keyUp(this.blockKeys);
+        return Input.GetKeyUp(Controls.getBlockKey());
     }   //end of leftKeyPressed method
     /**
      * Returns whether or not a melee key was lifted.
@@ -97,30 +66,9 @@ public class PlayerHuman : Player
      */
     private bool meleeKeyUp()
     {
-        return keyUp(this.meleeKeys);
+        return Input.GetKeyUp(Controls.getMeleeKey());
     }   //end of meleeKeyUp method
-    /**
-     * Returns whether or not a key from the list was .
-     *
-     * @param keys  A list of keys.
-     * @return      Returns whether or not a key from the list was pressed.
-     */
-    private bool keyPressed(List<KeyCode> keys)
-    {
-        //loop through the list of keys to check if any were pressed
-        foreach (KeyCode key in keys)
-        {
-            //check if a key from the list was pressed
-            if (Input.GetKey(key))  //a key from the list was pressed
-            {
-                //a key from the list was pressed
-                return true;
-            }   //end if
-        }   //end for
 
-        //no keys from the list were pressed
-        return false;
-    }   //end of keyPressed method
     /**
      * Returns whether or not a left key was pressed.
      *
@@ -128,7 +76,7 @@ public class PlayerHuman : Player
      */
     private bool leftKeyPressed()
     {
-        return keyPressed(this.leftKeys);
+        return Input.GetKey(Controls.getLeftKey());
     }   //end of leftKeyPressed method
 
     /**
@@ -138,7 +86,7 @@ public class PlayerHuman : Player
      */
     private bool rightKeyPressed()
     {
-        return keyPressed(this.rightKeys);
+        return Input.GetKey(Controls.getRightKey());
     }   //end of rightKeyPressed method
 
     /**
@@ -148,7 +96,7 @@ public class PlayerHuman : Player
      */
     private bool jumpKeyPressed()
     {
-        return keyPressed(this.jumpKeys);
+        return Input.GetKey(Controls.getJumpKey());
     }   //end of jumpKeyPressed method
 
     /**
@@ -158,7 +106,7 @@ public class PlayerHuman : Player
      */
     private bool meleeKeyPressed()
     {
-        return keyPressed(this.meleeKeys);
+        return Input.GetKey(Controls.getMeleeKey());
     }   //end of meleeKeyPressed method
 
     /**
@@ -168,7 +116,7 @@ public class PlayerHuman : Player
      */
     private bool rangedKeyPressed()
     {
-        return keyPressed(this.rangedKeys);
+        return Input.GetKey(Controls.getRangedKey());
     }   //end of rangedKeyPressed method
 
     /**
@@ -178,6 +126,6 @@ public class PlayerHuman : Player
      */
     private bool blockKeyPressed()
     {
-        return keyPressed(this.blockKeys);
+        return Input.GetKey(Controls.getBlockKey());
     }   //end of blockKeyPressed method
 }   //end of PlayerHuman class
