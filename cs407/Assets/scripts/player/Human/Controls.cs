@@ -1,33 +1,87 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public static class Controls
 {
     //constants
-    private static KeyCode DEFAULT_LEFT = KeyCode.A;            //the default left key
-    private static KeyCode DEFAULT_RIGHT = KeyCode.D;           //the default right key
-    private static KeyCode DEFAULT_JUMP = KeyCode.W;            //the default jump key
-    private static KeyCode DEFAULT_MELEE = KeyCode.Q;           //the default melee attack key
-    private static KeyCode DEFAULT_RANGED = KeyCode.E;          //the default ranged attack key
-    private static KeyCode DEFAULT_BLOCK = KeyCode.LeftShift;   //the default block key
-    private static string FILE_NAME = "controls";               //the controls file name
+    private const KeyCode DEFAULT_LEFT = KeyCode.A;             //the default left key
+    private const KeyCode DEFAULT_RIGHT = KeyCode.D;            //the default right key
+    private const KeyCode DEFAULT_JUMP = KeyCode.W;             //the default jump key
+    private const KeyCode DEFAULT_MELEE = KeyCode.Q;            //the default melee attack key
+    private const KeyCode DEFAULT_RANGED = KeyCode.E;           //the default ranged attack key
+    private const KeyCode DEFAULT_BLOCK = KeyCode.LeftShift;    //the default block key
+    private const string FILE_NAME = "controls";                //the controls file path
+    private const string DIRECTORY = "Settings";                //the directory
+    private const int LEFT_INDEX = 0;                           //the index of the left key
+    private const int RIGHT_INDEX = 1;                          //the index of the right key
+    private const int JUMP_INDEX = 2;                           //the index of the jump key
+    private const int MELEE_INDEX = 3;                          //the index of the melee attack key
+    private const int RANGED_INDEX = 4;                         //the index of the ranged attack key
+    private const int BLOCK_INDEX = 5;                          //the index of the block key
+    private const int NUM_CONTROLS = 6;                         //the number of controls
 
     //private fields
-    private static KeyCode left;            //the left key
-    private static KeyCode right;           //the right key
-    private static KeyCode jump;            //the jump key
-    private static KeyCode melee;           //the melee attack key
-    private static KeyCode ranged;          //the ranged attack key
-    private static KeyCode block;           //the block key
-    private static bool isLoaded = false;   //whether or not the controls have been loaded in
+    private static KeyCode left = DEFAULT_LEFT;     //the left key
+    private static KeyCode right = DEFAULT_RIGHT;   //the right key
+    private static KeyCode jump = DEFAULT_JUMP;     //the jump key
+    private static KeyCode melee = DEFAULT_MELEE;   //the melee attack key
+    private static KeyCode ranged = DEFAULT_RANGED; //the ranged attack key
+    private static KeyCode block = DEFAULT_BLOCK;   //the block key
+    private static bool isLoaded = false;           //whether or not the controls have been loaded in
 
     /**
      * Loads in the control configuration.
      */
     private static void load()
     {
-        //TODO:  Load in the configuration
+        //check if the configuration file exists
+        if (File.Exists(DIRECTORY + "/" + FILE_NAME))   //the configuration file exists
+        {
+            string[] contents = File.ReadAllLines(DIRECTORY + "/" + FILE_NAME);    //the contents of the configuration file
+
+            //set the left key
+            left = (KeyCode)KeyCode.Parse(left.GetType(), contents[LEFT_INDEX]);
+
+            //set the right key
+            right = (KeyCode)KeyCode.Parse(right.GetType(), contents[RIGHT_INDEX]);
+
+            //set the jump key
+            jump = (KeyCode)KeyCode.Parse(jump.GetType(), contents[JUMP_INDEX]);
+
+            //set the melee attack key
+            melee = (KeyCode)KeyCode.Parse(melee.GetType(), contents[MELEE_INDEX]);
+
+            //set the ranged attack key
+            ranged = (KeyCode)KeyCode.Parse(ranged.GetType(), contents[RANGED_INDEX]);
+
+            //set the block key
+            block = (KeyCode)KeyCode.Parse(block.GetType(), contents[BLOCK_INDEX]);
+        }
+        else    //the configuration file does not exist
+        {
+            //set the left key
+            left = DEFAULT_LEFT;
+
+            //set the right key
+            right = DEFAULT_RIGHT;
+
+            //set the jump key
+            jump = DEFAULT_JUMP;
+
+            //set the melee attack key
+            melee = DEFAULT_MELEE;
+
+            //set the ranged attack key
+            ranged = DEFAULT_RANGED;
+
+            //set the block key
+            block = DEFAULT_BLOCK;
+
+            //save the control configuration
+            save();
+        }   //end if
 
         //set the loaded flag
         isLoaded = true;
@@ -38,7 +92,33 @@ public static class Controls
      */
     private static void save()
     {
-        //TODO:  Save the configuration
+        //check if the Settings directory exists
+        if (!Directory.Exists(DIRECTORY))    //the directory does not exist
+        {
+            //create the directory
+            Directory.CreateDirectory(DIRECTORY);
+        }   //end if
+
+        StreamWriter writer = new StreamWriter(File.OpenWrite(DIRECTORY + "/" + FILE_NAME));    //the writer
+        string[] controls = new string[NUM_CONTROLS];                                           //the list of controls
+
+        //add the controls to the string
+        controls[LEFT_INDEX] = left.ToString();
+        controls[RIGHT_INDEX] = right.ToString();
+        controls[JUMP_INDEX] = jump.ToString();
+        controls[MELEE_INDEX] = melee.ToString();
+        controls[RANGED_INDEX] = ranged.ToString();
+        controls[BLOCK_INDEX] = block.ToString();
+
+        //write to the configuration file
+        for (int controlIndex = 0; controlIndex < controls.Length; controlIndex += 1)
+        {
+            //write a control to the file
+            writer.WriteLine(controls[controlIndex]);
+        }   //end for
+
+        //close the writer
+        writer.Close();
     }   //end of save method
 
     /**
