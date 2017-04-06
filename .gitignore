@@ -31,6 +31,9 @@ cs407/*.unitypackage
 # AI Logs
 cs407/Logs/
 
+# User Settings
+cs407/Settings/
+
 # AI Logs
 *.txt
 cs407/ProjectSettings/ProjectVersion.txt
