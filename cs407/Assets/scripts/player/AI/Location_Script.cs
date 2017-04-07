@@ -21,7 +21,6 @@ public class Location_Script : MonoBehaviour {
                                      Also the bottom of the array is located at -.25 so that way the top of the floor is at 0
                                      the center of x is at 4 width /2 = width*2
                                  */
-
     //classes use to store basic info edit to make more sense
     public void printArena()
     {
@@ -436,12 +435,11 @@ public class Location_Script : MonoBehaviour {
 
             if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
-                Debug.Log("Adding Players at "+x+","+y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
             }
             else
             {
-                Debug.Log("Not adding Players");
+
             }
 
             //deals with melee attack do not need for atleast right now

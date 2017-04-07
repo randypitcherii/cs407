@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Timer : MonoBehaviour {
+    /**
+       Think about moving this to the Timer to make everything easier
+     * Static method used to end the game.
+        GameObject g is the menu screen that needs to come up when game is over
+        bool isTie lets you know if the clock ran out or not
+        player1health is coms health
+        player2health is player2 health
+     */
     //time until scene ends
     public float time;
     //Text that will show on the timer
     public Text timer;
+    //GameObject that will allow end game menu to show up
+    public GameObject endGame;
     //The main player that the camera is to watch
     public GameObject player;
     //The AI player 
@@ -64,10 +76,9 @@ public class Timer : MonoBehaviour {
         time -= Time.deltaTime;
         if (time < 0)
         {
-            Debug.Log("time up");
             timer.text = "0.00";
-            Menu.DisplayWinner();
-            Menu.returnToMenu();
+            //TODO find a way to get all health
+            end(endGame,true);
         }
         else
         {
@@ -80,7 +91,7 @@ public class Timer : MonoBehaviour {
             }
             else
             {
-                timer.text = minsLeft + ":" + String.Format("{0:0.00}", time % 60);
+                timer.text = String.Format("{0:0.00}", time % 60);
             }
         }
         if (time-oldTime < -1*secAddMana)
@@ -90,6 +101,47 @@ public class Timer : MonoBehaviour {
             script2.setManaPoints(script2.getManaPoints()+addMana);
         }
 	}
+    //function that helps deal with ending the game and the game menu
+    public void end(GameObject g, bool isTie)
+    {
+        int p1Health = player.GetComponent<Player>().getHitPoints();
+        int p2Health = player2.GetComponent<Player>().getHitPoints();
+        //get the time that is left
+        int minsLeft = ((int)time) / 60;
+        int secLeft = ((int)time) % 60;
+        string timeLeft;
+        //make time in the same format as before
+        if (time > 30)
+        {
+            timeLeft = minsLeft + ":" + String.Format("{0:00}", secLeft);
+        }
+        else
+        {
+            timeLeft = String.Format("{0:0.00}", time % 60);
+        }
+        //set the menu to be active
+        g.SetActive(true);
+        //if it is a tie let them know
+        if (isTie)
+        {
+            g.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "The Clock expired no winner\n The com had " + p1Health + " health left\n" + "You had " + p2Health + " health left";
+        }
+        else
+        {
+            //player 1 is consider to be the actual player while player2 is the com
+            if (p2Health <= 0)
+            {
+                g.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "You have won\n" + "With " + timeLeft + " Time left\n" + "and you had " + p1Health + " health left";
+            }
+            else
+            {
+                g.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "You have lost\n" + "With " + timeLeft + " Time left\n" + "and the com had " + p2Health + " health left";
+            }
+        }
+        //freeze the game and make no more updates
+        Time.timeScale = 0;
+    }   //end of endGame method
+    
     void LateUpdate()
     {
         /*totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
@@ -107,4 +159,6 @@ public class Timer : MonoBehaviour {
         }
         playerPrevLoc = player.transform.position;*/
     }
+    
+    
 }
