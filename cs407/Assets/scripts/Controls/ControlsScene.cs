@@ -102,6 +102,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void leftButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.LeftButton;
 
@@ -120,6 +130,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void rightButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.RightButton;
 
@@ -138,6 +158,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void jumpButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.JumpButton;
 
@@ -156,6 +186,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void meleeButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.MeleeButton;
 
@@ -174,6 +214,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void rangedButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.RangedButton;
 
@@ -192,6 +242,16 @@ public class ControlsScene : MonoBehaviour
      */
     public void blockButtonClick()
     {
+        //check if input is being recorded
+        if (isRecording)    //input is being recorded
+        {
+            //stop recording input
+            this.isRecording = false;
+
+            //reset the text of the previously clicked button
+            this.currentText.text = this.keys[(int)this.currentButton].ToString();
+        }   //end if
+
         //set current button
         this.currentButton = Button.BlockButton;
 
