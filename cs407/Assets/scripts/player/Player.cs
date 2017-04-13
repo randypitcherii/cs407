@@ -45,7 +45,12 @@ public abstract class Player : MonoBehaviour
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
     public GameObject c;            //camera object used to get correct script
-    
+
+	public AudioClip collideSound;
+	public AudioClip meleeSound;
+
+	AudioSource audio;
+
     public int playerNumber;
     //abstract methods
     public abstract void LateUpdate();
@@ -80,6 +85,9 @@ public abstract class Player : MonoBehaviour
         healthPoints = GameObject.FindObjectOfType<Canvas>();
         healthPoints.enabled = true;
 
+		//initialise sound play
+		audio = GetComponent<AudioSource>();
+
         //initialize the color
         this.hitColor = Color.blue;
         this.normalColor = GetComponent<SpriteRenderer>().color;
@@ -106,7 +114,8 @@ public abstract class Player : MonoBehaviour
     {
         if (isFiring)
         {
-            anim.SetBool("Range", false);
+			audio.PlayOneShot(collideSound, 0.8F);
+			anim.SetBool("Range", false);
         }
         //anim.SetBool("Range", false);
         //if they are not allowed to move do not allow them
@@ -123,7 +132,8 @@ public abstract class Player : MonoBehaviour
     //method is called when ever a projectile is fired from user
     public void fireProjectile()
     {
-        GameObject created = (GameObject)Instantiate(projectile, transform);
+      
+		GameObject created = (GameObject)Instantiate(projectile, transform);
         //set created attack
         created.GetComponent<Ranged>().setAttackStrenght(setRangedAttack);
         //point projectile left
@@ -157,7 +167,7 @@ public abstract class Player : MonoBehaviour
     {
         if (col.gameObject.name == "floor")
         {
-            anim.SetBool("Jump", false);
+			anim.SetBool("Jump", false);
             jumping = false;
         }
         else if (col.gameObject.tag == "Proj")
@@ -307,6 +317,7 @@ public abstract class Player : MonoBehaviour
     {
         if (!anim.GetBool("Meele"))
         {
+			audio.PlayOneShot(meleeSound, 0.8F);
             if ((getManaPoints() - manaMelee) > 0) {
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);

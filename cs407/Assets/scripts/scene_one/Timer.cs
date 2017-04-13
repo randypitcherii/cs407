@@ -37,8 +37,13 @@ public class Timer : MonoBehaviour {
     public int addMana;
     //set the timescale for the game 
     public int timeScale;
+
+	//set audioClid variable
+	public AudioClip sounds;
+	public AudioSource source;
     // Use this for initialization
     void Start () {
+		source = GetComponent<AudioSource> ();
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
@@ -61,6 +66,7 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		source.PlayOneShot(sounds, 0.7F);
         time -= Time.deltaTime;
         if (time < 0)
         {
