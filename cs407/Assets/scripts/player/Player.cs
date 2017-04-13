@@ -278,6 +278,9 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
+            //play the move left sound
+            //Sound.playSound(gameObject, "FILE_NAME");
+
             transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
             anim.SetInteger("Dir", 2);
         }
@@ -291,6 +294,9 @@ public abstract class Player : MonoBehaviour
     {
         if (canMove)
         {
+            //play the move right sound
+            //Sound.playSound(gameObject, "FILE_NAME");
+
             transform.Translate(speed * Time.deltaTime, 0, 0);
             anim.SetInteger("Dir", 1);
         }
@@ -304,6 +310,9 @@ public abstract class Player : MonoBehaviour
     {
         if (!jumping && canMove)
         {
+            //play the jump sound
+            //Sound.playSound(gameObject, "FILE_NAME");
+
             jumping = true;
             anim.SetBool("Jump", true);
             rb.velocity = new Vector2(0, 50);
@@ -319,6 +328,9 @@ public abstract class Player : MonoBehaviour
         {
 			audio.PlayOneShot(meleeSound, 0.8F);
             if ((getManaPoints() - manaMelee) > 0) {
+                //play the melee attack sound
+                //Sound.playSound(gameObject, "FILE_NAME");
+
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);
                 Debug.Log(getManaPoints());
@@ -340,6 +352,9 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaRange > 0)
             {
+                //play the ranged attack sound
+                //Sound.playSound(gameObject, "FILE_NAME");
+
                 Debug.Log("User Ranged attack");
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
@@ -366,6 +381,9 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaBlock > 0)
             {
+                //play the block sound
+                //Sound.playSound(gameObject, "FILE_NAME");
+
                 setManaPoints(getManaPoints() - manaBlock);
                 anim.SetBool("Block", true);
                 Debug.Log(getManaPoints());
