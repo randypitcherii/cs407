@@ -66,7 +66,7 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		source.PlayOneShot(sounds, 0.7F);
+		source.PlayOneShot(sounds, 0.3F);
         time -= Time.deltaTime;
         if (time < 0)
         {

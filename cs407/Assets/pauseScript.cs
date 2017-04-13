@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class pauseScript : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    public bool paused = false;
+	public GameObject pauseMenu, pauseButton;
+	//public GameObject pauseCanvas;
+   // public bool paused = false;
     public Button pauseGame;
     public Button resumeGame;
     
@@ -14,24 +15,28 @@ public class pauseScript : MonoBehaviour
     void Start()
 
     {
+		pauseButton.SetActive (true);
         pauseMenu.SetActive(false);
+		//pauseCanvas.SetActive (false);
         pauseGame = GameObject.FindObjectOfType<Button>();
         resumeGame = GameObject.FindObjectOfType<Button>();
-       
+
     }
 
     // Update is called once per frame
     public void PausePress()
     {
         Time.timeScale = 0;
-        pauseMenu.SetActive(true);
-        pauseGame.enabled = true;
+		pauseMenu.SetActive(true);
+		//pauseCanvas.SetActive (true);
+
+        //pauseGame.enabled = true;
         resumeGame.enabled = false;
     }
 
     public void ResumePress() //responds when user clicks resume game
     {
-        pauseMenu.SetActive(false);
+		pauseMenu.SetActive(false);
         pauseGame.enabled = false;
         resumeGame.enabled = true;
         Time.timeScale = 1;
@@ -41,7 +46,7 @@ public class pauseScript : MonoBehaviour
         Application.Quit();
     }
 
-    public void Pause()
+/*    public void Pause()
     {
         //Application.LoadLevel(1);
         paused = !paused;
@@ -49,16 +54,18 @@ public class pauseScript : MonoBehaviour
         if (paused)
         {
             Time.timeScale = 0;
-            pauseMenu.SetActive(true);
+			pauseMenu.SetActive(true);
+			//pauseCanvas.SetActive (true);
 
         }
         else if (!paused)
         {
-            pauseMenu.SetActive(false);
+			pauseMenu.SetActive(false);
             pauseGame.enabled = true;
             Time.timeScale = 1;
 
         }
     }
+    */
 
 }
