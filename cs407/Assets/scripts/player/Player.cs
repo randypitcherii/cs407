@@ -114,7 +114,6 @@ public abstract class Player : MonoBehaviour
     {
         if (isFiring)
         {
-			audio.PlayOneShot(collideSound, 0.8F);
 			anim.SetBool("Range", false);
         }
         //anim.SetBool("Range", false);
@@ -350,6 +349,7 @@ public abstract class Player : MonoBehaviour
         //change to make it stay in one direction and can not change
         if (canMove && !isFiring && !anim.GetBool("Range"))
         {
+			audio.PlayOneShot(collideSound, 0.8F);
             if (getManaPoints() - manaRange > 0)
             {
                 //play the ranged attack sound
