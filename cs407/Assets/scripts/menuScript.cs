@@ -8,7 +8,7 @@ public class menuScript : MonoBehaviour {
     public Button gamePlay;
 	public GameObject musicPanel, mainMenuPanel;
 	AudioSource source;
-	AudioSource volumeSet;
+	//AudioSource volumeSet;
 	public Slider volumeSlider;
 	public AudioClip sound;
 	public bool muteToggle;
@@ -40,6 +40,6 @@ public class menuScript : MonoBehaviour {
 		}
 	}
 	public void VolumeControl() {
-		volumeSet.volume = volumeSlider.value ;
+		AudioListener.volume = volumeSlider.value ;
 	}
 }
