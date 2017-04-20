@@ -37,15 +37,16 @@ public class Timer : MonoBehaviour {
     public int addMana;
     //set the timescale for the game 
     public int timeScale;
+    public GameObject endGame;
     // Use this for initialization
-    void Start () {
+    void Start() {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         script = player.GetComponent<Player>();
         script2 = player2.GetComponent<Player>();
         Time.timeScale = timeScale;
-        if(script == null)
+        if (script == null)
         {
             Debug.Log("Script is null");
         }
@@ -53,10 +54,11 @@ public class Timer : MonoBehaviour {
         {
             speedCamera = (float)(script.getSpeed() * 1.0);
         }
-        speedCamera = (float)(script.getSpeed()*1.0);
+        speedCamera = (float)(script.getSpeed() * 1.0);
         secAddMana = 1.0f;
         addMana = 1;
         oldTime = time;
+        
     }
 	
 	// Update is called once per frame
@@ -64,10 +66,8 @@ public class Timer : MonoBehaviour {
         time -= Time.deltaTime;
         if (time < 0)
         {
-            Debug.Log("time up");
             timer.text = "0.00";
-            Menu.DisplayWinner();
-            Menu.returnToMenu();
+            end(true);
         }
         else
         {
@@ -89,7 +89,48 @@ public class Timer : MonoBehaviour {
             script.setManaPoints(script.getManaPoints() + addMana);
             script2.setManaPoints(script2.getManaPoints()+addMana);
         }
+        Debug.Log(timer.text);
 	}
+    //function that helps deal with ending the game and the game menu
+    public void end( bool isTie)
+    {
+        int p1Health = player.GetComponent<Player>().getHitPoints();
+        int p2Health = player2.GetComponent<Player>().getHitPoints();
+        //get the time that is left
+        int minsLeft = ((int)time) / 60;
+        int secLeft = ((int)time) % 60;
+        string timeLeft;
+        //make time in the same format as before
+        if (time > 30)
+        {
+            timeLeft = minsLeft + ":" + String.Format("{0:00}", secLeft);
+        }
+        else
+        {
+            timeLeft = String.Format("{0:0.00}", time % 60);
+        }
+        //set the menu to be active
+        endGame.SetActive(true);
+        //if it is a tie let them know
+        if (isTie)
+        {
+            endGame.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "The Clock expired no winner\n The com had " + p1Health + " health left\n" + "You had " + p2Health + " health left";
+        }
+        else
+        {
+            //player 1 is consider to be the actual player while player2 is the com
+            if (p2Health <= 0)
+            {
+                endGame.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "You have won\n" + "With " + timeLeft + " Time left\n" + "and you had " + p1Health + " health left";
+            }
+            else
+            {
+                endGame.transform.FindChild("Panel").FindChild("Stats").GetComponent<Text>().text = "You have lost\n" + "With " + timeLeft + " Time left\n" + "and the com had " + p2Health + " health left";
+            }
+        }
+        //freeze the game and make no more updates
+        Time.timeScale = 0;
+    }   //end of endGame method
     void LateUpdate()
     {
         /*totalPlayerChange = (transform.position - playerPrevLoc + offset).x; 
