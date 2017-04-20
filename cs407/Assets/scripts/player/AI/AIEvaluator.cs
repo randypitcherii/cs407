@@ -48,11 +48,13 @@ namespace AI
             Player player2 = ;//
 
             //assign brains to players
+            //TODO: create assignBrain function
             player1.assignBrain(player1Brain);
             player2.assignBrain(player2Brain);
 
             //play game
 
+            //
             while (!currGame.gi.isOver)
             {
             }
@@ -79,6 +81,9 @@ namespace AI
 
             // Update the evaluation counter.
             _evalCount++;
+
+            //end the game
+
         }
 
         /// <summary>
