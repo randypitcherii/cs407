@@ -39,14 +39,14 @@ public class Timer : MonoBehaviour {
     public int timeScale;
     public GameObject endGame;
     // Use this for initialization
-    void Start () {
+    void Start() {
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         script = player.GetComponent<Player>();
         script2 = player2.GetComponent<Player>();
         Time.timeScale = timeScale;
-        if(script == null)
+        if (script == null)
         {
             Debug.Log("Script is null");
         }
@@ -54,10 +54,11 @@ public class Timer : MonoBehaviour {
         {
             speedCamera = (float)(script.getSpeed() * 1.0);
         }
-        speedCamera = (float)(script.getSpeed()*1.0);
+        speedCamera = (float)(script.getSpeed() * 1.0);
         secAddMana = 1.0f;
         addMana = 1;
         oldTime = time;
+        
     }
 	
 	// Update is called once per frame
@@ -88,6 +89,7 @@ public class Timer : MonoBehaviour {
             script.setManaPoints(script.getManaPoints() + addMana);
             script2.setManaPoints(script2.getManaPoints()+addMana);
         }
+        Debug.Log(timer.text);
 	}
     //function that helps deal with ending the game and the game menu
     public void end( bool isTie)
