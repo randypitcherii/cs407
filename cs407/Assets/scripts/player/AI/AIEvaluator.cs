@@ -1,5 +1,6 @@
 ﻿using SharpNeat.Core;
 using SharpNeat.Phenomes;
+using UnityEngine;
 
 namespace AI
 {
@@ -34,9 +35,32 @@ namespace AI
         public void Evaluate(IBlackBox box1, IBlackBox box2,
                             out FitnessInfo fitness1, out FitnessInfo fitness2)
         {
-            // build fighters
-            AIFighter player1 = new AIFighter(box1);
-            AIFighter player2 = new AIFighter(box2);
+            // build fighter brains
+            AIFighter player1Brain = new AIFighter(box1);
+            AIFighter player2Brain = new AIFighter(box2);
+
+            //TODO: Make function that starts new game and returns that game's master game object
+            //start game
+            Master_Game_Object currGame = new Master_Game_Object();
+
+            //get player objects
+            Player player1 = ;//
+            Player player2 = ;//
+
+            //assign brains to players
+            player1.assignBrain(player1Brain);
+            player2.assignBrain(player2Brain);
+
+            //play game
+
+            while (!currGame.gi.isOver)
+            {
+            }
+            
+
+
+
+
 
             //FIX Everything below this point.
             //TODO: Need to find a way to play a full game.

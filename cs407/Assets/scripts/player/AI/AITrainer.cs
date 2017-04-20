@@ -20,11 +20,6 @@ public class AITrainer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
-        thread.Start();
-    }
-    static void WorkThreadFunction()
-    {
         // Initialise log4net (log to console).
         XmlConfigurator.Configure(new FileInfo("log4net.properties"));
 

@@ -35,6 +35,15 @@ public class Master_Game_Object : MonoBehaviour {
     }
 }
 //way of passing the game info back to player 
-public class GameInfo{
+public class GameInfo {
+    public bool isOver { get; set; }
+    public Player winner { get; set; }
+    public double timeLeft { get; set; }
 
+    public GameInfo()
+    {
+        this.isOver = false;
+        this.winner = null;
+        this.timeLeft = 300.0;
+    }
 }
