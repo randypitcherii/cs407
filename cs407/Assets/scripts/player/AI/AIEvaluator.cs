@@ -63,17 +63,15 @@ namespace AI
             player2.assignBrain(player2Brain);
 
             //play game
-
-            //
-            while (!gi.isOver)
+            while (!currGame.gi.isOver)
             {
                 //Unity's thread manager will yeild this loop to other game functions
                 //until this game finishes.
             }
 
             //get game results
-            Player winner = currGame.winner;
-            double timeLeft = currGame.remainingTime;
+            Player winner = null;//currGame.winner;
+            double timeLeft = 300;//currGame.remainingTime;
 
             if (player1 == winner)
             {

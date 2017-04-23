@@ -444,14 +444,6 @@ public abstract class Player : MonoBehaviour
         }
         
     }
-<<<<<<< HEAD
-    //this method will assign a brain to the player if needed
-    public void assignBrain(AIFighter brain)
-    {
-        this.brain = brain;
-    }
-}   //end of Player abstract
-=======
 
     /**
      * Assigns an AI brain to this player. This is used when training
@@ -463,4 +455,3 @@ public abstract class Player : MonoBehaviour
     }
 
 }   //end of Player abstract
->>>>>>> origin/Temp1

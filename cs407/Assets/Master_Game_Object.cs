@@ -8,7 +8,7 @@ public class Master_Game_Object : MonoBehaviour {
     AIEvaluator aiEval;
     Object obj;
     int i;
-    GameInfo gi;
+    public GameInfo gi;
 	// Use this for initialization
 	void Start () {
         gi = new GameInfo();
