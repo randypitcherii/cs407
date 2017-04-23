@@ -48,9 +48,11 @@ namespace AI
 
             //start game by calling a function in the game and save this class so it can be found later if need be
             number.aiEval = this;
+            Debug.Log("Create Game is called");
             Master_Game_Object currGame = number.createGame();
-            Debug.LogError(currGame);
+
             //get player objects
+            Debug.Log("Curr Game "+currGame+".");
             Player[] players = currGame.getPlayers();
             Player player1 = players[0];
             Player player2 = players[1];

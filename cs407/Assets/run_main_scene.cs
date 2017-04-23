@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AI;
 public class run_main_scene : MonoBehaviour {
-
+    public bool createGame; //do I need to create a new game?
     // Use this for initialization
     void Start()
     {
@@ -12,18 +12,18 @@ public class run_main_scene : MonoBehaviour {
         number.locked = false;
         number.rms =  this;
         number.isTraining = true;
+        createGame = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //if this is locked we need to create a new scene to take its place so load a new scene and pass the 
-        
+        if (createGame)
+        {
+            createGame = false;
+            Application.LoadLevelAdditive("scene_one");
+            number.count++;
+        }        
 	}
-    public void createGame()
-    {
-        Application.LoadLevelAdditive("scene_one");
-        number.count++;
-    }
     public void getGameInfo(GameInfo gi, int number)
     {
 
@@ -43,18 +43,19 @@ public class number
     //Creates a game and then returns its mgo 
     public static Master_Game_Object createGame()
     {
+
         //checks to make sure no one else is using this
         waitForLock();
+        Debug.Log("Exit Lock" + locked);
         //it is locked and unlocked in 
-        number.locked = true;
-        rms.createGame();
+        rms.createGame = true; //sets a flag to let the parent scene know it needs to create a new scene
         //Save the Master Game Object before we undo the lock
         waitForGameToBeCreated();
         Master_Game_Object mgo1 = mgo;
-        Debug.LogError(mgo1);
         //set it back to null so it can wait for creating a new game with the lock work correctly
-        mgo = null;
+        
         number.locked = false;
+        mgo = null;
         return mgo1;
     }
 
@@ -64,10 +65,14 @@ public class number
         {
             yield return null;
         }
+        //Trying to see if this locks it or what happens
+        locked = true;
+
     }
     //method waits for new scene to create a new gameObject and set mgo so we know that is done making the new gameObject
     public static IEnumerator waitForGameToBeCreated()
     {
+        Debug.Log("Hello world");
         while (mgo == null)
         {
             yield return null;

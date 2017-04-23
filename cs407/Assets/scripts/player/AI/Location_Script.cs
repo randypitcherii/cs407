@@ -486,8 +486,10 @@ public class Location_Script : MonoBehaviour {
             arena[start + 3] = p.Mana;
             if (p.isAttacking())
             {
-                Debug.LogError("Is p.meele null?"+p.meele);
-                arena[start + 4] = p.meele.direction; 
+                if (p.meele != null)
+                {
+                    arena[start + 4] = p.meele.direction;
+                } 
             }
             if (p.isPrepFiring != 0)
             {
