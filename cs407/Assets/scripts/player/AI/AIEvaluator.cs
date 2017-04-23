@@ -1,5 +1,6 @@
 ﻿using SharpNeat.Core;
 using SharpNeat.Phenomes;
+using System.Collections;
 using UnityEngine;
 
 namespace AI
@@ -41,7 +42,6 @@ namespace AI
         public void Evaluate(IBlackBox box1, IBlackBox box2,
                             out FitnessInfo fitness1, out FitnessInfo fitness2)
         {
-            Debug.Log("Running Evaluate");
             // build fighter brains
             AIFighter player1Brain = new AIFighter(box1);
             AIFighter player2Brain = new AIFighter(box2);
@@ -64,11 +64,7 @@ namespace AI
             player2.assignBrain(player2Brain);
 
             //play game
-            while (!currGame.gi.isOver)
-            {
-                //Unity's thread manager will yeild this loop to other game functions
-                //until this game finishes.
-            }
+            playGame(currGame);
 
             //get game results
             Player winner = null;//currGame.winner;
@@ -104,10 +100,22 @@ namespace AI
             Object.Destroy(currGame);
         }
 
-        /// <summary>
-        /// Reset the internal state of the evaluation scheme if any exists.
-        /// </summary>
-        public void Reset()
+        public IEnumerator playGame(Master_Game_Object currGame)
+        {
+            while (!currGame.gi.isOver)
+            {
+                //Unity's thread manager will yeild this loop to other game functions
+                //until this game finishes.
+                yield return null;
+            }
+        }
+
+        
+
+    /// <summary>
+    /// Reset the internal state of the evaluation scheme if any exists.
+    /// </summary>
+    public void Reset()
         {
         }
     }

@@ -38,14 +38,23 @@ public class number
     public static Master_Game_Object mgo;   //this is the class that is the parent of everything in the scene
     public static bool locked; //is something using this class, so does it need to be locked
     public static AIEvaluator aiEval; // AIEvaluator of item
+
     public static Master_Game_Object createGame()
     {
         //checks to make sure no one else is using this, will unlock in MasterGameObject when it is returned
-        while (locked) { }
+        waitForLock();
         //locks it so nothing else can access it
         locked = true;
         rms.createGame();
         return mgo;
+    }
+
+    public static IEnumerator waitForLock()
+    {
+        while (locked)
+        {
+            yield return null;
+        }
     }
 }
 
