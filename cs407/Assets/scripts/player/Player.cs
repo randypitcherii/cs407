@@ -49,6 +49,8 @@ public abstract class Player : MonoBehaviour
     public GameObject c;            //camera object used to get correct script
     public GameObject gameOver;    //the canvas that will show when the game is over
     public int playerNumber;
+    public AIFighter fighterBrain;
+
     //abstract methods
     public abstract void LateUpdate();
     public AIFighter brain; //brain of the AI player
@@ -60,6 +62,10 @@ public abstract class Player : MonoBehaviour
     {
         //initialize location script
         ls = c.GetComponent<Location_Script>();
+
+        //initialize AIFighter brain
+        fighterBrain = null;
+
         //initialize hit points
         this.hitPoints = MAX_HIT_POINTS;
 
@@ -438,9 +444,23 @@ public abstract class Player : MonoBehaviour
         }
         
     }
+<<<<<<< HEAD
     //this method will assign a brain to the player if needed
     public void assignBrain(AIFighter brain)
     {
         this.brain = brain;
     }
 }   //end of Player abstract
+=======
+
+    /**
+     * Assigns an AI brain to this player. This is used when training
+     * competing AI's to overide default player behavior.
+     */
+     public void assignBrain(AIFighter newBrain)
+    {
+        fighterBrain = newBrain;
+    }
+
+}   //end of Player abstract
+>>>>>>> origin/Temp1

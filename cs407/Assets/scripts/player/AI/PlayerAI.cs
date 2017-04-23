@@ -13,8 +13,20 @@ public class PlayerAI : Player
      */
     public override void LateUpdate()
     {
+        //create AI output (actions) and input (game state matrix)
+        int[] actions;
+        int[] aiInput = ls.buildArray();
 
-        int[] actions = AIBrain.getMoves(ls.buildArray());
+        if (fighterBrain != null)
+        {
+            //AI brain found. Use it here.
+            actions = fighterBrain.GetMoves(aiInput);
+        }
+        else
+        {
+            //no AI brain found. Use default model.
+            actions = AIBrain.getMoves(ls.buildArray());
+        }
 
         //check if a key was pressed
         if (actions[0] != 0)   //a left key was pressed

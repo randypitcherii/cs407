@@ -67,33 +67,42 @@ namespace AI
             //
             while (!gi.isOver)
             {
+                //Unity's thread manager will yeild this loop to other game functions
+                //until this game finishes.
             }
-            
 
+            //get game results
+            Player winner = currGame.winner;
+            double timeLeft = currGame.remainingTime;
 
+            if (player1 == winner)
+            {
+                //player 1 wins. They get 1000 win bonus + points for how fast they won
+                fitness1 = new FitnessInfo(1000 + timeLeft, 100 + timeLeft);
 
+                //player 2 loses. They only get points for how long they lasted
+                fitness2 = new FitnessInfo(300 - timeLeft, 300 - timeLeft);
+            }
+            else if (player2 == winner)
+            {
+                //player 1 loses. They only get points for how long they lasted
+                fitness1 = new FitnessInfo(300 - timeLeft, 300 - timeLeft);
 
-
-            //FIX Everything below this point.
-            //TODO: Need to find a way to play a full game.
-            //TODO: Need to build a score based on the results of a game
-
-            // Play the two boxes against each other.
-            //var matchResults = TicTacToeGame.PlayGameToEnd(player1, player2);
-
-            // Score player 1
-            double score1 = 100.0f * randomNumGenerator.NextDouble();
-            fitness1 = new FitnessInfo(score1, score1);
-
-            // Score player 2
-            double score2 = 100.0f * randomNumGenerator.NextDouble();
-            fitness2 = new FitnessInfo(score2, score2);
+                //player 2 wins. They get 1000 win bonus + points for how fast they won
+                fitness2 = new FitnessInfo(1000 + timeLeft, 100 + timeLeft);
+            }
+            else
+            {
+                //Nobody won. Nobody gets points.
+                fitness1 = new FitnessInfo(0,0);
+                fitness2 = new FitnessInfo(0,0);
+            }
 
             // Update the evaluation counter.
             _evalCount++;
 
             //end the game
-
+            Object.Destroy(currGame);
         }
 
         /// <summary>
