@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace AI
 {
-    class AIEvaluator : ICoevolutionPhenomeEvaluator<IBlackBox>
+    public class AIEvaluator : ICoevolutionPhenomeEvaluator<IBlackBox>
     {
         private ulong _evalCount;
         static System.Random randomNumGenerator = new System.Random();
-
+        public GameInfo gi;
         /// <summary>
         /// Gets the total number of evaluations that have been performed.
         /// </summary>
@@ -27,6 +27,12 @@ namespace AI
             get { return false; }
         }
 
+        //Gives a way for the gameInformation object to be passed to this object
+        public void setGameInfo(GameInfo gi)
+        {
+            this.gi = gi;
+        }
+
         /// <summary>
         /// Evaluate the two black boxes by playing them against each other in a
         /// fight. All permutations of size 2 are going to be
@@ -40,12 +46,16 @@ namespace AI
             AIFighter player2Brain = new AIFighter(box2);
 
             //TODO: Make function that starts new game and returns that game's master game object
-            //start game
-            Master_Game_Object currGame = new Master_Game_Object();
-
+            //start game by calling a function in the game I need to find a way to make this happen
+            number.locked = true;
+            number.aiEval = this;
+            Master_Game_Object currGame = number.createGame();
+            //unlock the gameobject once it is done with it
+            number.locked = false;
             //get player objects
-            Player player1 = ;//
-            Player player2 = ;//
+            Player[] players = currGame.getPlayers();
+            Player player1 = players[0];
+            Player player2 = players[1];
 
             //assign brains to players
             //TODO: create assignBrain function
@@ -55,7 +65,7 @@ namespace AI
             //play game
 
             //
-            while (!currGame.gi.isOver)
+            while (!gi.isOver)
             {
             }
             

@@ -89,7 +89,6 @@ public class Timer : MonoBehaviour {
             script.setManaPoints(script.getManaPoints() + addMana);
             script2.setManaPoints(script2.getManaPoints()+addMana);
         }
-        Debug.Log(timer.text);
 	}
     //function that helps deal with ending the game and the game menu
     public void end( bool isTie)

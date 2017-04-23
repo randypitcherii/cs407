@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,6 +51,7 @@ public abstract class Player : MonoBehaviour
     public int playerNumber;
     //abstract methods
     public abstract void LateUpdate();
+    public AIFighter brain; //brain of the AI player
 
     /**
      * Initializes the player.
@@ -434,5 +436,11 @@ public abstract class Player : MonoBehaviour
         {
             anim.SetBool("Block", false);
         }
+        
+    }
+    //this method will assign a brain to the player if needed
+    public void assignBrain(AIFighter brain)
+    {
+        this.brain = brain;
     }
 }   //end of Player abstract

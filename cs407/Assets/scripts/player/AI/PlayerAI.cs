@@ -73,4 +73,8 @@ public class PlayerAI : Player
         this.log.close();
         this.log = null;
     }   //end of closeLog method
+    public Master_Game_Object createScene()
+    {
+        return null;
+    }
 }   //end of PlayerAI class

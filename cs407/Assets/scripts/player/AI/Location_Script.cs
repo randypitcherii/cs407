@@ -364,12 +364,13 @@ public class Location_Script : MonoBehaviour {
     // Use this for initialization
     void Start() {
         numberPlayers = playersGameObjects.Length;
-        pi = new PlayerInfo[numberPlayers];
+        this.pi = new PlayerInfo[numberPlayers];
+        Debug.Log("Created pi "+pi);
         int i = 0;
         foreach (GameObject p in playersGameObjects)
         {
 
-            
+
             pi[i] = new PlayerInfo(p);
             pi[i].pScript.playerNumber = i;
             i++;
@@ -426,8 +427,8 @@ public class Location_Script : MonoBehaviour {
         }
         //int to allow me to know which player we are on for storing its info in the top of the array
         int a = 0;
-        foreach (PlayerInfo p in pi)
-        {
+        foreach (PlayerInfo p in this.pi)
+        { 
             // x and y are centers
             float normalizeX = p.x * 4 + width * 2;     //the normalation of the x to use in arena corninates
             int x = (int)normalizeX / 1;
