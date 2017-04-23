@@ -41,6 +41,7 @@ namespace AI
         public void Evaluate(IBlackBox box1, IBlackBox box2,
                             out FitnessInfo fitness1, out FitnessInfo fitness2)
         {
+            Debug.Log("Running Evaluate");
             // build fighter brains
             AIFighter player1Brain = new AIFighter(box1);
             AIFighter player2Brain = new AIFighter(box2);

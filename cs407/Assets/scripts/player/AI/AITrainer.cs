@@ -34,7 +34,7 @@ public class AITrainer : MonoBehaviour
         // Create evolution algorithm and attach update event.
         _ea = experiment.CreateEvolutionAlgorithm();
         _ea.UpdateEvent += new EventHandler(ea_UpdateEvent);
-
+        Debug.Log("Starting AI");
         // Start algorithm (it will run on a background thread).
         _ea.StartContinue();
     }

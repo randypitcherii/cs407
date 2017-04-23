@@ -440,10 +440,6 @@ public class Location_Script : MonoBehaviour {
                 Debug.Log("Adding Players at "+x+","+y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
             }
-            else
-            {
-                Debug.Log("Not adding Players");
-            }
 
             //deals with melee attack do not need for atleast right now
             /*if (p.isAttacking())

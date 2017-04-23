@@ -8,7 +8,7 @@ public class run_main_scene : MonoBehaviour {
     void Start()
     {
         //init the class that deals with passing info along
-        number.obj = new Object[number.max];
+        //number.obj = new Object[number.max];
         number.locked = false;
         number.rms =  this;
         number.max = 0;
