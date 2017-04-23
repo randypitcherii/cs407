@@ -11,7 +11,7 @@ public class run_main_scene : MonoBehaviour {
         //number.obj = new Object[number.max];
         number.locked = false;
         number.rms =  this;
-        number.max = 0;
+        number.isTraining = true;
     }
 	
 	// Update is called once per frame
@@ -31,27 +31,44 @@ public class run_main_scene : MonoBehaviour {
 }
 public class number
 {
-    public static int count;    //covert
-    public static int max = -1; //max number will not need
-    public static Object[] obj; //what ever object you want to pass along
-    public static run_main_scene rms; //rms to pass to new run
+    public static int count;    /*What scene number this is being created. 
+                                  This allows create scene know where to place it the Parent Scene as well as be able to access it  */
+    public static bool isTraining;  //Lets the system know if this is training or not and what it should do about that
+    public static run_main_scene rms; //rms to pass to new scene so it is able to access it
+    //TODO have a way to set it before returning
     public static Master_Game_Object mgo;   //this is the class that is the parent of everything in the scene
-    public static bool locked; //is something using this class, so does it need to be locked
-    public static AIEvaluator aiEval; // AIEvaluator of item
+    public static bool locked;              //Locks creating a new scene while this is being used, imporant as it stops it from passing the wrong values to the wrong scene.
+    public static AIEvaluator aiEval; // AIEvaluator class of game being created
 
+    //Creates a game and then returns its mgo 
     public static Master_Game_Object createGame()
     {
-        //checks to make sure no one else is using this, will unlock in MasterGameObject when it is returned
+        //checks to make sure no one else is using this
         waitForLock();
-        //locks it so nothing else can access it
-        locked = true;
+        //it is locked and unlocked in 
+        number.locked = true;
         rms.createGame();
-        return mgo;
+        //Save the Master Game Object before we undo the lock
+        waitForGameToBeCreated();
+        Master_Game_Object mgo1 = mgo;
+        Debug.LogError(mgo1);
+        //set it back to null so it can wait for creating a new game with the lock work correctly
+        mgo = null;
+        number.locked = false;
+        return mgo1;
     }
 
     public static IEnumerator waitForLock()
     {
         while (locked)
+        {
+            yield return null;
+        }
+    }
+    //method waits for new scene to create a new gameObject and set mgo so we know that is done making the new gameObject
+    public static IEnumerator waitForGameToBeCreated()
+    {
+        while (mgo == null)
         {
             yield return null;
         }

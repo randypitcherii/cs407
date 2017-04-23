@@ -46,26 +46,22 @@ namespace AI
             AIFighter player1Brain = new AIFighter(box1);
             AIFighter player2Brain = new AIFighter(box2);
 
-            //TODO: Make function that starts new game and returns that game's master game object
-            //start game by calling a function in the game I need to find a way to make this happen
-            number.locked = true;
+            //start game by calling a function in the game and save this class so it can be found later if need be
             number.aiEval = this;
             Master_Game_Object currGame = number.createGame();
-            //unlock the gameobject once it is done with it
-            number.locked = false;
+            Debug.LogError(currGame);
             //get player objects
             Player[] players = currGame.getPlayers();
             Player player1 = players[0];
             Player player2 = players[1];
 
             //assign brains to players
-            //TODO: create assignBrain function
             player1.assignBrain(player1Brain);
             player2.assignBrain(player2Brain);
 
             //play game
             playGame(currGame);
-
+            //TODO fix this to work correctly
             //get game results
             Player winner = null;//currGame.winner;
             double timeLeft = 300;//currGame.remainingTime;

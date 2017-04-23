@@ -11,23 +11,24 @@ public class Master_Game_Object : MonoBehaviour {
     public GameInfo gi;
 	// Use this for initialization
 	void Start () {
-        gi = new GameInfo();
-        //TODO need away to set aiEval to be able to get it;
-        number.mgo = this;
-        aiEval = number.aiEval;
-        aiEval.setGameInfo(gi);
+        
 
         
-        if (number.max == -1)
+        if (number.isTraining == false)
         {
             //not running multiple scripts
         }
         //else creating multiple scenes so need to set this up
         else
         {
+            gi = new GameInfo();
+            //TODO need away to set aiEval to be able to get it;
+            number.mgo = this;
+            aiEval = number.aiEval;
+            Debug.LogError(aiEval);
+            aiEval.setGameInfo(gi);
             this.transform.position = new Vector3(0,number.count*25,0);
             rms = number.rms;
-            obj = number.obj[number.count];
             i = number.count;
         }
         
@@ -40,6 +41,7 @@ public class Master_Game_Object : MonoBehaviour {
         //get all gameObjects under are GameObject
         GameObject[] go = GetComponentsInChildren<GameObject>();
         Player[] ret = new Player[2];
+        Debug.LogError(go);
         int count = 0; //keeps track of how many are found
         foreach(GameObject g in go)
         {
