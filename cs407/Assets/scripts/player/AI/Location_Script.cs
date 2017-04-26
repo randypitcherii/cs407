@@ -33,7 +33,6 @@ public class Location_Script : MonoBehaviour {
             {
                 sb.Append(arena[j + (i * ((int)width) * 4)]);
             }
-            Debug.Log(sb.ToString());
         }
     }
     public class PlayerInfo
@@ -365,7 +364,6 @@ public class Location_Script : MonoBehaviour {
     void Start() {
         numberPlayers = playersGameObjects.Length;
         this.pi = new PlayerInfo[numberPlayers];
-        Debug.Log("Created pi "+pi);
         int i = 0;
         foreach (GameObject p in playersGameObjects)
         {
@@ -437,7 +435,6 @@ public class Location_Script : MonoBehaviour {
 
             if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
-                Debug.Log("Adding Players at "+x+","+y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
             }
 
