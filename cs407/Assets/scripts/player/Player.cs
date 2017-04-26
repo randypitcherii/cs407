@@ -1,6 +1,8 @@
 ﻿using AI;
+using SharpNeat.Genomes.Neat;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,7 +66,7 @@ public abstract class Player : MonoBehaviour
         ls = c.GetComponent<Location_Script>();
 
         //initialize AIFighter brain
-        fighterBrain = null;
+        fighterBrain = getFighterBrain();
 
         //initialize hit points
         this.hitPoints = MAX_HIT_POINTS;
@@ -452,6 +454,28 @@ public abstract class Player : MonoBehaviour
      public void assignBrain(AIFighter newBrain)
     {
         fighterBrain = newBrain;
+    }
+
+    /**
+     * Assigns an AI brain to this player. This is used when
+     * loading a brain from an existing neural network xml champion file.
+     */
+    public AIFighter getFighterBrain()
+    {   
+        //try to load a champion file. If any issues, use default AI.
+        try
+        {
+            //load existing champion file into a genome
+            XmlReader xr = XmlReader.Create(AITrainer.CHAMPION_FILE);
+            NeatGenome genome = NeatGenomeXmlIO.ReadCompleteGenomeList(xr, false)[0];
+
+            //decode genome into a usable AIFighter brain.
+            return new AIFighter(AITrainer.decoder.Decode(genome));
+        }
+        catch (System.Exception e)
+        {
+            return null;
+        }
     }
 
 }   //end of Player abstract

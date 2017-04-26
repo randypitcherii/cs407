@@ -11,6 +11,7 @@ public class PlayerHuman : Player
     public override void LateUpdate()
     {
         //check if an ai fighterBrain has been assigned to this human player
+        /** uncomment this to run coevolution.
         if (fighterBrain != null)
         {
             //this human player has been assigned an AI brain. It will take over
@@ -18,6 +19,7 @@ public class PlayerHuman : Player
             makeAIMovement();
             return;
         }
+        */
 
         //to get here, the human player has not been assigned an AI brain. Continue
         //listening for human input.

@@ -20,12 +20,32 @@ public class PlayerAI : Player
         if (fighterBrain != null)
         {
             //AI brain found. Use it here.
-            actions = fighterBrain.GetMoves(aiInput);
+            try
+            {
+                actions = fighterBrain.GetMoves(aiInput);
+            }
+            catch (Exception)
+            {
+                Debug.Log("Bad AI Fighter when getting input. Default AI will be used from now");
+                fighterBrain = null;
+                actions = AIBrain.getMovesA(aiInput);
+            }
+            
         }
         else
         {
             //no AI brain found. Use default model.
-            actions = AIBrain.getMoves(ls.buildArray());
+
+            //adapt to the situation based on AI health.
+            if (hitPoints > 50)
+            {
+                actions = AIBrain.getMovesA(aiInput);
+            }
+            else
+            {
+                actions = AIBrain.getMovesB(aiInput);
+            }
+            
         }
 
         //check if a key was pressed
@@ -85,6 +105,7 @@ public class PlayerAI : Player
         this.log.close();
         this.log = null;
     }   //end of closeLog method
+
     public Master_Game_Object createScene()
     {
         return null;

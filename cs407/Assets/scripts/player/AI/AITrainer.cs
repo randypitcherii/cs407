@@ -10,12 +10,15 @@ using System.IO;
 using Assets.scripts.AI;
 using System.Xml;
 using System.Threading;
+using SharpNeat.Core;
+using SharpNeat.Phenomes;
 
 public class AITrainer : MonoBehaviour
 {
 
     static NeatEvolutionAlgorithm<NeatGenome> _ea;
-    const string CHAMPION_FILE = @".\coevolution_champion.xml";
+    public const string CHAMPION_FILE = @".\coevolution_champion.xml";
+    public static IGenomeDecoder<NeatGenome, IBlackBox> decoder = null;
 
     // Use this for initialization
     void Start()
@@ -30,6 +33,9 @@ public class AITrainer : MonoBehaviour
         XmlDocument xmlConfig = new XmlDocument();
         xmlConfig.Load("ai.config.xml");
         experiment.Initialize("AI", xmlConfig.DocumentElement);
+
+        // assign genome decoder for reading champion files
+        decoder = experiment.CreateGenomeDecoder();
 
         // Create evolution algorithm and attach update event.
         _ea = experiment.CreateEvolutionAlgorithm();
