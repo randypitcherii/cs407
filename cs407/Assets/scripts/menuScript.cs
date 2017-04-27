@@ -20,4 +20,9 @@ public class menuScript : MonoBehaviour {
     {
         Application.LoadLevel("StageSelectScene");
     }
+
+    public void SelectCharacter()
+    {
+        Application.LoadLevel("CharacterSelect");
+    }
 }
