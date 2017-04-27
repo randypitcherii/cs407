@@ -37,14 +37,13 @@ public class Timer : MonoBehaviour {
     public int addMana;
     //set the timescale for the game 
     public int timeScale;
-<<<<<<< HEAD
 
 	//set audioClid variable
 	public AudioClip sounds;
 	public AudioSource source;
-=======
+
     public GameObject endGame;
->>>>>>> master
+
     // Use this for initialization
     void Start () {
 		source = GetComponent<AudioSource> ();
