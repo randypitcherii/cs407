@@ -16,7 +16,7 @@ public static class CharacterSettings {
     private static StreamReader settingsReader;
 
     //color of the character
-    private static Color SelectedColor;
+    private static Color SelectedColor = new Color(1, 1, 1, 1);
 
     /** Write the character settings to a file
      * 
@@ -38,6 +38,13 @@ public static class CharacterSettings {
      */
     public static void LoadSettings()
     {
+        //in case the file is missing
+        if (!File.Exists(DIRECTORY + '/' + FILE))
+        {
+            WriteSettings();
+            return;
+        }
+
         //prepare to write the settings
         settingsReader = new StreamReader(File.OpenRead(DIRECTORY + '/' + FILE));
 
