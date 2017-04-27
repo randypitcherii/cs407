@@ -38,6 +38,7 @@ public class pauseScript : MonoBehaviour
     }
     public void QuitPress() //responds when user clicks quit game
     {
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
