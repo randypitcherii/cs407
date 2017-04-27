@@ -15,8 +15,8 @@ public abstract class Player : MonoBehaviour
     //private fields
     private Animator anim;      //handles the animations
     private int dirProjectile;  //direction of the projectile
-    private Color hitColor;     //the color to change to when hit
-    private Color normalColor;  //the normal color of the player
+    protected Color hitColor;     //the color to change to when hit
+    //protected Color normalColor;  //the normal color of the player
     public Location_Script ls;     //script to inform everytime something is fired
     private Timer timer;    //holds the camera timer script and allows for easy calls
 
@@ -48,6 +48,15 @@ public abstract class Player : MonoBehaviour
     public GameObject c;            //camera object used to get correct script
     public GameObject gameOver;    //the canvas that will show when the game is over
     public int playerNumber;
+
+    //properties (only these can be overwritten in C#)
+    private Color hiddenNormalColor;        //hidden normal color of Player
+    protected virtual Color normalColor     //overridable normal color of player
+    {
+        get { return hiddenNormalColor; }
+        set { hiddenNormalColor = value; }
+    }
+
     //abstract methods
     public abstract void LateUpdate();
 
@@ -56,6 +65,9 @@ public abstract class Player : MonoBehaviour
      */
     public void Start()
     {
+        //load settings
+        CharacterSettings.LoadSettings();
+
         //initialize location script
         ls = c.GetComponent<Location_Script>();
         //initialize hit points
@@ -83,7 +95,9 @@ public abstract class Player : MonoBehaviour
 
         //initialize the color
         this.hitColor = Color.blue;
-        this.normalColor = GetComponent<SpriteRenderer>().color;
+        this.normalColor = CharacterSettings.GetColor();//GetComponent<SpriteRenderer>().color;
+        this.changeToNormalColor();
+        Debug.LogError(this.normalColor);
 
         //allow the player to move
         canMove = true;
