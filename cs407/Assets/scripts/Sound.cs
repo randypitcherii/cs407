@@ -13,13 +13,16 @@ public static class Sound
     public static void playSound(GameObject gameObject, string fileName)
     {
         AudioSource audio = gameObject.GetComponent<AudioSource>(); //used to play sounds
-        
+
         //check if an audio source was found
         if (audio == null)  //and audio source was not found
         {
             //create a new audio source attached to the player
-            gameObject.AddComponent<AudioSource>();
+            audio = gameObject.AddComponent<AudioSource>();
         }   //end if
+
+        //set the audio volume
+        //audio.volume = getVolume()?;
 
         //stop any previous sound
         audio.Stop();

@@ -343,7 +343,7 @@ public abstract class Player : MonoBehaviour
         {
             if ((getManaPoints() - manaMelee) > 0) {
                 //play the melee attack sound
-                //Sound.playSound(gameObject, "FILE_NAME");
+                Sound.playSound(gameObject, "Explode_02");
 
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);
@@ -365,8 +365,18 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaRange > 0)
             {
-                //play the ranged attack sound
-                //Sound.playSound(gameObject, "FILE_NAME");
+                //check if the player is a human or AI
+                if (gameObject.name.Equals("Player"))   //the player is a human
+                {
+                    //play the ranged attack sound
+                    Sound.playSound(gameObject, "Shot_01");
+                }
+                else    //the player is an AI
+                {
+                    // play the ranged attack sound
+                    Sound.playSound(gameObject, "Laser_03");
+                }   //end if
+                
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
