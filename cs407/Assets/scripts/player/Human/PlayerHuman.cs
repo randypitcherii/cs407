@@ -5,6 +5,21 @@ using UnityEngine;
 
 public class PlayerHuman : Player
 {
+    //override parent color
+    private Color hiddenNormalColor = new Color(1, 1, 1, 1);    //hidden normal color of playerHuman
+    protected override Color normalColor                        //normal color of playerHuman
+    {
+        get
+        {
+            return this.hiddenNormalColor;
+        }
+
+        set
+        {
+            ;
+        }
+    }
+
     /**
      * Handles the player's movement.
      */
