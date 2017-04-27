@@ -7,7 +7,7 @@
     <Iters>2</Iters>
   </Activation>
   <ComplexityRegulationStrategy>Absolute</ComplexityRegulationStrategy>
-  <ComplexityThreshold>50</ComplexityThreshold>
+  <ComplexityThreshold>21000</ComplexityThreshold>
   <Description>
     MLFight AI Settings
   </Description>

@@ -37,6 +37,7 @@ public class Timer : MonoBehaviour {
     public int addMana;
     //set the timescale for the game 
     public int timeScale;
+<<<<<<< HEAD
 
 	//set audioClid variable
 	public AudioClip sounds;
@@ -47,13 +48,18 @@ public class Timer : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		source = GetComponent<AudioSource> ();
+=======
+    public GameObject endGame;
+    // Use this for initialization
+    void Start() {
+>>>>>>> master
         offset = transform.position;
         totalPlayerChange = 0;
         playerPrevLoc = player.transform.position;
         script = player.GetComponent<Player>();
         script2 = player2.GetComponent<Player>();
         Time.timeScale = timeScale;
-        if(script == null)
+        if (script == null)
         {
             Debug.Log("Script is null");
         }
@@ -61,10 +67,11 @@ public class Timer : MonoBehaviour {
         {
             speedCamera = (float)(script.getSpeed() * 1.0);
         }
-        speedCamera = (float)(script.getSpeed()*1.0);
+        speedCamera = (float)(script.getSpeed() * 1.0);
         secAddMana = 1.0f;
         addMana = 1;
         oldTime = time;
+        
     }
 	
 	// Update is called once per frame
