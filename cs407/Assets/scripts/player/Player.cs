@@ -288,7 +288,7 @@ public abstract class Player : MonoBehaviour
             //play the move left sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            if (transform.position.x > -23)
+            if (transform.position.x > -20)
             {
                 transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
                 anim.SetInteger("Dir", 2);
@@ -308,7 +308,7 @@ public abstract class Player : MonoBehaviour
             //play the move right sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            if (transform.position.x < 23)
+            if (transform.position.x < 20)
             {
                 transform.Translate(speed * Time.deltaTime, 0, 0);
                 anim.SetInteger("Dir", 1);
@@ -446,7 +446,6 @@ public abstract class Player : MonoBehaviour
         {
             setManaPoints(getManaPoints() - manaBlock);
             anim.SetBool("Block", true);
-            Debug.Log(getManaPoints());
         }
         else
         {
