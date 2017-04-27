@@ -342,8 +342,17 @@ public abstract class Player : MonoBehaviour
         if (!anim.GetBool("Meele"))
         {
             if ((getManaPoints() - manaMelee) > 0) {
-                //play the melee attack sound
-                Sound.playSound(gameObject, "Explode_02");
+                //check if the player is a human or AI
+                if (gameObject.name.Equals("Player"))   //the player is a human
+                {
+                    //play the melee attack sound
+                    Sound.playSound(gameObject, "Explode_02");
+                }
+                else    //the player is an AI
+                {
+                    //play the melee attack sound
+                    Sound.playSound(gameObject, "Damage_01");
+                }   //end if
 
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);
