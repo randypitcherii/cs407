@@ -24,7 +24,6 @@ public abstract class Player : MonoBehaviour
     private Animator anim;      //handles the animations
     private int dirProjectile;  //direction of the projectile
     private Color hitColor;     //the color to change to when hit
-    private Color normalColor;  //the normal color of the player
     public Location_Script ls;     //script to inform everytime something is fired
     private Timer timer;    //holds the camera timer script and allows for easy calls
 
@@ -62,11 +61,21 @@ public abstract class Player : MonoBehaviour
     public abstract void LateUpdate();
     public AIFighter brain; //brain of the AI player
 
+    //properties (the only way to override in C#)
+    private Color hiddenNormalColor;    //the hidden normal color of the player
+    protected virtual Color normalColor //the normal color of the player
+    {
+        get { return this.hiddenNormalColor; }
+        set { this.hiddenNormalColor = value; }
+    }
+
     /**
      * Initializes the player.
      */
     public void Start()
     {
+        CharacterSettings.LoadSettings();
+
         //initialize location script
         ls = c.GetComponent<Location_Script>();
 
@@ -98,7 +107,8 @@ public abstract class Player : MonoBehaviour
 
         //initialize the color
         this.hitColor = Color.blue;
-        this.normalColor = GetComponent<SpriteRenderer>().color;
+        this.normalColor = CharacterSettings.GetColor();
+        this.changeToNormalColor();
 
         //allow the player to move
         canMove = true;
