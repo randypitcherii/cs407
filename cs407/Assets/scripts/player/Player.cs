@@ -54,7 +54,6 @@ public abstract class Player : MonoBehaviour
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
     public GameObject c;            //camera object used to get correct script
-<<<<<<< HEAD
 
 	public AudioClip collideSound;
 	public AudioClip meleeSound;
@@ -63,9 +62,6 @@ public abstract class Player : MonoBehaviour
 
     public GameObject gameOver;    //the canvas that will show when the game is over
 
-=======
-    public GameObject gameOver;    //the canvas that will show when the game is over
->>>>>>> master
     public int playerNumber;
     public AIFighter fighterBrain;
 
