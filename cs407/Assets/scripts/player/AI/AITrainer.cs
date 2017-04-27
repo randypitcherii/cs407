@@ -10,20 +10,17 @@ using System.IO;
 using Assets.scripts.AI;
 using System.Xml;
 using System.Threading;
+using SharpNeat.Core;
+using SharpNeat.Phenomes;
 
 public class AITrainer : MonoBehaviour
 {
 
     static NeatEvolutionAlgorithm<NeatGenome> _ea;
-    const string CHAMPION_FILE = @".\coevolution_champion.xml";
+    public const string CHAMPION_FILE = @".\coevolution_champion.xml";
 
     // Use this for initialization
     void Start()
-    {
-        Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
-        thread.Start();
-    }
-    static void WorkThreadFunction()
     {
         // Initialise log4net (log to console).
         XmlConfigurator.Configure(new FileInfo("log4net.properties"));
@@ -39,7 +36,6 @@ public class AITrainer : MonoBehaviour
         // Create evolution algorithm and attach update event.
         _ea = experiment.CreateEvolutionAlgorithm();
         _ea.UpdateEvent += new EventHandler(ea_UpdateEvent);
-
         // Start algorithm (it will run on a background thread).
         _ea.StartContinue();
     }

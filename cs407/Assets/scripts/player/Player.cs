@@ -1,5 +1,13 @@
-﻿using System.Collections;
+﻿using AI;
+using Assets.scripts.AI;
+using log4net.Config;
+using SharpNeat.Core;
+using SharpNeat.Genomes.Neat;
+using SharpNeat.Phenomes;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +23,8 @@ public abstract class Player : MonoBehaviour
     //private fields
     private Animator anim;      //handles the animations
     private int dirProjectile;  //direction of the projectile
-    protected Color hitColor;     //the color to change to when hit
-    //protected Color normalColor;  //the normal color of the player
+    private Color hitColor;     //the color to change to when hit
+    private Color normalColor;  //the normal color of the player
     public Location_Script ls;     //script to inform everytime something is fired
     private Timer timer;    //holds the camera timer script and allows for easy calls
 
@@ -48,28 +56,23 @@ public abstract class Player : MonoBehaviour
     public GameObject c;            //camera object used to get correct script
     public GameObject gameOver;    //the canvas that will show when the game is over
     public int playerNumber;
-
-    //properties (only these can be overwritten in C#)
-    private Color hiddenNormalColor;        //hidden normal color of Player
-    protected virtual Color normalColor     //overridable normal color of player
-    {
-        get { return hiddenNormalColor; }
-        set { hiddenNormalColor = value; }
-    }
+    public AIFighter fighterBrain;
 
     //abstract methods
     public abstract void LateUpdate();
+    public AIFighter brain; //brain of the AI player
 
     /**
      * Initializes the player.
      */
     public void Start()
     {
-        //load settings
-        CharacterSettings.LoadSettings();
-
         //initialize location script
         ls = c.GetComponent<Location_Script>();
+
+        //initialize AIFighter brain
+        fighterBrain = getFighterBrain();
+
         //initialize hit points
         this.hitPoints = MAX_HIT_POINTS;
 
@@ -95,9 +98,7 @@ public abstract class Player : MonoBehaviour
 
         //initialize the color
         this.hitColor = Color.blue;
-        this.normalColor = CharacterSettings.GetColor();//GetComponent<SpriteRenderer>().color;
-        this.changeToNormalColor();
-        Debug.LogError(this.normalColor);
+        this.normalColor = GetComponent<SpriteRenderer>().color;
 
         //allow the player to move
         canMove = true;
@@ -196,7 +197,6 @@ public abstract class Player : MonoBehaviour
             {
                setHitPoints(getHitPoints() - col.transform.parent.GetComponent<Player>().getMeleeAttack());
                changeToHitColor();
-               Debug.Log(getHitPoints());
             }
         }
     }   //end of OnTriggerEnter2D method
@@ -288,8 +288,12 @@ public abstract class Player : MonoBehaviour
             //play the move left sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
-            anim.SetInteger("Dir", 2);
+            if (transform.position.x > -20)
+            {
+                transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+                anim.SetInteger("Dir", 2);
+            }
+            
         }
         anim.SetInteger("State", 2);
     }   //end of moveLeft method
@@ -304,8 +308,12 @@ public abstract class Player : MonoBehaviour
             //play the move right sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-            anim.SetInteger("Dir", 1);
+            if (transform.position.x < 20)
+            {
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+                anim.SetInteger("Dir", 1);
+            }
+                
         }
         anim.SetInteger("State", 1);
     }   //end of moveRight method
@@ -334,12 +342,20 @@ public abstract class Player : MonoBehaviour
         if (!anim.GetBool("Meele"))
         {
             if ((getManaPoints() - manaMelee) > 0) {
-                //play the melee attack sound
-                //Sound.playSound(gameObject, "FILE_NAME");
+                //check if the player is a human or AI
+                if (gameObject.name.Equals("Player"))   //the player is a human
+                {
+                    //play the melee attack sound
+                    Sound.playSound(gameObject, "Explode_02");
+                }
+                else    //the player is an AI
+                {
+                    //play the melee attack sound
+                    Sound.playSound(gameObject, "Damage_01");
+                }   //end if
 
                 setManaPoints((getManaPoints() - manaMelee));
                 anim.SetBool("Meele", true);
-                Debug.Log(getManaPoints());
             }
             
         }
@@ -358,10 +374,18 @@ public abstract class Player : MonoBehaviour
         {
             if (getManaPoints() - manaRange > 0)
             {
-                //play the ranged attack sound
-                //Sound.playSound(gameObject, "FILE_NAME");
-
-                Debug.Log("User Ranged attack");
+                //check if the player is a human or AI
+                if (gameObject.name.Equals("Player"))   //the player is a human
+                {
+                    //play the ranged attack sound
+                    Sound.playSound(gameObject, "Shot_01");
+                }
+                else    //the player is an AI
+                {
+                    // play the ranged attack sound
+                    Sound.playSound(gameObject, "Laser_03");
+                }   //end if
+                
                 setManaPoints(getManaPoints() - manaRange);
                 dirProjectile = anim.GetInteger("Dir");
                 anim.SetBool("Range", true);
@@ -392,7 +416,6 @@ public abstract class Player : MonoBehaviour
 
                 setManaPoints(getManaPoints() - manaBlock);
                 anim.SetBool("Block", true);
-                Debug.Log(getManaPoints());
             }
         }
     }   //end of useBlockAttack method
@@ -442,11 +465,59 @@ public abstract class Player : MonoBehaviour
         {
             setManaPoints(getManaPoints() - manaBlock);
             anim.SetBool("Block", true);
-            Debug.Log(getManaPoints());
         }
         else
         {
             anim.SetBool("Block", false);
         }
+        
     }
+
+    /**
+     * Assigns an AI brain to this player. This is used when training
+     * competing AI's to overide default player behavior.
+     */
+     public void assignBrain(AIFighter newBrain)
+    {
+        fighterBrain = newBrain;
+    }
+
+    /**
+     * Assigns an AI brain to this player. This is used when
+     * loading a brain from an existing neural network xml champion file.
+     */
+    public AIFighter getFighterBrain()
+    {   
+        //try to load a champion file. If any issues, use default AI.
+        try
+        {
+            // Initialise log4net (log to console).
+            XmlConfigurator.Configure(new FileInfo("log4net.properties"));
+
+            // Experiment classes encapsulate much of the nuts and bolts of setting up a NEAT search.
+            AIExperiment experiment = new AIExperiment(new AIFighterEvaluatorFactory());
+
+            // Load config XML.
+            XmlDocument xmlConfig = new XmlDocument();
+            xmlConfig.Load("ai.config.xml");
+            experiment.Initialize("AI", xmlConfig.DocumentElement);
+
+            // assign genome decoder for reading champion files
+            IGenomeDecoder<NeatGenome, IBlackBox> decoder = experiment.CreateGenomeDecoder();
+
+            //load existing champion file into a genome
+            string championFileLocation = "coevolution_champion.xml";
+            XmlReader xr = XmlReader.Create(championFileLocation);
+            NeatGenome genome = NeatGenomeXmlIO.ReadCompleteGenomeList(xr, false)[0];
+
+            //decode genome into a usable AIFighter brain.
+            return new AIFighter(decoder.Decode(genome));
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Unable to load CHAMPION xml file. It may not exist.\n" + e);
+            return null;
+        }
+    }
+
 }   //end of Player abstract

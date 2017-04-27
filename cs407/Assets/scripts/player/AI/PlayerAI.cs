@@ -13,8 +13,40 @@ public class PlayerAI : Player
      */
     public override void LateUpdate()
     {
+        //create AI output (actions) and input (game state matrix)
+        int[] actions;
+        int[] aiInput = ls.buildArray();
 
-        int[] actions = AIBrain.getMoves(ls.buildArray());
+        if (fighterBrain != null)
+        {
+            //AI brain found. Use it here.
+            try
+            {
+                actions = fighterBrain.GetMoves(aiInput);
+            }
+            catch (Exception)
+            {
+                Debug.Log("Bad AI Fighter when getting input. Default AI will be used from now");
+                fighterBrain = null;
+                actions = AIBrain.getMovesA(aiInput);
+            }
+            
+        }
+        else
+        {
+            //no AI brain found. Use default model.
+
+            //adapt to the situation based on AI health.
+            if (hitPoints > 50)
+            {
+                actions = AIBrain.getMovesA(aiInput);
+            }
+            else
+            {
+                actions = AIBrain.getMovesB(aiInput);
+            }
+            
+        }
 
         //check if a key was pressed
         if (actions[0] != 0)   //a left key was pressed
@@ -73,4 +105,9 @@ public class PlayerAI : Player
         this.log.close();
         this.log = null;
     }   //end of closeLog method
+
+    public Master_Game_Object createScene()
+    {
+        return null;
+    }
 }   //end of PlayerAI class
