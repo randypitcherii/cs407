@@ -197,7 +197,6 @@ public abstract class Player : MonoBehaviour
             {
                setHitPoints(getHitPoints() - col.transform.parent.GetComponent<Player>().getMeleeAttack());
                changeToHitColor();
-               Debug.Log(getHitPoints());
             }
         }
     }   //end of OnTriggerEnter2D method
@@ -289,8 +288,12 @@ public abstract class Player : MonoBehaviour
             //play the move left sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
-            anim.SetInteger("Dir", 2);
+            if (transform.position.x > -23)
+            {
+                transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+                anim.SetInteger("Dir", 2);
+            }
+            
         }
         anim.SetInteger("State", 2);
     }   //end of moveLeft method
@@ -305,8 +308,12 @@ public abstract class Player : MonoBehaviour
             //play the move right sound
             //Sound.playSound(gameObject, "FILE_NAME");
 
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-            anim.SetInteger("Dir", 1);
+            if (transform.position.x < 23)
+            {
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+                anim.SetInteger("Dir", 1);
+            }
+                
         }
         anim.SetInteger("State", 1);
     }   //end of moveRight method
