@@ -22,7 +22,7 @@ public static class Sound
         }   //end if
 
         //set the audio volume
-        //audio.volume = getVolume()?;
+        audio.volume = Volume.read();
 
         //stop any previous sound
         audio.Stop();
