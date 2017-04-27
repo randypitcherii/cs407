@@ -11,7 +11,7 @@ public class menuScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gamePlay = gamePlay.GetComponent<Button>();
-        	
+        Sound.playSound(gameObject, "Battle Theme 1_demo");
 	}
 	
     public void StartLevel()
