@@ -69,7 +69,7 @@ public class PlayerAI : Player
         }
         else if (actions[3] == 1) //a melee attack key was pressed
         {
-            useMeleeAttack();
+			useMeleeAttack();
         }
         else if (actions[4] == 1)    //a ranged attack key was pressed
         {
