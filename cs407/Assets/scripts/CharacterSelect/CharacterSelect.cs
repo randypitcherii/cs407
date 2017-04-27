@@ -26,7 +26,7 @@ public class CharacterSelect : MonoBehaviour {
     /** Load the main menu
      * 
      */
-    public static void LoadMenu()
+    public void LoadMenu()
     {
         //go back to the main menu
         Application.LoadLevel("MainMenu");
