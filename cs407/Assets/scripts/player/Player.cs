@@ -18,6 +18,7 @@ public abstract class Player : MonoBehaviour
     private Color hitColor;     //the color to change to when hit
     private Color normalColor;  //the normal color of the player
     public Location_Script ls;     //script to inform everytime something is fired
+    private Timer timer;    //holds the camera timer script and allows for easy calls
 
     //protected fields
     protected int hitPoints;  //the player's current hit points
@@ -45,12 +46,16 @@ public abstract class Player : MonoBehaviour
     public int manaMelee;      //the mana cost for doing different action
     public int projSpeed;       //the speed of the projectile fired
     public GameObject c;            //camera object used to get correct script
+<<<<<<< HEAD
 
 	public AudioClip collideSound;
 	public AudioClip meleeSound;
 
 	AudioSource audio;
 
+=======
+    public GameObject gameOver;    //the canvas that will show when the game is over
+>>>>>>> master
     public int playerNumber;
     //abstract methods
     public abstract void LateUpdate();
@@ -105,6 +110,8 @@ public abstract class Player : MonoBehaviour
         setMeleeAttack = 5;
         setRangedAttack = 5;
         projSpeed = 20;
+        //gets timer script from camera 
+        timer = c.GetComponent<Timer>();
     }   //end of Start method
 
     /**
@@ -216,7 +223,7 @@ public abstract class Player : MonoBehaviour
             //set hit points to zero
             this.hitPoints = 0;
             //end the game
-            GameOver.endGame();
+            timer.end(false);
         }
         else if (newHitPoints > MAX_HIT_POINTS) //the new hit points are invalid
         {

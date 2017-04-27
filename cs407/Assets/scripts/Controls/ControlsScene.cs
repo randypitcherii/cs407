@@ -15,12 +15,19 @@ public class ControlsScene : MonoBehaviour
     private Button currentButton;               //the current button
     private UnityEngine.UI.Text currentText;    //the current text
     private KeyCode[] keys;                     //the list of keys
+    private GameObject errorPanel;              //the error panel
 
     /**
      * Initializes the fields.
      */
     public void Start()
     {
+        //set the error panel
+        this.errorPanel = GameObject.Find("ErrorPanel");
+
+        //hide the error panel
+        this.errorPanel.SetActive(false);
+
         //stop recording input
         this.isRecording = false;
 
@@ -85,6 +92,22 @@ public class ControlsScene : MonoBehaviour
      */
     public void saveButtonClick()
     {
+        //loop through and check if there are duplicate keybindings
+        for (int keyIndex = 0; keyIndex < this.keys.Length; keyIndex += 1)
+        {
+            //loop through and compare the key to the rest of the keys
+            for (int compareIndex = keyIndex + 1; compareIndex < this.keys.Length; compareIndex += 1)
+            {
+                //check if the keys are equal
+                if (this.keys[keyIndex] == this.keys[compareIndex]) //the keys are equal
+                {
+                    //show the error panel
+                    this.errorPanel.SetActive(true);
+                    return;
+                }   //end if
+            }   //end for
+        }   //end for
+
         //save the keys
         Controls.setLeftKey(this.keys[(int)Button.LeftButton]);
         Controls.setRightKey(this.keys[(int)Button.RightButton]);
@@ -264,4 +287,13 @@ public class ControlsScene : MonoBehaviour
         //start recording input
         this.isRecording = true;
     }   //end of blockButtonClick method
+
+    /**
+     * Handles the OK button's click event.
+     */
+    public void okButtonClick()
+    {
+        //hide the error panel
+        this.errorPanel.SetActive(false);
+    }   //end of okButtonClick method
 }   //end of ControlsScene class
