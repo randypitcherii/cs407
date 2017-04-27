@@ -33,7 +33,6 @@ public class Location_Script : MonoBehaviour {
             {
                 sb.Append(arena[j + (i * ((int)width) * 4)]);
             }
-            Debug.Log(sb.ToString());
         }
     }
     public class PlayerInfo
@@ -364,12 +363,12 @@ public class Location_Script : MonoBehaviour {
     // Use this for initialization
     void Start() {
         numberPlayers = playersGameObjects.Length;
-        pi = new PlayerInfo[numberPlayers];
+        this.pi = new PlayerInfo[numberPlayers];
         int i = 0;
         foreach (GameObject p in playersGameObjects)
         {
 
-            
+
             pi[i] = new PlayerInfo(p);
             pi[i].pScript.playerNumber = i;
             i++;
@@ -426,8 +425,8 @@ public class Location_Script : MonoBehaviour {
         }
         //int to allow me to know which player we are on for storing its info in the top of the array
         int a = 0;
-        foreach (PlayerInfo p in pi)
-        {
+        foreach (PlayerInfo p in this.pi)
+        { 
             // x and y are centers
             float normalizeX = p.x * 4 + width * 2;     //the normalation of the x to use in arena corninates
             int x = (int)normalizeX / 1;
@@ -436,12 +435,7 @@ public class Location_Script : MonoBehaviour {
 
             if ((x) + ((y + 2) * ((int)width) * 4) < arena.Length)
             {
-                Debug.Log("Adding Players at "+x+","+y);
                 arena[(x) + ((y + 2) * ((int)width) * 4)] = AI.GameState.opponent_state;
-            }
-            else
-            {
-                Debug.Log("Not adding Players");
             }
 
             //deals with melee attack do not need for atleast right now
@@ -489,7 +483,10 @@ public class Location_Script : MonoBehaviour {
             arena[start + 3] = p.Mana;
             if (p.isAttacking())
             {
-                arena[start + 4] = p.meele.direction; 
+                if (p.meele != null)
+                {
+                    arena[start + 4] = p.meele.direction;
+                } 
             }
             if (p.isPrepFiring != 0)
             {

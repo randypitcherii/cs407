@@ -82,7 +82,9 @@ namespace AI
                 results[i] = FitnessInfo.Zero;
 
             // Exhaustively compete individuals against each other.
-            Parallel.For(0, genomeList.Count, delegate (int i)
+            ParallelOptions po = new ParallelOptions();
+            po.MaxDegreeOfParallelism = 2;
+            Parallel.For(0, genomeList.Count, po, delegate (int i)
             {
                 for (int j = 0; j < genomeList.Count; j++)
                 {
