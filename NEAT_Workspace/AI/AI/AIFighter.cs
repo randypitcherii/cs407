@@ -26,7 +26,7 @@ namespace AI
         /// <summary>
         /// Gets the next moves from the neural network.
         /// </summary>
-        public ISignalArray GetMoves(int[] gameStateArray)
+        public int[] GetMoves(int[] gameStateArray)
         {
             // Clear the network
             Brain.ResetState();
@@ -42,8 +42,33 @@ namespace AI
             // Activate the network
             Brain.Activate();
 
-            // Find the highest-scoring available move
-            return Brain.OutputSignalArray;
+            // Get max output value
+            double maxSignal = Brain.OutputSignalArray[0];
+            for (int i = 1; i < GameState.aiOutputMatrixSize; i++)
+            {
+                maxSignal = Math.Max(maxSignal, Brain.OutputSignalArray[i]);
+            }
+
+            //Apply softmax to output layer and generate the moves output array
+            double threshold = 0.5;                     //threshold for softmax. Determines if a move is made or not
+            int[] moves = { 0, 0, 0, 0, 0, 0, 0 };      //int array used to make moves in the game
+            for (int i = 0; i < GameState.aiOutputMatrixSize; i++)
+            {
+                //normalize (or apply softmax) the brain output. Max value will = 1.0
+                if ((Brain.OutputSignalArray[i] / maxSignal) > threshold)
+                {
+                    //this ith signal is above threshold. Make this move.
+                    moves[i] = 1;
+                }
+                else
+                {
+                    //this ith signal is below threshold. Do not make this move.
+                    moves[i] = 0;
+                }
+            }
+
+            //return moves array
+            return moves;
         }
     }
 }
